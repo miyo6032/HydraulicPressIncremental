@@ -1,0 +1,53 @@
+[gd_scene load_steps=9 format=3 uid="uid://7t1sx0r2g2tc"]
+
+[ext_resource type="Script" path="res://Conveyor.gd" id="1_fnrox"]
+[ext_resource type="PackedScene" uid="uid://dk1w6rtkd0p2o" path="res://crushable.tscn" id="2_eh6tc"]
+
+[sub_resource type="Gradient" id="Gradient_phlyw"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_i0jcg"]
+gradient = SubResource("Gradient_phlyw")
+
+[sub_resource type="Gradient" id="Gradient_fp0e2"]
+offsets = PackedFloat32Array(1)
+colors = PackedColorArray(1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ntg4k"]
+gradient = SubResource("Gradient_fp0e2")
+
+[sub_resource type="Gradient" id="Gradient_ebb2i"]
+offsets = PackedFloat32Array(1)
+colors = PackedColorArray(0.493545, 0.493546, 0.493546, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_atsyf"]
+gradient = SubResource("Gradient_ebb2i")
+
+[node name="Simulation" type="Node2D"]
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(575, 322.5)
+scale = Vector2(4.72656, 729)
+texture = SubResource("GradientTexture1D_i0jcg")
+
+[node name="Press" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Press"]
+position = Vector2(577, -115.5)
+scale = Vector2(0.710937, 437)
+texture = SubResource("GradientTexture1D_ntg4k")
+
+[node name="Conveyor" type="Node2D" parent="." node_paths=PackedStringArray("crushable_spawn")]
+position = Vector2(568, 306)
+script = ExtResource("1_fnrox")
+crushable_scene = ExtResource("2_eh6tc")
+crushable_spawn = NodePath("CrushableSpawn")
+move_offset = Vector2(256, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Conveyor"]
+scale = Vector2(4.98242, 11.25)
+texture = SubResource("GradientTexture1D_atsyf")
+
+[node name="CrushableSpawn" type="Marker2D" parent="Conveyor"]
+position = Vector2(-480, -64)
