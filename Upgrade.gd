@@ -36,3 +36,9 @@ func set_upgrade_level(level):
 
 func set_upgrade_label(text):
     upgrade_label.text = text
+
+func save_data(data: Dictionary):
+    data["upgrade_level"] = upgrade_level
+
+func load_data(data: Dictionary):
+    set_upgrade_level(data["upgrade_level"])
