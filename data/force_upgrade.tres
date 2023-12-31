@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="UpgradeRes" load_steps=2 format=3 uid="uid://ype7ae050vxg"]
+
+[ext_resource type="Script" path="res://UpgradeRes.gd" id="1_hes04"]
+
+[resource]
+script = ExtResource("1_hes04")
+name = "Max Force"
+upgrade_value = 1.5
+upgrade_type = 0
+costs = Array[float]([10.0, 20.0, 40.0])

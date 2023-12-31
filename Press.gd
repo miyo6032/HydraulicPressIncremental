@@ -3,7 +3,9 @@ extends Node2D
 signal crush_finished
 
 const crushing_time = 0.5
-const crushing_power = 1
+const base_crushing_power = 1
+
+var crushing_power = 1
 
 @onready var visual = $Visual
 @onready var start_crushing_pos = $PressStart
@@ -11,6 +13,13 @@ const crushing_power = 1
 
 func _ready():
     visual.global_position = start_crushing_pos.global_position
+    EventBus.upgrade_level_changed.connect(upgrade_level_changed)
+    
+func upgrade_level_changed(instance):
+    if instance.upgrade.upgrade_type == Enums.UpgradeType.Force:
+        var upgrade_value = pow(instance.upgrade.upgrade_value, instance.upgrade_level)
+        crushing_power = base_crushing_power * upgrade_value
+        instance.set_upgrade_label("%s kg" % Utils.format_num(upgrade_value))
 
 func crush(crushable):
     var failed_crush = crushable.strength > crushing_power

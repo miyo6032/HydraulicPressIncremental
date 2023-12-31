@@ -1,10 +1,12 @@
-[gd_scene load_steps=3 format=3 uid="uid://cnrln6t4dxt74"]
+[gd_scene load_steps=4 format=3 uid="uid://cnrln6t4dxt74"]
 
 [ext_resource type="Script" path="res://Main.gd" id="1_kxjkt"]
 [ext_resource type="PackedScene" uid="uid://7t1sx0r2g2tc" path="res://2_simulation.tscn" id="1_widi8"]
+[ext_resource type="Resource" uid="uid://ype7ae050vxg" path="res://data/force_upgrade.tres" id="2_mf8dy"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_kxjkt")
+upgrades = Array[Resource("res://UpgradeRes.gd")]([ExtResource("2_mf8dy")])
 
 [node name="Simulation" parent="." instance=ExtResource("1_widi8")]
 
@@ -30,3 +32,21 @@ offset_bottom = 11.5
 grow_horizontal = 2
 grow_vertical = 2
 text = "$1000000"
+
+[node name="MarginContainer" type="MarginContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 337.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Upgrades" type="HBoxContainer" parent="Control/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 10

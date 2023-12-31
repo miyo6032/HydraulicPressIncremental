@@ -80,7 +80,8 @@ color = ExtResource("5_caxfv")
 shapes = Array[Resource("res://CrushableShape.gd")]([ExtResource("6_uwmjs"), ExtResource("7_bs5t7"), ExtResource("8_4nbhp")])
 
 [node name="Sprite2D" type="Sprite2D" parent="Conveyor"]
-scale = Vector2(4.98242, 11.25)
+position = Vector2(0, 198.688)
+scale = Vector2(4.98242, 408.625)
 texture = SubResource("GradientTexture1D_atsyf")
 
 [node name="CrushableSpawn" type="Marker2D" parent="Conveyor"]
