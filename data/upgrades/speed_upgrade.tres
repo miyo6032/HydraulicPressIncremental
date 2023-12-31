@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="UpgradeRes" load_steps=2 format=3 uid="uid://dnjuikwv7g0um"]
+
+[ext_resource type="Script" path="res://UpgradeRes.gd" id="1_rm8hn"]
+
+[resource]
+script = ExtResource("1_rm8hn")
+name = "Press Speed"
+upgrade_value = 0.3
+upgrade_type = 1
+tooltip = "How fast the press move"
+costs = Array[float]([3.0, 6.0, 12.0, 24.0, 48.0, 96.0])

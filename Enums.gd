@@ -3,5 +3,6 @@ extends Node
 class_name Enums
 
 enum UpgradeType {
-    Force
+    Force,
+    PressSpeed,
 }
