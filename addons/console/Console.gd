@@ -181,10 +181,15 @@ func print_line(text : String) -> void:
 
 
 func on_text_entered(text : String) -> void:
+    var split_text := text.split(";", true)
+    add_input_history(text)
+    for t in split_text:
+        handle_command(t.trim_prefix(" "))
+    
+func handle_command(text : String) -> void:
     scroll_to_bottom()
     reset_autocomplete()
     line_edit.clear()
-    add_input_history(text)
     print_line(text)
     var split_text := text.split(" ", true)
     if (split_text.size() > 0):

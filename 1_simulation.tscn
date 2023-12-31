@@ -48,7 +48,7 @@ texture = SubResource("GradientTexture1D_ntg4k")
 position = Vector2(575, 83)
 
 [node name="PressEnd" type="Marker2D" parent="Press/PressStart"]
-position = Vector2(0, 208)
+position = Vector2(0, 216)
 
 [node name="Conveyor" type="Node2D" parent="." node_paths=PackedStringArray("crushable_spawn")]
 position = Vector2(568, 306)
@@ -62,4 +62,4 @@ scale = Vector2(4.98242, 11.25)
 texture = SubResource("GradientTexture1D_atsyf")
 
 [node name="CrushableSpawn" type="Marker2D" parent="Conveyor"]
-position = Vector2(-495, -64)
+position = Vector2(-495, 0)

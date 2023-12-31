@@ -18,3 +18,6 @@ func move_conveyor():
     for c in crushables:
         var tween = create_tween()
         tween.tween_property(c, "position", c.position + move_offset, 0.3).set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_SINE)
+        
+func get_current_crushable():
+    return crushables[0]
