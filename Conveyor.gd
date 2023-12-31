@@ -24,7 +24,12 @@ func move_conveyor():
         tween.tween_property(c, "position", c.position + move_offset, animation_time).set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_SINE)
         
     var tween = create_tween()        
-    tween.tween_callback(func(): move_finished.emit()).set_delay(animation_time)
+    tween.tween_callback(finish_move).set_delay(animation_time)
+
+func finish_move():
+    move_finished.emit()
+    if crushables.size() > 5:
+        EventBus.crushable_removed.emit(1)
         
 func get_current_crushable():
     return crushables[-3]

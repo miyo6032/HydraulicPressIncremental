@@ -36,6 +36,7 @@ texture = SubResource("GradientTexture1D_i0jcg")
 
 [node name="Press" type="Node2D" parent="."]
 script = ExtResource("1_kar5x")
+crushing_time = 0.1
 
 [node name="Visual" type="Node2D" parent="Press"]
 

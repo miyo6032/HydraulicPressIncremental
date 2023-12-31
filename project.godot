@@ -17,6 +17,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 Console="*res://addons/console/Console.gd"
+EventBus="*res://EventBus.gd"
 
 [editor_plugins]
 
