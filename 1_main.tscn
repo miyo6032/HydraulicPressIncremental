@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Main.gd" id="1_kxjkt"]
 [ext_resource type="PackedScene" uid="uid://7t1sx0r2g2tc" path="res://2_simulation.tscn" id="1_widi8"]
-[ext_resource type="Resource" uid="uid://ype7ae050vxg" path="res://data/force_upgrade.tres" id="2_mf8dy"]
+[ext_resource type="Resource" uid="uid://ype7ae050vxg" path="res://data/upgrades/force_upgrade.tres" id="2_mf8dy"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_kxjkt")

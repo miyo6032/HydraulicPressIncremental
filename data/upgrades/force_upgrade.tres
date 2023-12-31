@@ -1,10 +1,11 @@
 [gd_resource type="Resource" script_class="UpgradeRes" load_steps=2 format=3 uid="uid://ype7ae050vxg"]
 
-[ext_resource type="Script" path="res://UpgradeRes.gd" id="1_hes04"]
+[ext_resource type="Script" path="res://UpgradeRes.gd" id="1_plo4h"]
 
 [resource]
-script = ExtResource("1_hes04")
+script = ExtResource("1_plo4h")
 name = "Max Force"
 upgrade_value = 1.5
 upgrade_type = 0
+tooltip = "Max crushing force the press can apply"
 costs = Array[float]([10.0, 20.0, 40.0])

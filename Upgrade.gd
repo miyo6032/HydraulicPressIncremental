@@ -16,7 +16,9 @@ func _ready():
 
 func init(upgrade: UpgradeRes):
     self.upgrade = upgrade
-    $MarginContainer/VBoxContainer/TitleLabel.text = upgrade.name
+    var title = $MarginContainer/VBoxContainer/TitleLabel
+    title.tooltip_text = upgrade.tooltip
+    title.text = upgrade.name
     upgrade_button.disabled = true
     upstep_button.disabled = true
     downstep_button.disabled = true
