@@ -25,7 +25,7 @@ func crush(crushable):
     var failed_crush = crushable.strength > crushing_power
     if failed_crush:
         var tween = create_tween()
-        var partial_position = (final_crushing_pos.global_position - start_crushing_pos.global_position) * 0.5 + start_crushing_pos.global_position
+        var partial_position = (final_crushing_pos.global_position - start_crushing_pos.global_position) * 0.65 + start_crushing_pos.global_position
         tween.tween_method(update_crush.bind(crushable), start_crushing_pos.global_position, partial_position, crushing_time)
         tween.tween_method(update_crush.bind(crushable), partial_position, start_crushing_pos.global_position, crushing_time)
         tween.tween_callback(func(): crush_finished.emit())

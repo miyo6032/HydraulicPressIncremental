@@ -34,8 +34,8 @@ gradient = SubResource("Gradient_ebb2i")
 script = ExtResource("1_k081r")
 
 [node name="Background" type="Sprite2D" parent="."]
-position = Vector2(575, 322.5)
-scale = Vector2(4.72656, 729)
+position = Vector2(967, 538)
+scale = Vector2(7.78906, 1160)
 texture = SubResource("GradientTexture1D_i0jcg")
 
 [node name="Press" type="Node2D" parent="."]
@@ -49,29 +49,13 @@ scale = Vector2(0.710937, 437)
 texture = SubResource("GradientTexture1D_ntg4k")
 
 [node name="PressStart" type="Marker2D" parent="Press"]
-position = Vector2(575, 83)
+position = Vector2(960, 263)
 
 [node name="PressEnd" type="Marker2D" parent="Press/PressStart"]
-position = Vector2(0, 216)
-
-[node name="Press2" type="Node2D" parent="."]
-script = ExtResource("1_kar5x")
-
-[node name="Visual" type="Node2D" parent="Press2"]
-
-[node name="Sprite2D" type="Sprite2D" parent="Press2/Visual"]
-position = Vector2(0, -222)
-scale = Vector2(0.710937, 437)
-texture = SubResource("GradientTexture1D_ntg4k")
-
-[node name="PressStart" type="Marker2D" parent="Press2"]
-position = Vector2(575, 83)
-
-[node name="PressEnd" type="Marker2D" parent="Press2/PressStart"]
-position = Vector2(0, 216)
+position = Vector2(0, 268)
 
 [node name="Conveyor" type="Node2D" parent="." node_paths=PackedStringArray("crushable_spawn")]
-position = Vector2(568, 306)
+position = Vector2(961, 534)
 script = ExtResource("1_fnrox")
 crushable_scene = ExtResource("2_eh6tc")
 crushable_spawn = NodePath("CrushableSpawn")
@@ -80,9 +64,9 @@ color = ExtResource("5_caxfv")
 shapes = Array[Resource("res://CrushableShape.gd")]([ExtResource("6_uwmjs"), ExtResource("7_bs5t7"), ExtResource("8_4nbhp")])
 
 [node name="Sprite2D" type="Sprite2D" parent="Conveyor"]
-position = Vector2(0, 198.688)
-scale = Vector2(4.98242, 408.625)
+position = Vector2(-11.9999, 306.688)
+scale = Vector2(8.11719, 624.625)
 texture = SubResource("GradientTexture1D_atsyf")
 
 [node name="CrushableSpawn" type="Marker2D" parent="Conveyor"]
-position = Vector2(-750, 0)
+position = Vector2(-1014, -5)

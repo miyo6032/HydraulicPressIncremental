@@ -20,6 +20,15 @@ config/icon="res://icon.svg"
 Console="*res://addons/console/Console.gd"
 EventBus="*res://EventBus.gd"
 
+[display]
+
+window/size/viewport_width=1920
+window/size/viewport_height=1080
+window/size/window_width_override=1440
+window/size/window_height_override=810
+window/stretch/mode="canvas_items"
+window/stretch/aspect="expand"
+
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/console/plugin.cfg", "res://addons/previous-tab/plugin.cfg", "res://addons/script-ide/plugin.cfg")

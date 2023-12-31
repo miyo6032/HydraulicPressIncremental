@@ -31,14 +31,14 @@ func move_conveyor():
 
 func finish_move():
     move_finished.emit()
-    if crushables.size() > 5:
+    if crushables.size() > 7:
         var crushable = crushables[0]
         crushables.remove_at(0)
         EventBus.crushable_removed.emit(crushable.get_value())
         crushable.queue_free()
         
 func get_current_crushable():
-    return crushables[-3]
+    return crushables[-4]
     
 func has_current_crushable():
-    return crushables.size() > 2
+    return crushables.size() > 3

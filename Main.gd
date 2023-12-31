@@ -16,8 +16,9 @@ func _ready():
     Console.add_command("load", func(path): load_data("user://" + path + ".res"), 1)
     Console.add_command("v", func(v): crushable_removed(float(v)), 1)
     EventBus.crushable_removed.connect(crushable_removed)
-    var window = JavaScriptBridge.get_interface("window")
-    window.getFile(file_load_callback)
+    if OS.get_name() == "Web":
+        var window = JavaScriptBridge.get_interface("window")
+        window.getFile(file_load_callback)
     for upgrade in upgrades:
         var upgrade_instance = upgrade_scene.instantiate()
         upgrade_container.add_child(upgrade_instance)
@@ -84,10 +85,9 @@ func download_File(file):
 
 func _on_import_save_button_pressed():
     var window = JavaScriptBridge.get_interface("window")
-    window.input.click()    
+    window.input.click()
     
 func load_file(args):
-    print(args)
     var array = args[0].to_utf8_buffer()
     if FileAccess.file_exists(temp_save_file):
         DirAccess.remove_absolute(temp_save_file)
@@ -95,5 +95,4 @@ func load_file(args):
     file.store_buffer(array)
     file.close()
     var resource = ResourceLoader.load(temp_save_file)
-    print(resource)
     load_game(resource)
