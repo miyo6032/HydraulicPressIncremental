@@ -5,6 +5,8 @@ signal move_finished
 @export var crushable_scene: PackedScene
 @export var crushable_spawn: Node2D
 @export var move_offset: Vector2
+@export var color: CrushableColor
+@export var shapes: Array[CrushableShape]
 
 var crushables = []
 
@@ -14,6 +16,7 @@ func _ready():
 func move_conveyor():
     var crushable = crushable_scene.instantiate()
     add_child(crushable)
+    crushable.init(shapes[randi_range(0, shapes.size() - 1)], color)
     crushable.global_position = crushable_spawn.global_position
     crushables.append(crushable)
     

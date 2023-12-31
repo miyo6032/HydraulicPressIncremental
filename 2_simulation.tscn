@@ -1,9 +1,13 @@
-[gd_scene load_steps=11 format=3 uid="uid://7t1sx0r2g2tc"]
+[gd_scene load_steps=15 format=3 uid="uid://7t1sx0r2g2tc"]
 
 [ext_resource type="Script" path="res://Conveyor.gd" id="1_fnrox"]
 [ext_resource type="Script" path="res://Simulation.gd" id="1_k081r"]
 [ext_resource type="Script" path="res://Press.gd" id="1_kar5x"]
 [ext_resource type="PackedScene" uid="uid://dk1w6rtkd0p2o" path="res://crushable.tscn" id="2_eh6tc"]
+[ext_resource type="Resource" uid="uid://dciq2jspp6iol" path="res://data/yellow_color.tres" id="5_caxfv"]
+[ext_resource type="Resource" uid="uid://q48ynjkbis4i" path="res://data/filled_shape.tres" id="6_uwmjs"]
+[ext_resource type="Resource" uid="uid://dsjr8pl15enke" path="res://data/hex_shape.tres" id="7_bs5t7"]
+[ext_resource type="Resource" uid="uid://crhomm34wq226" path="res://data/square_shape.tres" id="8_4nbhp"]
 
 [sub_resource type="Gradient" id="Gradient_phlyw"]
 offsets = PackedFloat32Array(0)
@@ -36,7 +40,6 @@ texture = SubResource("GradientTexture1D_i0jcg")
 
 [node name="Press" type="Node2D" parent="."]
 script = ExtResource("1_kar5x")
-crushing_time = 0.5
 
 [node name="Visual" type="Node2D" parent="Press"]
 
@@ -51,12 +54,30 @@ position = Vector2(575, 83)
 [node name="PressEnd" type="Marker2D" parent="Press/PressStart"]
 position = Vector2(0, 216)
 
+[node name="Press2" type="Node2D" parent="."]
+script = ExtResource("1_kar5x")
+
+[node name="Visual" type="Node2D" parent="Press2"]
+
+[node name="Sprite2D" type="Sprite2D" parent="Press2/Visual"]
+position = Vector2(0, -222)
+scale = Vector2(0.710937, 437)
+texture = SubResource("GradientTexture1D_ntg4k")
+
+[node name="PressStart" type="Marker2D" parent="Press2"]
+position = Vector2(575, 83)
+
+[node name="PressEnd" type="Marker2D" parent="Press2/PressStart"]
+position = Vector2(0, 216)
+
 [node name="Conveyor" type="Node2D" parent="." node_paths=PackedStringArray("crushable_spawn")]
 position = Vector2(568, 306)
 script = ExtResource("1_fnrox")
 crushable_scene = ExtResource("2_eh6tc")
 crushable_spawn = NodePath("CrushableSpawn")
 move_offset = Vector2(256, 0)
+color = ExtResource("5_caxfv")
+shapes = Array[Resource("res://CrushableShape.gd")]([ExtResource("6_uwmjs"), ExtResource("7_bs5t7"), ExtResource("8_4nbhp")])
 
 [node name="Sprite2D" type="Sprite2D" parent="Conveyor"]
 scale = Vector2(4.98242, 11.25)
