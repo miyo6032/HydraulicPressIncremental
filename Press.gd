@@ -20,17 +20,17 @@ func _ready():
     
 func upgrade_level_changed(instance):
     if instance.upgrade.upgrade_type == Enums.UpgradeType.Force:
-        var upgrade_value = pow(instance.upgrade.upgrade_value, instance.upgrade_level)
+        var upgrade_value = pow(instance.upgrade.upgrade_value, instance.current_upgrade_level)
         crushing_power = base_crushing_power * upgrade_value
         instance.set_upgrade_label("%s kg" % Utils.format_num(upgrade_value))
     elif instance.upgrade.upgrade_type == Enums.UpgradeType.PressSpeed:
-        var upgrade_value = instance.upgrade.upgrade_value * instance.upgrade_level
+        var upgrade_value = instance.upgrade.upgrade_value * instance.current_upgrade_level
         crushing_time = base_crushing_time / (1 + upgrade_value)
         instance.set_upgrade_label("%.2f%s Increase" % [(upgrade_value) * 100, "%"])
     elif instance.upgrade.upgrade_type == Enums.UpgradeType.Hydraulics:
-        if instance.upgrade_level > 0:
-            power_hydraulic_multiplier = instance.upgrade.upgrade_value * instance.upgrade_level
-            speed_hydraulic_multiplier = 1 / (instance.upgrade.upgrade_value * instance.upgrade_level * 0.5)
+        if instance.current_upgrade_level > 0:
+            power_hydraulic_multiplier = instance.upgrade.upgrade_value * instance.current_upgrade_level
+            speed_hydraulic_multiplier = 1 / (instance.upgrade.upgrade_value * instance.current_upgrade_level * 0.5)
         else:
             power_hydraulic_multiplier = 1
             speed_hydraulic_multiplier = 1
