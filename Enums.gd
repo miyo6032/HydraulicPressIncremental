@@ -7,5 +7,6 @@ enum UpgradeType {
     PressSpeed,
     Hydraulics,
     Precision,
+    Quality,
     Materials
 }
