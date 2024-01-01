@@ -78,6 +78,7 @@ grow_horizontal = 0
 text = "Import Save"
 
 [node name="OrderManager" type="ColorRect" parent="Control" node_paths=PackedStringArray("order_uis")]
+unique_name_in_owner = true
 layout_mode = 2
 offset_right = 360.0
 offset_bottom = 531.0

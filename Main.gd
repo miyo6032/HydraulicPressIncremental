@@ -5,6 +5,7 @@ extends Node
 @onready var currency_label = $Control/CurrencyLabel
 @export var upgrades: Array[UpgradeRes]
 @onready var upgrade_container = %Upgrades
+@onready var order_manager = %OrderManager
 
 var currency = 0
 var upgrade_instances = []
@@ -16,6 +17,7 @@ func _ready():
     Console.add_command("load", func(path): load_data("user://" + path + ".res"), 1)
     Console.add_command("v", func(v): update_currency(currency + float(v)), 1)
     EventBus.crushable_removed.connect(crushable_removed)
+    order_manager.order_finished.connect(order_manager_order_finished)
     if OS.get_name() == "Web":
         var window = JavaScriptBridge.get_interface("window")
         window.getFile(file_load_callback)
@@ -36,6 +38,9 @@ func update_currency(value):
     currency = value
     currency_label.text = "$%s" % Utils.format_num(currency)
     EventBus.currency_updated.emit(currency)
+    
+func order_manager_order_finished(order):
+    update_currency(currency + order.currency)
 
 func save_data(file_name):
     var game_data = create_save_file()

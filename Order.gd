@@ -1,5 +1,7 @@
 extends ColorRect
 
+signal claimed
+
 @onready var order_desc = $MarginContainer/HBoxContainer/VBoxContainer/OrderLabel
 @onready var claim_button = $MarginContainer/HBoxContainer/ClaimButton
 @onready var progress_bar = $MarginContainer/HBoxContainer/VBoxContainer/ProgressBar
@@ -11,6 +13,7 @@ var current_order: OrderRes
 func _ready():
     EventBus.crushable_removed.connect(crushable_removed)
     progress_bar.max_value = 1
+    claim_button.pressed.connect(claim_button_pressed);
 
 func set_order(order: OrderRes):
     order_desc.text = order.get_description()
@@ -30,6 +33,9 @@ func update_count(new_count):
     if count >= current_order.amount:
         claim_button.disabled = false
         claim_button.text = "Claim: $" + Utils.format_num(current_order.amount)
+
+func claim_button_pressed():
+    claimed.emit()
 
 func save_data():
     pass
