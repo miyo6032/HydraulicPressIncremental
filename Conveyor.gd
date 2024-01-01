@@ -7,16 +7,20 @@ signal move_finished
 @export var move_offset: Vector2
 @export var pattern: Array[CrushablePattern]
 @export var shapes: Array[CrushableShape]
+@export var force_initial_patterns: Array[CrushablePattern]
 
 var crushables = []
 
 const base_material_level = 3
 
 var material_level = base_material_level
+var initial_patterns_completed = false
+var remaining_patterns
 
 func _ready():
     Console.add_command("mv", move_conveyor)
     EventBus.upgrade_level_changed.connect(upgrade_level_changed)
+    remaining_patterns = force_initial_patterns.duplicate()
     
 func upgrade_level_changed(instance):
     if instance.upgrade.upgrade_type == Enums.UpgradeType.Materials:
@@ -26,7 +30,14 @@ func upgrade_level_changed(instance):
 func move_conveyor():
     var crushable = crushable_scene.instantiate()
     add_child(crushable)
-    crushable.init(shapes[randi_range(0, material_level - 3)], pattern[randi_range(0, pattern.size() - 1)])
+    if initial_patterns_completed:
+        crushable.init(shapes[randi_range(0, material_level - 3)], pattern[randi_range(0, pattern.size() - 1)])
+    else:
+        var initial_pattern = remaining_patterns[0]
+        crushable.init(shapes[randi_range(0, material_level - 3)], initial_pattern)
+        remaining_patterns.remove_at(0)
+        if remaining_patterns.size() == 0:
+            initial_patterns_completed = true
     crushable.global_position = crushable_spawn.global_position
     crushables.append(crushable)
     
@@ -52,3 +63,10 @@ func get_current_crushable():
     
 func has_current_crushable():
     return crushables.size() > 3
+    
+func save_data(data: Dictionary):
+    data["initial_patterns_completed"] = initial_patterns_completed
+    
+func load_data(data: Dictionary):
+    initial_patterns_completed = data["initial_patterns_completed"]
+    remaining_patterns = force_initial_patterns.duplicate()

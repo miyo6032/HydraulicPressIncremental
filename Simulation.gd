@@ -21,3 +21,8 @@ func move_finished():
 func crush_finished():
     conveyor.move_conveyor()    
     
+func save_data(data):
+    conveyor.save_data(data)
+    
+func load_data(data):
+    conveyor.load_data(data)

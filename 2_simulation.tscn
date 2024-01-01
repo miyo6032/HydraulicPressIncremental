@@ -84,6 +84,7 @@ crushable_spawn = NodePath("CrushableSpawn")
 move_offset = Vector2(256, 0)
 pattern = Array[Resource("res://CrushablePattern.gd")]([ExtResource("5_ys7td"), ExtResource("6_85hpk"), ExtResource("7_p7nga")])
 shapes = Array[ExtResource("9_5gtaw")]([SubResource("Resource_5jjee"), SubResource("Resource_3er6u"), SubResource("Resource_7io18")])
+force_initial_patterns = Array[Resource("res://CrushablePattern.gd")]([ExtResource("5_ys7td"), ExtResource("5_ys7td"), ExtResource("5_ys7td"), ExtResource("5_ys7td"), ExtResource("5_ys7td"), ExtResource("7_p7nga"), ExtResource("7_p7nga"), ExtResource("7_p7nga"), ExtResource("5_ys7td"), ExtResource("7_p7nga"), ExtResource("6_85hpk")])
 
 [node name="Sprite2D" type="Sprite2D" parent="Conveyor"]
 position = Vector2(-11.9999, 306.688)

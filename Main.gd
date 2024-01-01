@@ -70,9 +70,11 @@ func create_save_file():
         instance.save_data(data)
         game_data.upgrade_data.append(data)
     order_manager.save_data(game_data.orders_data)
+    simulation.save_data(game_data.simulation_data)
     return game_data
 
 func load_game(game_data):
+    simulation.load_data(game_data.simulation_data)
     order_manager.load_data(game_data.orders_data)    
     var i = 0
     for data in game_data.upgrade_data:
