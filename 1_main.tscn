@@ -1,11 +1,13 @@
-[gd_scene load_steps=7 format=3 uid="uid://cnrln6t4dxt74"]
+[gd_scene load_steps=9 format=3 uid="uid://cnrln6t4dxt74"]
 
 [ext_resource type="Script" path="res://Main.gd" id="1_kxjkt"]
 [ext_resource type="PackedScene" uid="uid://7t1sx0r2g2tc" path="res://2_simulation.tscn" id="1_widi8"]
 [ext_resource type="Resource" uid="uid://ype7ae050vxg" path="res://data/upgrades/force_upgrade.tres" id="2_mf8dy"]
 [ext_resource type="Resource" uid="uid://dnjuikwv7g0um" path="res://data/upgrades/speed_upgrade.tres" id="3_egk44"]
 [ext_resource type="Resource" uid="uid://qclp6dumrcog" path="res://data/upgrades/hydraulics_upgrade.tres" id="4_t8crt"]
-[ext_resource type="PackedScene" uid="uid://bn1wj400srr3t" path="res://task.tscn" id="6_fwinf"]
+[ext_resource type="PackedScene" uid="uid://bn1wj400srr3t" path="res://order.tscn" id="6_fwinf"]
+[ext_resource type="Script" path="res://OrderManager.gd" id="6_n48yw"]
+[ext_resource type="Resource" uid="uid://5q2kvb77tv84" path="res://data/order_list.tres" id="7_hs1cp"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_kxjkt")
@@ -75,14 +77,17 @@ offset_bottom = 31.0
 grow_horizontal = 0
 text = "Import Save"
 
-[node name="TaskManager" type="ColorRect" parent="Control"]
+[node name="OrderManager" type="ColorRect" parent="Control" node_paths=PackedStringArray("order_uis")]
 layout_mode = 2
 offset_right = 360.0
 offset_bottom = 531.0
 size_flags_vertical = 3
 color = Color(0.490196, 0.490196, 0.490196, 1)
+script = ExtResource("6_n48yw")
+order_list = ExtResource("7_hs1cp")
+order_uis = [NodePath("MarginContainer/VBoxContainer/Order"), NodePath("MarginContainer/VBoxContainer/Order2"), NodePath("MarginContainer/VBoxContainer/Order3")]
 
-[node name="MarginContainer" type="MarginContainer" parent="Control/TaskManager"]
+[node name="MarginContainer" type="MarginContainer" parent="Control/OrderManager"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -94,21 +99,21 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Control/TaskManager/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/OrderManager/MarginContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Control/TaskManager/MarginContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="Control/OrderManager/MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "Orders"
 horizontal_alignment = 1
 
-[node name="Task" parent="Control/TaskManager/MarginContainer/VBoxContainer" instance=ExtResource("6_fwinf")]
+[node name="Order" parent="Control/OrderManager/MarginContainer/VBoxContainer" instance=ExtResource("6_fwinf")]
 layout_mode = 2
 
-[node name="Task2" parent="Control/TaskManager/MarginContainer/VBoxContainer" instance=ExtResource("6_fwinf")]
+[node name="Order2" parent="Control/OrderManager/MarginContainer/VBoxContainer" instance=ExtResource("6_fwinf")]
 layout_mode = 2
 
-[node name="Task3" parent="Control/TaskManager/MarginContainer/VBoxContainer" instance=ExtResource("6_fwinf")]
+[node name="Order3" parent="Control/OrderManager/MarginContainer/VBoxContainer" instance=ExtResource("6_fwinf")]
 layout_mode = 2
 
 [connection signal="pressed" from="Control/ExportSaveButton" to="." method="_on_export_save_button_pressed"]

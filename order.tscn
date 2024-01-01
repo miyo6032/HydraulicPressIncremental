@@ -1,8 +1,11 @@
-[gd_scene format=3 uid="uid://bn1wj400srr3t"]
+[gd_scene load_steps=2 format=3 uid="uid://bn1wj400srr3t"]
 
-[node name="Task" type="ColorRect"]
+[ext_resource type="Script" path="res://Order.gd" id="1_ljcub"]
+
+[node name="Order" type="ColorRect"]
 size_flags_vertical = 3
 color = Color(0.29219, 0.29219, 0.29219, 1)
+script = ExtResource("1_ljcub")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -23,7 +26,7 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+[node name="OrderLabel" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
@@ -32,7 +35,7 @@ text = "Do epic task"
 [node name="ProgressBar" type="ProgressBar" parent="MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="Button" type="Button" parent="MarginContainer/HBoxContainer"]
+[node name="ClaimButton" type="Button" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 8
 text = "Claim: 123b"

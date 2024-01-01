@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="OrderList" load_steps=6 format=3 uid="uid://5q2kvb77tv84"]
+
+[ext_resource type="Script" path="res://OrderRes.gd" id="1_5bq03"]
+[ext_resource type="Script" path="res://OrderList.gd" id="2_hx5qw"]
+
+[sub_resource type="Resource" id="Resource_5tspp"]
+script = ExtResource("1_5bq03")
+amount = 50
+currency = 50.0
+
+[sub_resource type="Resource" id="Resource_q4tkk"]
+script = ExtResource("1_5bq03")
+amount = 60
+currency = 60.0
+
+[sub_resource type="Resource" id="Resource_4vibe"]
+script = ExtResource("1_5bq03")
+amount = 70
+currency = 70.0
+
+[resource]
+script = ExtResource("2_hx5qw")
+orders = Array[ExtResource("1_5bq03")]([SubResource("Resource_5tspp"), SubResource("Resource_q4tkk"), SubResource("Resource_4vibe")])
