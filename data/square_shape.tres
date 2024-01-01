@@ -1,9 +1,0 @@
-[gd_resource type="Resource" script_class="CrushableShape" load_steps=3 format=3 uid="uid://crhomm34wq226"]
-
-[ext_resource type="Script" path="res://CrushableShape.gd" id="1_s6fal"]
-[ext_resource type="Texture2D" uid="uid://bua5a4yenkjlb" path="res://art/Square.png" id="2_ytbgr"]
-
-[resource]
-script = ExtResource("1_s6fal")
-value_multiplier = 1.0
-texture = ExtResource("2_ytbgr")

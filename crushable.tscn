@@ -1,11 +1,19 @@
-[gd_scene load_steps=3 format=3 uid="uid://dk1w6rtkd0p2o"]
+[gd_scene load_steps=6 format=3 uid="uid://dk1w6rtkd0p2o"]
 
 [ext_resource type="Script" path="res://Crushable.gd" id="1_cv78m"]
-[ext_resource type="Texture2D" uid="uid://cw5vjk44g52mt" path="res://art/Hexagon.png" id="1_rdv15"]
+[ext_resource type="Shader" uid="uid://be7cfxqnbou30" path="res://crushable.tres" id="2_jqd7u"]
+[ext_resource type="Texture2D" uid="uid://cvi3ehyrxwnn8" path="res://art/Bevel.png" id="3_02u0y"]
+[ext_resource type="Texture2D" uid="uid://umar7bjgnmoo" path="res://art/Triangle.png" id="4_62kde"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_e2qrs"]
+resource_local_to_scene = true
+shader = ExtResource("2_jqd7u")
+shader_parameter/MainTex = ExtResource("3_02u0y")
 
 [node name="Crushable" type="Node2D"]
 script = ExtResource("1_cv78m")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_e2qrs")
 position = Vector2(0, -64)
-texture = ExtResource("1_rdv15")
+texture = ExtResource("4_62kde")

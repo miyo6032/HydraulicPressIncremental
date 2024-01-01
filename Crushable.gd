@@ -27,8 +27,10 @@ func _process(delta):
         var lerpValue = (time % 1000) * 0.001
         sprite.modulate = Color.from_hsv(lerpValue, 0.5, 1.0)
 
-func init(shape, color):
-    strength = shape.value_multiplier * color.value_multiplier
+func init(shape, pattern):
+    strength = shape.value_multiplier * pattern.value_multiplier
     sprite.texture = shape.texture
-    sprite.modulate = color.color
+    var material: ShaderMaterial = sprite.material
+    material.set_shader_parameter("MainTex", pattern.texture)
+    #sprite.modulate = color.color
     crush_modifiers = null

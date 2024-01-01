@@ -28,7 +28,7 @@ func upgrade_level_changed(instance):
     if instance.upgrade.upgrade_type == Enums.UpgradeType.Force:
         var upgrade_value = pow(instance.upgrade.upgrade_value, instance.current_upgrade_level)
         crushing_power = base_crushing_power * upgrade_value
-        instance.set_upgrade_label("%s kg" % Utils.format_num(upgrade_value))
+        instance.set_upgrade_label("%s ton" % Utils.format_num(upgrade_value))
     elif instance.upgrade.upgrade_type == Enums.UpgradeType.PressSpeed:
         var upgrade_value = instance.upgrade.upgrade_value * instance.current_upgrade_level
         crushing_time = base_crushing_time / (1 + upgrade_value)
