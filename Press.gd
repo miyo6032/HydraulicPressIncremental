@@ -19,6 +19,7 @@ var quality_value_multiplier = base_quality_value_multiplier
 @onready var visual = $Visual
 @onready var start_crushing_pos = $PressStart
 @onready var final_crushing_pos = $PressStart/PressEnd
+@onready var particles_scene = load("res://crush_particles.tscn")
 
 func _ready():
     visual.global_position = start_crushing_pos.global_position
@@ -54,6 +55,7 @@ func upgrade_level_changed(instance):
 func crush(crushable):
     is_crushing = true
     current_force = 0
+    particle_buildup = 0
     current_crushable = crushable
         
 var current_crushable
@@ -67,6 +69,7 @@ var current_force: float:
 const force_ramp_multiplier = 0.01
 const speed_multiplier = 500
 var is_crushing
+var particle_buildup
         
 func _process(delta):
     if not is_crushing:
@@ -89,8 +92,15 @@ func _process(delta):
                 stop_crush_prematurely(0.5)
             else:
                 current_force = clampf(current_force + speed * force_ramp_multiplier * crushing_power, 0, crushing_power)
+                particle_buildup+=1
         else:
             move_press_down(speed)
+            var particles = particles_scene.instantiate()
+            if particle_buildup > 1:
+                particles.amount = particle_buildup
+                particles.emitting = true
+                visual.add_child(particles)
+                particle_buildup = 0
     else:
         move_press_down(speed)
         
