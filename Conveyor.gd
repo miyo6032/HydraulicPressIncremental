@@ -10,13 +10,23 @@ signal move_finished
 
 var crushables = []
 
+const base_material_level = 3
+
+var material_level = base_material_level
+
 func _ready():
     Console.add_command("mv", move_conveyor)
+    EventBus.upgrade_level_changed.connect(upgrade_level_changed)
+    
+func upgrade_level_changed(instance):
+    if instance.upgrade.upgrade_type == Enums.UpgradeType.Materials:
+        material_level = base_material_level + instance.current_upgrade_level
+        instance.set_upgrade_label("Max level: %s" % Utils.format_num(material_level))
 
 func move_conveyor():
     var crushable = crushable_scene.instantiate()
     add_child(crushable)
-    crushable.init(shapes[randi_range(0, shapes.size() - 1)], pattern[randi_range(0, pattern.size() - 1)])
+    crushable.init(shapes[randi_range(0, material_level - 3)], pattern[randi_range(0, pattern.size() - 1)])
     crushable.global_position = crushable_spawn.global_position
     crushables.append(crushable)
     
