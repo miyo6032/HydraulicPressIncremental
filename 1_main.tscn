@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cnrln6t4dxt74"]
+[gd_scene load_steps=14 format=3 uid="uid://cnrln6t4dxt74"]
 
 [ext_resource type="Script" path="res://Main.gd" id="1_kxjkt"]
 [ext_resource type="PackedScene" uid="uid://7t1sx0r2g2tc" path="res://2_simulation.tscn" id="1_widi8"]
@@ -12,6 +12,7 @@
 [ext_resource type="Resource" uid="uid://5q2kvb77tv84" path="res://data/order_list.tres" id="7_hs1cp"]
 [ext_resource type="Resource" uid="uid://bv8od311mhd3g" path="res://data/upgrades/material_upgrade.tres" id="7_kusu8"]
 [ext_resource type="Script" path="res://SkipButton.gd" id="12_jbefe"]
+[ext_resource type="Script" path="res://ForceLabel.gd" id="13_ldfvq"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_kxjkt")
@@ -136,6 +137,18 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "Skip"
 script = ExtResource("12_jbefe")
+
+[node name="ForceLabel" type="Label" parent="Control"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 121.0
+offset_right = 161.0
+offset_bottom = 23.0
+grow_horizontal = 2
+text = "Current Force:"
+script = ExtResource("13_ldfvq")
 
 [connection signal="pressed" from="Control/ExportSaveButton" to="." method="_on_export_save_button_pressed"]
 [connection signal="pressed" from="Control/ImportSaveButton" to="." method="_on_import_save_button_pressed"]

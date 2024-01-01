@@ -51,43 +51,73 @@ func upgrade_level_changed(instance):
         quality_value_multiplier = upgrade_value
         instance.set_upgrade_label("%.0fx value" % [upgrade_value])
 
-var crush_tween
-var current_crushable
-
 func crush(crushable):
-    var failed_crush = crushable.strength > crushing_power * power_hydraulic_multiplier
-    var time = calc_crushing_time()
+    is_crushing = true
+    current_force = 0
     current_crushable = crushable
-    if failed_crush:
+        
+var current_crushable
+var _current_force
+var current_force: float:
+    get:
+        return _current_force
+    set(value):
+        _current_force = value
+        EventBus.current_force_changed.emit(value)
+const force_ramp_multiplier = 0.01
+const speed_multiplier = 500
+var is_crushing
+        
+func _process(delta):
+    if not is_crushing:
+        return
+        
+    var time = calc_crushing_time()    
+    var speed = speed_multiplier * delta / time
+    var crush_progress = current_crushable.calc_crush_progress(final_crushing_pos.global_position.y - (visual.global_position.y - speed))
+    if crush_progress >= 1:
+        is_crushing = false
+        complete_crush(current_crushable)
         var tween = create_tween()
-        var partial_position = (final_crushing_pos.global_position - start_crushing_pos.global_position) * 0.65 + start_crushing_pos.global_position
-        tween.tween_method(update_crush.bind(crushable), start_crushing_pos.global_position, partial_position, time)
-        tween.tween_method(update_crush.bind(crushable), partial_position, start_crushing_pos.global_position, time)
-        tween.tween_callback(func(): crush_finished.emit())
-        crush_tween = tween
+        tween.tween_callback(func(): current_force = 0).set_delay(time * 0.5)
+        tween.tween_property(visual, "global_position", start_crushing_pos.global_position, time)
+        tween.tween_callback(func(): crush_finished.emit())        
+    if crush_progress > 0:
+        var resistance = current_crushable.get_current_resistance(crush_progress)
+        if resistance > current_force:
+            if current_force >= crushing_power:
+                is_crushing = false
+                var partial_time = (final_crushing_pos.global_position.y - visual.global_position.y) / (final_crushing_pos.global_position.y - start_crushing_pos.global_position.y)
+                var tween = create_tween()
+                tween.tween_callback(func(): current_force = 0).set_delay(time * 0.5)                
+                tween.tween_property(visual, "global_position", start_crushing_pos.global_position, partial_time)
+                tween.tween_callback(func(): crush_finished.emit())     
+            else:
+                current_force = clampf(current_force + speed * force_ramp_multiplier * crushing_power, 0, crushing_power)
+        else:
+            move_press_down(speed)
     else:
-        var tween = create_tween()
-        tween.tween_method(update_crush.bind(crushable), start_crushing_pos.global_position, final_crushing_pos.global_position, time)
-        tween.tween_property(visual, "global_position", start_crushing_pos.global_position, time).set_delay(time * 0.5)
-        tween.tween_callback(complete_crush.bind(crushable))
-        crush_tween = tween
+        move_press_down(speed)
+
+func move_press_down(movement):
+    visual.global_position.y += movement
+    update_crush(current_crushable)
 
 func skip_crushable():
-    if crush_tween:
-        crush_tween.kill()
-        update_crush(start_crushing_pos.global_position, current_crushable)
-        crush_finished.emit()
-        crush_tween = null
+    pass
+    #if crush_tween:
+        #crush_tween.kill()
+        #update_crush(start_crushing_pos.global_position, current_crushable)
+        #crush_finished.emit()
+        #crush_tween = null
 
 func complete_crush(crushable):
     var crush_modifiers = CrushModifiers.new()
     crush_modifiers.is_quality = quality_press_chance > randf_range(0, 1.0)
     crush_modifiers.value_multiplier = quality_value_multiplier
     crushable.set_crushed(crush_modifiers)
-    crush_finished.emit()
     
-func update_crush(pos, crushable):
-    visual.global_position = pos    
+func update_crush(crushable):
     crushable.update_crush(final_crushing_pos.global_position.y - visual.global_position.y)
     
 func calc_crushing_time():

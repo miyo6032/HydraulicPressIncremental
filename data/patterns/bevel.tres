@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="CrushablePattern" load_steps=4 format=3 uid="uid://dvhr8tuvqttov"]
+
+[ext_resource type="Script" path="res://CrushablePattern.gd" id="1_qyh4g"]
+[ext_resource type="Texture2D" uid="uid://cvi3ehyrxwnn8" path="res://art/Bevel.png" id="2_nvtn5"]
+
+[sub_resource type="Curve" id="Curve_1l3lx"]
+_data = [Vector2(0, 0.787895), 0.0, 0.0, 0, 0, Vector2(1, 0.979474), 0.559532, 0.0, 0, 0]
+point_count = 2
+
+[resource]
+script = ExtResource("1_qyh4g")
+value_multiplier = 2.0
+texture = ExtResource("2_nvtn5")
+curve = SubResource("Curve_1l3lx")
