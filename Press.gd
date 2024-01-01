@@ -86,30 +86,29 @@ func _process(delta):
         var resistance = current_crushable.get_current_resistance(crush_progress)
         if resistance > current_force:
             if current_force >= crushing_power:
-                is_crushing = false
-                var partial_time = (final_crushing_pos.global_position.y - visual.global_position.y) / (final_crushing_pos.global_position.y - start_crushing_pos.global_position.y)
-                var tween = create_tween()
-                tween.tween_callback(func(): current_force = 0).set_delay(time * 0.5)                
-                tween.tween_property(visual, "global_position", start_crushing_pos.global_position, partial_time)
-                tween.tween_callback(func(): crush_finished.emit())     
+                stop_crush_prematurely(0.5)
             else:
                 current_force = clampf(current_force + speed * force_ramp_multiplier * crushing_power, 0, crushing_power)
         else:
             move_press_down(speed)
     else:
         move_press_down(speed)
+        
+func stop_crush_prematurely(stop_delay):
+    is_crushing = false
+    var partial_time = 1 - (final_crushing_pos.global_position.y - visual.global_position.y) / (final_crushing_pos.global_position.y - start_crushing_pos.global_position.y)
+    var tween = create_tween()
+    tween.tween_callback(func(): current_force = 0).set_delay(calc_crushing_time() * stop_delay)                
+    tween.tween_property(visual, "global_position", start_crushing_pos.global_position, calc_crushing_time() * partial_time)
+    tween.tween_callback(func(): crush_finished.emit())     
 
 func move_press_down(movement):
     visual.global_position.y += movement
     update_crush(current_crushable)
 
 func skip_crushable():
-    pass
-    #if crush_tween:
-        #crush_tween.kill()
-        #update_crush(start_crushing_pos.global_position, current_crushable)
-        #crush_finished.emit()
-        #crush_tween = null
+    if is_crushing:
+        stop_crush_prematurely(0.25)
 
 func complete_crush(crushable):
     var crush_modifiers = CrushModifiers.new()
