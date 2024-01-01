@@ -23,6 +23,7 @@ var quality_value_multiplier = base_quality_value_multiplier
 func _ready():
     visual.global_position = start_crushing_pos.global_position
     EventBus.upgrade_level_changed.connect(upgrade_level_changed)
+    EventBus.skip_crushable.connect(skip_crushable)
     
 func upgrade_level_changed(instance):
     if instance.upgrade.upgrade_type == Enums.UpgradeType.Force:
@@ -50,20 +51,33 @@ func upgrade_level_changed(instance):
         quality_value_multiplier = upgrade_value
         instance.set_upgrade_label("%.0fx value" % [upgrade_value])
 
+var crush_tween
+var current_crushable
+
 func crush(crushable):
     var failed_crush = crushable.strength > crushing_power * power_hydraulic_multiplier
     var time = calc_crushing_time()
+    current_crushable = crushable
     if failed_crush:
         var tween = create_tween()
         var partial_position = (final_crushing_pos.global_position - start_crushing_pos.global_position) * 0.65 + start_crushing_pos.global_position
         tween.tween_method(update_crush.bind(crushable), start_crushing_pos.global_position, partial_position, time)
         tween.tween_method(update_crush.bind(crushable), partial_position, start_crushing_pos.global_position, time)
         tween.tween_callback(func(): crush_finished.emit())
+        crush_tween = tween
     else:
         var tween = create_tween()
         tween.tween_method(update_crush.bind(crushable), start_crushing_pos.global_position, final_crushing_pos.global_position, time)
         tween.tween_property(visual, "global_position", start_crushing_pos.global_position, time).set_delay(time * 0.5)
         tween.tween_callback(complete_crush.bind(crushable))
+        crush_tween = tween
+
+func skip_crushable():
+    if crush_tween:
+        crush_tween.kill()
+        update_crush(start_crushing_pos.global_position, current_crushable)
+        crush_finished.emit()
+        crush_tween = null
 
 func complete_crush(crushable):
     var crush_modifiers = CrushModifiers.new()
