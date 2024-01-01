@@ -12,3 +12,6 @@ func get_description():
     var desc = "Press %.0f" % amount
     desc += " items"
     return desc
+    
+func counts_towards_order(crushable):
+    return true

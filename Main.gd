@@ -14,7 +14,7 @@ var file_load_callback = JavaScriptBridge.create_callback(load_file)
 func _ready():
     Console.add_command("save", func(path): save_data("user://" + path + ".res"), 1)
     Console.add_command("load", func(path): load_data("user://" + path + ".res"), 1)
-    Console.add_command("v", func(v): crushable_removed(float(v)), 1)
+    Console.add_command("v", func(v): update_currency(currency + float(v)), 1)
     EventBus.crushable_removed.connect(crushable_removed)
     if OS.get_name() == "Web":
         var window = JavaScriptBridge.get_interface("window")
@@ -26,8 +26,8 @@ func _ready():
         upgrade_instance.upgrade_bought.connect(upgrade_bought)
         upgrade_instances.append(upgrade_instance)
 
-func crushable_removed(value):
-    update_currency(currency + value)
+func crushable_removed(crushable):
+    update_currency(currency + crushable.get_value())
     
 func upgrade_bought(value):
     update_currency(currency - value)

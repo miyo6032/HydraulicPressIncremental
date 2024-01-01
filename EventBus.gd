@@ -1,5 +1,5 @@
 extends Node
 
-signal crushable_removed(value)
+signal crushable_removed(crushable)
 signal currency_updated(value)
 signal upgrade_level_changed(upgrade_instance)
