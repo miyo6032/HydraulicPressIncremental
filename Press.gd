@@ -7,7 +7,7 @@ signal crush_finished
 const base_crushing_time = 2
 const base_crushing_power = 1
 const base_quality_press_chance = 0.0
-const base_quality_value_multiplier = 10
+const base_quality_value_multiplier = 5
 
 var crushing_power = base_crushing_power
 var crushing_time = base_crushing_time
@@ -45,6 +45,10 @@ func upgrade_level_changed(instance):
         var upgrade_value = instance.upgrade.upgrade_value * instance.current_upgrade_level
         quality_press_chance = upgrade_value
         instance.set_upgrade_label("%.0f%s chance" % [(upgrade_value) * 100, "%"])
+    elif instance.upgrade.upgrade_type == Enums.UpgradeType.Quality:
+        var upgrade_value = base_quality_value_multiplier + instance.upgrade.upgrade_value * instance.current_upgrade_level
+        quality_value_multiplier = upgrade_value
+        instance.set_upgrade_label("%.0fx value" % [upgrade_value])
 
 func crush(crushable):
     var failed_crush = crushable.strength > crushing_power * power_hydraulic_multiplier
