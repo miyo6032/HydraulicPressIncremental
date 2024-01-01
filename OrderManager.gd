@@ -19,7 +19,17 @@ func claimed(ui):
     next_order += 1
 
 func save_data(data: Dictionary):
-    pass
+    data["next_order"] = next_order
+    var current_orders = []
+    for ui in order_uis:
+        var order_data = {}
+        ui.save_data(order_data)
+        current_orders.append(order_data)
+    data["current_orders"] = current_orders
     
-func load_data():
-    pass
+func load_data(data: Dictionary):
+    next_order = data["next_order"]
+    var i = 0
+    for order_data in data["current_orders"]:
+        order_uis[i].load_data(order_data)
+        i+=1

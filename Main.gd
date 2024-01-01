@@ -50,15 +50,6 @@ func save_data(file_name):
     else:
         print("Error saving graph_data: " + str(error))
         
-func create_save_file():
-    var game_data = GameData.new()
-    game_data.currency = currency
-    for instance in upgrade_instances:
-        var data = {}
-        instance.save_data(data)
-        game_data.upgrade_data.append(data)
-    return game_data
-        
 func load_data(file_name):
     if ResourceLoader.exists(file_name):
         var game_data = ResourceLoader.load(file_name)
@@ -71,12 +62,23 @@ func load_data(file_name):
         # File not found
         pass
         
+func create_save_file():
+    var game_data = GameData.new()
+    game_data.currency = currency
+    for instance in upgrade_instances:
+        var data = {}
+        instance.save_data(data)
+        game_data.upgrade_data.append(data)
+    order_manager.save_data(game_data.orders_data)
+    return game_data        
+
 func load_game(game_data):
-    update_currency(game_data.currency)
+    order_manager.load_data(game_data.orders_data)    
     var i = 0
     for data in game_data.upgrade_data:
         upgrade_instances[i].load_data(data)
         i+=1
+    update_currency(game_data.currency)    
 
 const temp_save_file = "user://temp.tres"
 

@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 Console="*res://addons/console/Console.gd"
 EventBus="*res://EventBus.gd"
+Registries="*res://Registries.gd"
 
 [display]
 

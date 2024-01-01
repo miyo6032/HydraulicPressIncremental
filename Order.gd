@@ -37,8 +37,10 @@ func update_count(new_count):
 func claim_button_pressed():
     claimed.emit()
 
-func save_data():
-    pass
-    
-func load_data():
-    pass
+func save_data(data):
+    data["count"] = count
+    data["current_order"] = current_order.id
+
+func load_data(data):
+    current_order = Registries.order_types[data["current_order"]]
+    update_count(data["count"])
