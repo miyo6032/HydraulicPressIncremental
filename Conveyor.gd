@@ -53,7 +53,7 @@ func move_conveyor():
 
 func finish_move():
     move_finished.emit()
-    if crushables.size() > 7:
+    if crushables.size() > 3:
         var crushable = crushables[0]
         crushables.remove_at(0)
         EventBus.crushable_removed.emit(crushable)
