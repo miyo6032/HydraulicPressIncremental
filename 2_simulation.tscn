@@ -1,9 +1,10 @@
-[gd_scene load_steps=21 format=3 uid="uid://7t1sx0r2g2tc"]
+[gd_scene load_steps=20 format=3 uid="uid://7t1sx0r2g2tc"]
 
 [ext_resource type="Script" path="res://Conveyor.gd" id="1_fnrox"]
 [ext_resource type="Script" path="res://Simulation.gd" id="1_k081r"]
 [ext_resource type="Script" path="res://Press.gd" id="1_kar5x"]
 [ext_resource type="PackedScene" uid="uid://dk1w6rtkd0p2o" path="res://crushable.tscn" id="2_eh6tc"]
+[ext_resource type="Texture2D" uid="uid://cg6nqgaj5qy2" path="res://art/press.png" id="3_6vusr"]
 [ext_resource type="Resource" uid="uid://do6f1sncgx8dv" path="res://data/patterns/checker.tres" id="5_ys7td"]
 [ext_resource type="Resource" uid="uid://dvhr8tuvqttov" path="res://data/patterns/bevel.tres" id="6_85hpk"]
 [ext_resource type="Resource" uid="uid://dfs7lgi64btb6" path="res://data/patterns/line.tres" id="7_p7nga"]
@@ -18,13 +19,6 @@ colors = PackedColorArray(0, 0, 0, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_i0jcg"]
 gradient = SubResource("Gradient_phlyw")
-
-[sub_resource type="Gradient" id="Gradient_fp0e2"]
-offsets = PackedFloat32Array(1)
-colors = PackedColorArray(1, 1, 1, 1)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_ntg4k"]
-gradient = SubResource("Gradient_fp0e2")
 
 [sub_resource type="Resource" id="Resource_5jjee"]
 script = ExtResource("9_5gtaw")
@@ -64,8 +58,7 @@ script = ExtResource("1_kar5x")
 [node name="Sprite2D" type="Sprite2D" parent="Press/Visual"]
 z_index = 1
 position = Vector2(0, -256)
-scale = Vector2(1, 512)
-texture = SubResource("GradientTexture1D_ntg4k")
+texture = ExtResource("3_6vusr")
 
 [node name="Conveyor" type="Node2D" parent="." node_paths=PackedStringArray("crushable_spawn")]
 position = Vector2(961, 534)
