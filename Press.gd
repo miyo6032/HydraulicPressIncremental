@@ -13,7 +13,6 @@ var crushing_power = base_crushing_power
 var crushing_time = base_crushing_time
 var power_hydraulic_multiplier = 1
 var speed_hydraulic_multiplier = 1
-var quality_press_chance = base_quality_press_chance
 var quality_value_multiplier = base_quality_value_multiplier
 
 @onready var visual = $Visual
@@ -45,7 +44,7 @@ func upgrade_level_changed(instance):
         instance.set_upgrade_label("%.fx Force, %.2fx Speed" % [power_hydraulic_multiplier, speed_hydraulic_multiplier])
     elif instance.upgrade.upgrade_type == Enums.UpgradeType.Precision:
         var upgrade_value = instance.upgrade.upgrade_value * instance.current_upgrade_level
-        quality_press_chance = upgrade_value
+        quality_random.chance = upgrade_value
         instance.set_upgrade_label("%.0f%s chance" % [(upgrade_value) * 100, "%"])
     elif instance.upgrade.upgrade_type == Enums.UpgradeType.Quality:
         var upgrade_value = base_quality_value_multiplier + instance.upgrade.upgrade_value * instance.current_upgrade_level
@@ -121,9 +120,11 @@ func skip_crushable():
     if is_crushing:
         stop_crush_prematurely(0.25)
 
+@onready var quality_random = FairRandom.new()
+
 func complete_crush(crushable):
     var crush_modifiers = CrushModifiers.new()
-    crush_modifiers.is_quality = quality_press_chance > randf_range(0, 1.0)
+    crush_modifiers.is_quality = quality_random.get_success()
     crush_modifiers.value_multiplier = quality_value_multiplier
     crushable.set_crushed(crush_modifiers)
     
