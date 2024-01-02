@@ -28,27 +28,34 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="CurrencyLabel" type="Label" parent="Control"]
+[node name="ForceLabel" type="Label" parent="Control"]
 layout_mode = 1
-anchors_preset = 8
+anchors_preset = 5
 anchor_left = 0.5
-anchor_top = 0.5
 anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -37.0
-offset_top = 91.0
-offset_right = 37.0
-offset_bottom = 114.0
+offset_left = 228.0
+offset_right = 339.0
+offset_bottom = 23.0
 grow_horizontal = 2
-grow_vertical = 2
-text = "$1000000"
+text = "Current Force:"
+script = ExtResource("13_ldfvq")
 
-[node name="MarginContainer" type="MarginContainer" parent="Control"]
+[node name="MainUI" type="ColorRect" parent="Control"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = 676.0
+offset_top = 544.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.266667, 0.266667, 0.266667, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/MainUI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 61.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_left = 10
@@ -56,10 +63,50 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="Upgrades" type="HBoxContainer" parent="Control/MarginContainer"]
+[node name="Upgrades" type="HBoxContainer" parent="Control/MainUI/MarginContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_constants/separation = 10
+
+[node name="OrderManager" type="ColorRect" parent="Control/MainUI/MarginContainer/Upgrades" node_paths=PackedStringArray("order_uis")]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color(0.490196, 0.490196, 0.490196, 1)
+script = ExtResource("6_n48yw")
+order_list = ExtResource("7_hs1cp")
+order_uis = [NodePath("MarginContainer/VBoxContainer/Order"), NodePath("MarginContainer/VBoxContainer/Order2"), NodePath("MarginContainer/VBoxContainer/Order3")]
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/MainUI/MarginContainer/Upgrades/OrderManager"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/MainUI/MarginContainer/Upgrades/OrderManager/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control/MainUI/MarginContainer/Upgrades/OrderManager/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Orders"
+horizontal_alignment = 1
+
+[node name="Order" parent="Control/MainUI/MarginContainer/Upgrades/OrderManager/MarginContainer/VBoxContainer" instance=ExtResource("6_fwinf")]
+layout_mode = 2
+
+[node name="Order2" parent="Control/MainUI/MarginContainer/Upgrades/OrderManager/MarginContainer/VBoxContainer" instance=ExtResource("6_fwinf")]
+layout_mode = 2
+
+[node name="Order3" parent="Control/MainUI/MarginContainer/Upgrades/OrderManager/MarginContainer/VBoxContainer" instance=ExtResource("6_fwinf")]
+layout_mode = 2
 
 [node name="ExportSaveButton" type="Button" parent="Control"]
 layout_mode = 1
@@ -82,46 +129,6 @@ offset_bottom = 31.0
 grow_horizontal = 0
 text = "Import Save"
 
-[node name="OrderManager" type="ColorRect" parent="Control" node_paths=PackedStringArray("order_uis")]
-unique_name_in_owner = true
-layout_mode = 2
-offset_right = 360.0
-offset_bottom = 531.0
-size_flags_vertical = 3
-color = Color(0.490196, 0.490196, 0.490196, 1)
-script = ExtResource("6_n48yw")
-order_list = ExtResource("7_hs1cp")
-order_uis = [NodePath("MarginContainer/VBoxContainer/Order"), NodePath("MarginContainer/VBoxContainer/Order2"), NodePath("MarginContainer/VBoxContainer/Order3")]
-
-[node name="MarginContainer" type="MarginContainer" parent="Control/OrderManager"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Control/OrderManager/MarginContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="Control/OrderManager/MarginContainer/VBoxContainer"]
-layout_mode = 2
-text = "Orders"
-horizontal_alignment = 1
-
-[node name="Order" parent="Control/OrderManager/MarginContainer/VBoxContainer" instance=ExtResource("6_fwinf")]
-layout_mode = 2
-
-[node name="Order2" parent="Control/OrderManager/MarginContainer/VBoxContainer" instance=ExtResource("6_fwinf")]
-layout_mode = 2
-
-[node name="Order3" parent="Control/OrderManager/MarginContainer/VBoxContainer" instance=ExtResource("6_fwinf")]
-layout_mode = 2
-
 [node name="SkipButton" type="Button" parent="Control"]
 layout_mode = 1
 anchors_preset = 8
@@ -130,25 +137,28 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -20.0
-offset_top = 24.0
+offset_top = 10.0
 offset_right = 21.0
-offset_bottom = 55.0
+offset_bottom = 41.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "Skip"
 script = ExtResource("12_jbefe")
 
-[node name="ForceLabel" type="Label" parent="Control"]
+[node name="CurrencyLabel" type="Label" parent="Control"]
 layout_mode = 1
-anchors_preset = 5
+anchors_preset = 8
 anchor_left = 0.5
+anchor_top = 0.5
 anchor_right = 0.5
-offset_left = 228.0
-offset_right = 339.0
-offset_bottom = 23.0
+anchor_bottom = 0.5
+offset_left = 55.0
+offset_top = 14.0
+offset_right = 129.0
+offset_bottom = 37.0
 grow_horizontal = 2
-text = "Current Force:"
-script = ExtResource("13_ldfvq")
+grow_vertical = 2
+text = "$1000000"
 
 [connection signal="pressed" from="Control/ExportSaveButton" to="." method="_on_export_save_button_pressed"]
 [connection signal="pressed" from="Control/ImportSaveButton" to="." method="_on_import_save_button_pressed"]

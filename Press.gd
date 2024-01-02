@@ -17,8 +17,8 @@ var quality_press_chance = base_quality_press_chance
 var quality_value_multiplier = base_quality_value_multiplier
 
 @onready var visual = $Visual
-@onready var start_crushing_pos = $PressStart
-@onready var final_crushing_pos = $PressStart/PressEnd
+@onready var start_crushing_pos = %PressStart
+@onready var final_crushing_pos = %PressEnd
 @onready var particles_scene = load("res://crush_particles.tscn")
 
 func _ready():
@@ -77,8 +77,9 @@ func _process(delta):
         
     var time = calc_crushing_time()    
     var speed = speed_multiplier * delta / time
-    var crush_progress = current_crushable.calc_crush_progress(final_crushing_pos.global_position.y - (visual.global_position.y - speed))
-    if crush_progress >= 1:
+    var crush_progress = current_crushable.calc_crush_progress(visual.global_position.y - speed)
+    
+    if visual.global_position.y >= final_crushing_pos.global_position.y:
         is_crushing = false
         complete_crush(current_crushable)
         var tween = create_tween()
@@ -127,7 +128,7 @@ func complete_crush(crushable):
     crushable.set_crushed(crush_modifiers)
     
 func update_crush(crushable):
-    crushable.update_crush(final_crushing_pos.global_position.y - visual.global_position.y)
+    crushable.update_crush(visual.global_position.y)
     
 func calc_crushing_time():
     return crushing_time / speed_hydraulic_multiplier

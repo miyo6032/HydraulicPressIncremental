@@ -8,14 +8,19 @@ var value = 1
 var crushable_pattern
 var crushable_shape
 
-func update_crush(size):
-    scale.y = clamp(size / sprite.texture.get_height(), 0.1, 1)
+func update_crush(press_y):
+    var resize = (global_position.y - press_y) / sprite.texture.get_height()
+    if (resize < 1):
+        pass
+    scale.y = clamp(resize, 0.0, 1)
     
 func get_current_resistance(progress):
     return crushable_pattern.get_resistance(progress) * crushable_shape.value_multiplier
     
-func calc_crush_progress(distance_from_bottom):
-    return 1 - clamp(distance_from_bottom / sprite.texture.get_height(), 0.0, 1)
+func calc_crush_progress(press_y):
+    var resize = (global_position.y - press_y) / sprite.texture.get_height()
+    var progress = clampf(1 - resize, 0.0, 1.0)    
+    return progress
 
 func get_value():
     if is_crushed:

@@ -12,6 +12,7 @@ signal move_finished
 var crushables = []
 
 const base_material_level = 3
+const crushables_till_press = 2
 
 var material_level = base_material_level
 var initial_patterns_completed = false
@@ -59,10 +60,10 @@ func finish_move():
         crushable.queue_free()
         
 func get_current_crushable():
-    return crushables[-4]
+    return crushables[-crushables_till_press]
     
 func has_current_crushable():
-    return crushables.size() > 3
+    return crushables.size() >= crushables_till_press
     
 func save_data(data: Dictionary):
     data["initial_patterns_completed"] = initial_patterns_completed

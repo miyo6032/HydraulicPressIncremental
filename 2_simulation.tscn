@@ -1,10 +1,9 @@
-[gd_scene load_steps=22 format=3 uid="uid://7t1sx0r2g2tc"]
+[gd_scene load_steps=21 format=3 uid="uid://7t1sx0r2g2tc"]
 
 [ext_resource type="Script" path="res://Conveyor.gd" id="1_fnrox"]
 [ext_resource type="Script" path="res://Simulation.gd" id="1_k081r"]
 [ext_resource type="Script" path="res://Press.gd" id="1_kar5x"]
 [ext_resource type="PackedScene" uid="uid://dk1w6rtkd0p2o" path="res://crushable.tscn" id="2_eh6tc"]
-[ext_resource type="PackedScene" uid="uid://bfhufvx36oydv" path="res://crush_particles.tscn" id="3_mmtgn"]
 [ext_resource type="Resource" uid="uid://do6f1sncgx8dv" path="res://data/patterns/checker.tres" id="5_ys7td"]
 [ext_resource type="Resource" uid="uid://dvhr8tuvqttov" path="res://data/patterns/bevel.tres" id="6_85hpk"]
 [ext_resource type="Resource" uid="uid://dfs7lgi64btb6" path="res://data/patterns/line.tres" id="7_p7nga"]
@@ -64,32 +63,31 @@ script = ExtResource("1_kar5x")
 
 [node name="Sprite2D" type="Sprite2D" parent="Press/Visual"]
 z_index = 1
-position = Vector2(0, -218)
-scale = Vector2(0.710937, 437)
+position = Vector2(0, -256)
+scale = Vector2(1, 512)
 texture = SubResource("GradientTexture1D_ntg4k")
-
-[node name="CrushParticles" parent="Press/Visual" instance=ExtResource("3_mmtgn")]
-
-[node name="PressStart" type="Marker2D" parent="Press"]
-position = Vector2(960, 263)
-
-[node name="PressEnd" type="Marker2D" parent="Press/PressStart"]
-position = Vector2(0, 265)
 
 [node name="Conveyor" type="Node2D" parent="." node_paths=PackedStringArray("crushable_spawn")]
 position = Vector2(961, 534)
 script = ExtResource("1_fnrox")
 crushable_scene = ExtResource("2_eh6tc")
 crushable_spawn = NodePath("CrushableSpawn")
-move_offset = Vector2(256, 0)
+move_offset = Vector2(562, 0)
 pattern = Array[Resource("res://CrushablePattern.gd")]([ExtResource("5_ys7td"), ExtResource("6_85hpk"), ExtResource("7_p7nga")])
 shapes = Array[ExtResource("9_5gtaw")]([SubResource("Resource_5jjee"), SubResource("Resource_3er6u"), SubResource("Resource_7io18")])
 force_initial_patterns = Array[Resource("res://CrushablePattern.gd")]([ExtResource("5_ys7td"), ExtResource("5_ys7td"), ExtResource("5_ys7td"), ExtResource("5_ys7td"), ExtResource("5_ys7td"), ExtResource("7_p7nga"), ExtResource("7_p7nga"), ExtResource("7_p7nga"), ExtResource("5_ys7td"), ExtResource("7_p7nga"), ExtResource("6_85hpk")])
 
 [node name="Sprite2D" type="Sprite2D" parent="Conveyor"]
-position = Vector2(-11.9999, 306.688)
-scale = Vector2(8.11719, 624.625)
+scale = Vector2(8.11719, 22)
 texture = SubResource("GradientTexture1D_atsyf")
 
 [node name="CrushableSpawn" type="Marker2D" parent="Conveyor"]
-position = Vector2(-1014, -5)
+position = Vector2(-996, 0)
+
+[node name="PressStart" type="Marker2D" parent="Conveyor"]
+unique_name_in_owner = true
+position = Vector2(0, -271)
+
+[node name="PressEnd" type="Marker2D" parent="Conveyor"]
+unique_name_in_owner = true
+position = Vector2(0, -30)
