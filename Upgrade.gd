@@ -27,6 +27,9 @@ func init(upgrade: UpgradeRes):
     set_max_upgrade_level(0)
 
 func currency_updated(value):
+    if upgrade.costs.size() == max_upgrade_level:
+        return
+        
     upgrade_button.disabled = upgrade.costs[max_upgrade_level] > value
 
 func upgrade_button_pressed():
@@ -47,7 +50,11 @@ func update_step_button_enablements():
     
 func set_max_upgrade_level(level):
     max_upgrade_level = level
-    upgrade_button.text = "$%s" % Utils.format_num(upgrade.costs[max_upgrade_level])
+    if upgrade.costs.size() == level:
+        upgrade_button.text = "Maxed"
+        upgrade_button.disabled = true
+    else:
+        upgrade_button.text = "$%s" % Utils.format_num(upgrade.costs[max_upgrade_level])
     current_upgrade_level = max_upgrade_level
     current_level_changed()
     
