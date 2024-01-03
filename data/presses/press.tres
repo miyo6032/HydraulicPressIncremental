@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="PressRes" load_steps=3 format=3 uid="uid://cf3j1yfek3ufb"]
+
+[ext_resource type="Script" path="res://PressRes.gd" id="1_drclq"]
+[ext_resource type="Texture2D" uid="uid://cg6nqgaj5qy2" path="res://art/press.png" id="2_0ccns"]
+
+[resource]
+script = ExtResource("1_drclq")
+name = "Press"
+description = "The default press"
+texture = ExtResource("2_0ccns")
+force_upgrade = 1.0
+precision_upgrade = 1.0
+speed_upgrade = 1.0
+quality_upgrade = 1.0
+hydraulic_force_upgrade = 1.0
+hydraulic_speed_downgrade = 1.0

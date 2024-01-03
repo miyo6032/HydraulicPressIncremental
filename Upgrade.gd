@@ -16,6 +16,7 @@ func _ready():
     upgrade_button.pressed.connect(upgrade_button_pressed)
     downstep_button.pressed.connect(downstep_button_pressed)
     upstep_button.pressed.connect(upstep_button_pressed)
+    EventBus.press_selected.connect(func(press_res): current_level_changed())
 
 func init(upgrade: UpgradeRes):
     self.upgrade = upgrade

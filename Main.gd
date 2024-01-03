@@ -2,7 +2,7 @@ extends Node
 
 @onready var upgrade_scene: PackedScene = load("res://upgrade.tscn")
 @onready var simulation = $Simulation
-@onready var currency_label = $Control/CurrencyLabel
+@onready var currency_label = %CurrencyLabel
 @export var upgrades: Array[UpgradeRes]
 @onready var upgrade_container = %Upgrades
 @onready var order_manager = %OrderManager

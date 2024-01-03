@@ -15,41 +15,50 @@ var power_hydraulic_multiplier = 1
 var speed_hydraulic_multiplier = 1
 var quality_value_multiplier = base_quality_value_multiplier
 
+@export var current_press: PressRes
 @onready var visual = $Visual
 @onready var start_crushing_pos = %PressStart
 @onready var final_crushing_pos = %PressEnd
 @onready var particles_scene = load("res://crush_particles.tscn")
+@onready var press_sprite = $Visual/PressSprite
 
 func _ready():
     visual.global_position = start_crushing_pos.global_position
     EventBus.upgrade_level_changed.connect(upgrade_level_changed)
     EventBus.skip_crushable.connect(skip_crushable)
+    EventBus.press_selected.connect(press_selected)
+    press_selected(current_press)
+    
+func press_selected(press_res: PressRes):
+    press_sprite.texture = press_res.texture
+    current_press = press_res
     
 func upgrade_level_changed(instance):
     if instance.upgrade.upgrade_type == Enums.UpgradeType.Force:
         var upgrade_value = pow(instance.upgrade.upgrade_value, instance.current_upgrade_level)
-        crushing_power = base_crushing_power * upgrade_value
-        instance.set_upgrade_label("%s ton" % Utils.format_num(upgrade_value))
+        crushing_power = base_crushing_power * upgrade_value * current_press.force_upgrade
+        instance.set_upgrade_label("%s %s" % [Utils.format_num(crushing_power), "ton" if crushing_power == 1 else "tons"])
     elif instance.upgrade.upgrade_type == Enums.UpgradeType.PressSpeed:
-        var upgrade_value = instance.upgrade.upgrade_value * instance.current_upgrade_level
+        var upgrade_value = instance.upgrade.upgrade_value * instance.current_upgrade_level * current_press.speed_upgrade
         crushing_time = base_crushing_time / (1 + upgrade_value)
         instance.set_upgrade_label("%.2f%s Increase" % [(upgrade_value) * 100, "%"])
     elif instance.upgrade.upgrade_type == Enums.UpgradeType.Hydraulics:
         if instance.current_upgrade_level > 0:
-            power_hydraulic_multiplier = instance.upgrade.upgrade_value * instance.current_upgrade_level
-            speed_hydraulic_multiplier = 1 / (instance.upgrade.upgrade_value * instance.current_upgrade_level * 0.5)
+            power_hydraulic_multiplier = instance.upgrade.upgrade_value * instance.current_upgrade_level * current_press.hydraulic_force_upgrade
+            speed_hydraulic_multiplier =  current_press.hydraulic_speed_downgrade / (instance.upgrade.upgrade_value * instance.current_upgrade_level * 0.5)
         else:
-            power_hydraulic_multiplier = 1
-            speed_hydraulic_multiplier = 1
+            power_hydraulic_multiplier = current_press.hydraulic_force_upgrade
+            speed_hydraulic_multiplier = current_press.hydraulic_speed_downgrade
         instance.set_upgrade_label("%.fx Force, %.2fx Speed" % [power_hydraulic_multiplier, speed_hydraulic_multiplier])
     elif instance.upgrade.upgrade_type == Enums.UpgradeType.Precision:
-        var upgrade_value = instance.upgrade.upgrade_value * instance.current_upgrade_level
+        var upgrade_value = instance.upgrade.upgrade_value * instance.current_upgrade_level * current_press.precision_upgrade
         quality_random.chance = upgrade_value
         instance.set_upgrade_label("%.0f%s chance" % [(upgrade_value) * 100, "%"])
     elif instance.upgrade.upgrade_type == Enums.UpgradeType.Quality:
-        var upgrade_value = base_quality_value_multiplier + instance.upgrade.upgrade_value * instance.current_upgrade_level
+        var upgrade_value = base_quality_value_multiplier + instance.upgrade.upgrade_value * instance.current_upgrade_level * current_press.quality_upgrade
         quality_value_multiplier = upgrade_value
         instance.set_upgrade_label("%.0fx value" % [upgrade_value])
+
 
 func crush(crushable):
     is_crushing = true

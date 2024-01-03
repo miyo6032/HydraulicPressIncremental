@@ -10,7 +10,6 @@ var chance: float:
         fails = 0
         
 func get_success() -> bool:
-    print(fails * _chance)
     if fails * _chance >= 1:
         fails = 0
         return true

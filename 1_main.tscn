@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://cnrln6t4dxt74"]
+[gd_scene load_steps=17 format=3 uid="uid://cnrln6t4dxt74"]
 
 [ext_resource type="Script" path="res://Main.gd" id="1_kxjkt"]
 [ext_resource type="PackedScene" uid="uid://7t1sx0r2g2tc" path="res://2_simulation.tscn" id="1_widi8"]
@@ -14,6 +14,8 @@
 [ext_resource type="Script" path="res://SkipButton.gd" id="12_jbefe"]
 [ext_resource type="Script" path="res://ForceLabel.gd" id="13_ldfvq"]
 [ext_resource type="Script" path="res://IndicatorLabelHandler.gd" id="14_ofho5"]
+[ext_resource type="Script" path="res://PrestigeMenu.gd" id="15_nldfh"]
+[ext_resource type="Resource" uid="uid://ci0lc557p7smy" path="res://data/presses/nuclear_press.tres" id="17_1rm5i"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_kxjkt")
@@ -21,7 +23,9 @@ upgrades = Array[Resource("res://UpgradeRes.gd")]([ExtResource("2_mf8dy"), ExtRe
 
 [node name="Simulation" parent="." instance=ExtResource("1_widi8")]
 
-[node name="Control" type="Control" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -29,7 +33,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ForceLabel" type="Label" parent="Control"]
+[node name="ForceLabel" type="Label" parent="CanvasLayer/Control"]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -41,7 +45,7 @@ grow_horizontal = 2
 text = "Current Force:"
 script = ExtResource("13_ldfvq")
 
-[node name="MainUI" type="ColorRect" parent="Control"]
+[node name="MainUI" type="ColorRect" parent="CanvasLayer/Control"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -51,7 +55,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.266667, 0.266667, 0.266667, 1)
 
-[node name="MarginContainer" type="MarginContainer" parent="Control/MainUI"]
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control/MainUI"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -64,12 +68,12 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="Upgrades" type="HBoxContainer" parent="Control/MainUI/MarginContainer"]
+[node name="Upgrades" type="HBoxContainer" parent="CanvasLayer/Control/MainUI/MarginContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="OrderManager" type="ColorRect" parent="Control/MainUI/MarginContainer/Upgrades" node_paths=PackedStringArray("order_uis")]
+[node name="OrderManager" type="ColorRect" parent="CanvasLayer/Control/MainUI/MarginContainer/Upgrades" node_paths=PackedStringArray("order_uis")]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(500, 0)
 layout_mode = 2
@@ -80,7 +84,7 @@ script = ExtResource("6_n48yw")
 order_list = ExtResource("7_hs1cp")
 order_uis = [NodePath("MarginContainer/VBoxContainer/Order"), NodePath("MarginContainer/VBoxContainer/Order2"), NodePath("MarginContainer/VBoxContainer/Order3")]
 
-[node name="MarginContainer" type="MarginContainer" parent="Control/MainUI/MarginContainer/Upgrades/OrderManager"]
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control/MainUI/MarginContainer/Upgrades/OrderManager"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -92,24 +96,24 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Control/MainUI/MarginContainer/Upgrades/OrderManager/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/MainUI/MarginContainer/Upgrades/OrderManager/MarginContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Control/MainUI/MarginContainer/Upgrades/OrderManager/MarginContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="CanvasLayer/Control/MainUI/MarginContainer/Upgrades/OrderManager/MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "Orders"
 horizontal_alignment = 1
 
-[node name="Order" parent="Control/MainUI/MarginContainer/Upgrades/OrderManager/MarginContainer/VBoxContainer" instance=ExtResource("6_fwinf")]
+[node name="Order" parent="CanvasLayer/Control/MainUI/MarginContainer/Upgrades/OrderManager/MarginContainer/VBoxContainer" instance=ExtResource("6_fwinf")]
 layout_mode = 2
 
-[node name="Order2" parent="Control/MainUI/MarginContainer/Upgrades/OrderManager/MarginContainer/VBoxContainer" instance=ExtResource("6_fwinf")]
+[node name="Order2" parent="CanvasLayer/Control/MainUI/MarginContainer/Upgrades/OrderManager/MarginContainer/VBoxContainer" instance=ExtResource("6_fwinf")]
 layout_mode = 2
 
-[node name="Order3" parent="Control/MainUI/MarginContainer/Upgrades/OrderManager/MarginContainer/VBoxContainer" instance=ExtResource("6_fwinf")]
+[node name="Order3" parent="CanvasLayer/Control/MainUI/MarginContainer/Upgrades/OrderManager/MarginContainer/VBoxContainer" instance=ExtResource("6_fwinf")]
 layout_mode = 2
 
-[node name="ExportSaveButton" type="Button" parent="Control"]
+[node name="ExportSaveButton" type="Button" parent="CanvasLayer/Control"]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
@@ -120,7 +124,7 @@ offset_bottom = 31.0
 grow_horizontal = 0
 text = "Export Save"
 
-[node name="ImportSaveButton" type="Button" parent="Control"]
+[node name="ImportSaveButton" type="Button" parent="CanvasLayer/Control"]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
@@ -130,7 +134,7 @@ offset_bottom = 31.0
 grow_horizontal = 0
 text = "Import Save"
 
-[node name="SkipButton" type="Button" parent="Control"]
+[node name="SkipButton" type="Button" parent="CanvasLayer/Control"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -146,7 +150,8 @@ grow_vertical = 2
 text = "Skip"
 script = ExtResource("12_jbefe")
 
-[node name="CurrencyLabel" type="Label" parent="Control"]
+[node name="CurrencyLabel" type="Label" parent="CanvasLayer/Control"]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -161,7 +166,7 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "$1000000"
 
-[node name="IndicatorLabelHandler" type="Control" parent="Control"]
+[node name="IndicatorLabelHandler" type="Control" parent="CanvasLayer/Control"]
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
@@ -174,5 +179,42 @@ grow_horizontal = 0
 grow_vertical = 2
 script = ExtResource("14_ofho5")
 
-[connection signal="pressed" from="Control/ExportSaveButton" to="." method="_on_export_save_button_pressed"]
-[connection signal="pressed" from="Control/ImportSaveButton" to="." method="_on_import_save_button_pressed"]
+[node name="PrestigeMenu" type="ColorRect" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.266667, 0.266667, 0.266667, 1)
+script = ExtResource("15_nldfh")
+presses = Array[Resource("res://PressRes.gd")]([ExtResource("17_1rm5i")])
+
+[node name="Label" type="Label" parent="CanvasLayer/Control/PrestigeMenu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -289.0
+offset_top = -298.0
+offset_right = 290.0
+offset_bottom = -275.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "You have proven yourself to the hydralic press gods. Now, choose a reward"
+
+[node name="PressChoiceContainer" type="HBoxContainer" parent="CanvasLayer/Control/PrestigeMenu"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 323.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[connection signal="pressed" from="CanvasLayer/Control/ExportSaveButton" to="." method="_on_export_save_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/ImportSaveButton" to="." method="_on_import_save_button_pressed"]
