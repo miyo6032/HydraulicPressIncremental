@@ -8,6 +8,6 @@
 
 [resource]
 script = ExtResource("1_01pfo")
-value_multiplier = 0.0
+value_multiplier = 4.0
 texture = ExtResource("2_4fqm4")
 possible_patterns = Array[Resource("res://CrushablePattern.gd")]([ExtResource("1_hw7iy"), ExtResource("2_pxb8r"), ExtResource("3_7gpje")])

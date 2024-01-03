@@ -31,11 +31,11 @@ func move_conveyor():
     var crushable = crushable_scene.instantiate()
     add_child(crushable)
     if initial_patterns_completed:
-        var shape = shapes[randi_range(0, material_level - 3)]
+        var shape = shapes[material_level - 3]
         crushable.init(shape, shape.possible_patterns[randi_range(0, shape.possible_patterns.size() - 1)])
     else:
         var initial_pattern = remaining_patterns[0]
-        crushable.init(shapes[randi_range(0, material_level - 3)], initial_pattern)
+        crushable.init(shapes[material_level - 3], initial_pattern)
         remaining_patterns.remove_at(0)
         if remaining_patterns.size() == 0:
             initial_patterns_completed = true
