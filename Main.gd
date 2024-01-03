@@ -1,49 +1,36 @@
 extends Node
 
-@onready var upgrade_scene: PackedScene = load("res://upgrade.tscn")
-@onready var simulation = $Simulation
-@onready var currency_label = %CurrencyLabel
-@export var upgrades: Array[UpgradeRes]
-@onready var upgrade_container = %Upgrades
-@onready var order_manager = %OrderManager
-
-var currency = 0
-var upgrade_instances = []
+const temp_save_file = "user://temp.tres"
 
 var file_load_callback = JavaScriptBridge.create_callback(load_file)
+@onready var current_run_scene = load("res://current_run.tscn")
+var current_run
 
 func _ready():
     Console.add_command("save", func(path): save_data("user://" + path + ".res"), 1)
     Console.add_command("load", func(path): load_data("user://" + path + ".res"), 1)
-    Console.add_command("v", func(v): update_currency(currency + float(v)), 1)
-    EventBus.crushable_removed.connect(crushable_removed)
-    order_manager.order_finished.connect(order_manager_order_finished)
     if OS.get_name() == "Web":
         var window = JavaScriptBridge.get_interface("window")
         window.getFile(file_load_callback)
-    for upgrade in upgrades:
-        var upgrade_instance = upgrade_scene.instantiate()
-        upgrade_container.add_child(upgrade_instance)
-        upgrade_instance.init(upgrade)
-        upgrade_instance.upgrade_bought.connect(upgrade_bought)
-        upgrade_instances.append(upgrade_instance)
+    current_run = current_run_scene.instantiate()
+    add_child(current_run)
+    EventBus.new_press_selected.connect(reset_with_press)
+    
+func reset_with_press(press_res):
+    EventBus.press_selected.emit(press_res)
+    var persistent_game_data = current_run.create_persistent_save_file()
+    current_run.queue_free()
+    current_run = current_run_scene.instantiate()
+    add_child(current_run)
+    current_run.load_from_persistent_save_file(persistent_game_data)
 
-func crushable_removed(crushable):
-    update_currency(currency + crushable.get_value())
-    
-func upgrade_bought(value):
-    update_currency(currency - value)
-    
-func update_currency(value):
-    currency = value
-    currency_label.text = "$%s" % Utils.format_num(currency)
-    EventBus.currency_updated.emit(currency)
-    
-func order_manager_order_finished(order):
-    update_currency(currency + order.currency)
+func _on_export_save_button_pressed():
+    var file = current_run.create_save_file()
+    ResourceSaver.save(file, temp_save_file)
+    download_File(FileAccess.get_file_as_bytes(temp_save_file))
 
 func save_data(file_name):
-    var game_data = create_save_file()
+    var game_data = current_run.create_save_file()
     var error = ResourceSaver.save(game_data, file_name)
     if error == OK:
         print("saved to " + file_name)
@@ -54,48 +41,14 @@ func load_data(file_name):
     if ResourceLoader.exists(file_name):
         var game_data = ResourceLoader.load(file_name)
         if game_data is GameData:
-            load_game(game_data)
+            current_run.load_game(game_data)
         else:
             # Error loading data
             pass
     else:
         # File not found
         pass
-        
-func create_save_file():
-    var game_data = GameData.new()
-    game_data.currency = currency
-    for instance in upgrade_instances:
-        var data = {}
-        instance.save_data(data)
-        game_data.upgrade_data.append(data)
-    order_manager.save_data(game_data.orders_data)
-    simulation.save_data(game_data.simulation_data)
-    return game_data
 
-func load_game(game_data):
-    simulation.load_data(game_data.simulation_data)
-    order_manager.load_data(game_data.orders_data)    
-    var i = 0
-    for data in game_data.upgrade_data:
-        upgrade_instances[i].load_data(data)
-        i+=1
-    update_currency(game_data.currency)    
-
-const temp_save_file = "user://temp.tres"
-
-func _on_export_save_button_pressed():
-    var file = create_save_file()
-    ResourceSaver.save(file, temp_save_file)
-    download_File(FileAccess.get_file_as_bytes(temp_save_file))
-    
-func download_File(file):
-    JavaScriptBridge.download_buffer(file, "save.txt")
-
-func _on_import_save_button_pressed():
-    var window = JavaScriptBridge.get_interface("window")
-    window.input.click()
-    
 func load_file(args):
     var array = args[0].to_utf8_buffer()
     if FileAccess.file_exists(temp_save_file):
@@ -104,4 +57,11 @@ func load_file(args):
     file.store_buffer(array)
     file.close()
     var resource = ResourceLoader.load(temp_save_file)
-    load_game(resource)
+    current_run.load_game(resource)
+    
+func download_File(file):
+    JavaScriptBridge.download_buffer(file, "save.txt")
+
+func _on_import_save_button_pressed():
+    var window = JavaScriptBridge.get_interface("window")
+    window.input.click()

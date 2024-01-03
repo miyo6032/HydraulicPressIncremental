@@ -142,3 +142,9 @@ func update_crush(crushable):
     
 func calc_crushing_time():
     return crushing_time / speed_hydraulic_multiplier
+
+func save_data(data):
+    data["current_press"] = current_press
+    
+func load_data(data):
+    press_selected(data["current_press"])

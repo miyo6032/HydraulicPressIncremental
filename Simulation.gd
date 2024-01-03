@@ -23,6 +23,8 @@ func crush_finished():
     
 func save_data(data):
     conveyor.save_data(data)
+    press.save_data(data)
     
 func load_data(data):
     conveyor.load_data(data)
+    press.load_data(data)    

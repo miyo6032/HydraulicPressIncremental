@@ -5,6 +5,7 @@
 
 [resource]
 script = ExtResource("1_t5ygd")
+id = 1
 name = "Nuclear Press"
 description = "10x Force"
 texture = ExtResource("2_ehclj")

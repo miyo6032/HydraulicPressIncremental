@@ -3,7 +3,7 @@ extends MarginContainer
 var press
 
 func _ready():
-    $MarginContainer/VBoxContainer/Button.pressed.connect(func(): EventBus.press_selected.emit(press))
+    $MarginContainer/VBoxContainer/Button.pressed.connect(func(): EventBus.new_press_selected.emit(press))
     
 func init(press_res: PressRes):
     $MarginContainer/VBoxContainer/PressTexture.texture = press_res.texture
