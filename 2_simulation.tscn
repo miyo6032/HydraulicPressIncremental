@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://7t1sx0r2g2tc"]
+[gd_scene load_steps=17 format=3 uid="uid://7t1sx0r2g2tc"]
 
 [ext_resource type="Script" path="res://Conveyor.gd" id="1_fnrox"]
 [ext_resource type="Script" path="res://Simulation.gd" id="1_k081r"]
@@ -8,11 +8,10 @@
 [ext_resource type="Resource" uid="uid://cf3j1yfek3ufb" path="res://data/presses/press.tres" id="3_u7lxl"]
 [ext_resource type="Resource" uid="uid://do6f1sncgx8dv" path="res://data/patterns/checker.tres" id="5_ys7td"]
 [ext_resource type="Resource" uid="uid://dvhr8tuvqttov" path="res://data/patterns/bevel.tres" id="6_85hpk"]
+[ext_resource type="Resource" uid="uid://bryys36pjbq4u" path="res://data/shapes/triangle.tres" id="7_0fg40"]
 [ext_resource type="Resource" uid="uid://dfs7lgi64btb6" path="res://data/patterns/line.tres" id="7_p7nga"]
-[ext_resource type="Script" path="res://CrushableShape.gd" id="9_5gtaw"]
-[ext_resource type="Texture2D" uid="uid://umar7bjgnmoo" path="res://art/Triangle.png" id="10_8sv0j"]
-[ext_resource type="Texture2D" uid="uid://bua5a4yenkjlb" path="res://art/Square.png" id="11_swhhv"]
-[ext_resource type="Texture2D" uid="uid://dcrvpyhf5e5ij" path="res://art/Pentagon.png" id="12_gnquk"]
+[ext_resource type="Resource" uid="uid://dyrrds8du6nu7" path="res://data/shapes/square.tres" id="8_u5e4o"]
+[ext_resource type="Resource" uid="uid://y788y1jpd1ax" path="res://data/shapes/pentagon.tres" id="9_6jdli"]
 
 [sub_resource type="Gradient" id="Gradient_phlyw"]
 offsets = PackedFloat32Array(0)
@@ -20,21 +19,6 @@ colors = PackedColorArray(0, 0, 0, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_i0jcg"]
 gradient = SubResource("Gradient_phlyw")
-
-[sub_resource type="Resource" id="Resource_5jjee"]
-script = ExtResource("9_5gtaw")
-value_multiplier = 1.0
-texture = ExtResource("10_8sv0j")
-
-[sub_resource type="Resource" id="Resource_3er6u"]
-script = ExtResource("9_5gtaw")
-value_multiplier = 2.0
-texture = ExtResource("11_swhhv")
-
-[sub_resource type="Resource" id="Resource_7io18"]
-script = ExtResource("9_5gtaw")
-value_multiplier = 0.0
-texture = ExtResource("12_gnquk")
 
 [sub_resource type="Gradient" id="Gradient_ebb2i"]
 offsets = PackedFloat32Array(1)
@@ -68,8 +52,7 @@ script = ExtResource("1_fnrox")
 crushable_scene = ExtResource("2_eh6tc")
 crushable_spawn = NodePath("CrushableSpawn")
 move_offset = Vector2(562, 0)
-pattern = Array[Resource("res://CrushablePattern.gd")]([ExtResource("5_ys7td"), ExtResource("6_85hpk"), ExtResource("7_p7nga")])
-shapes = Array[ExtResource("9_5gtaw")]([SubResource("Resource_5jjee"), SubResource("Resource_3er6u"), SubResource("Resource_7io18")])
+shapes = Array[Resource("res://CrushableShape.gd")]([ExtResource("7_0fg40"), ExtResource("8_u5e4o"), ExtResource("9_6jdli")])
 force_initial_patterns = Array[Resource("res://CrushablePattern.gd")]([ExtResource("5_ys7td"), ExtResource("5_ys7td"), ExtResource("5_ys7td"), ExtResource("5_ys7td"), ExtResource("5_ys7td"), ExtResource("7_p7nga"), ExtResource("7_p7nga"), ExtResource("7_p7nga"), ExtResource("5_ys7td"), ExtResource("7_p7nga"), ExtResource("6_85hpk")])
 
 [node name="Sprite2D" type="Sprite2D" parent="Conveyor"]
