@@ -18,7 +18,7 @@ func _ready():
 
 func set_order(order: OrderRes):
     order_desc.text = order.get_description()
-    claim_button.text = "Reward: $" + Utils.format_num(order.amount)
+    claim_button.text = "Reward: $" + Utils.format_num(order.currency)
     current_order = order
     claim_button.disabled = true
     update_count(0)
@@ -33,7 +33,7 @@ func update_count(new_count):
     progress_label.text = "%.0f/%.0f" % [count, current_order.amount]        
     if count >= current_order.amount:
         claim_button.disabled = false
-        claim_button.text = "Claim: $" + Utils.format_num(current_order.amount)
+        claim_button.text = "Claim: $" + Utils.format_num(current_order.currency)
         unlocked.emit()
 
 func claim_button_pressed():
