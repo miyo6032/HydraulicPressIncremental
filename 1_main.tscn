@@ -10,7 +10,38 @@ script = ExtResource("1_kxjkt")
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 2
 
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="ExportSaveButton" type="Button" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -227.0
+offset_right = -128.0
+offset_bottom = 31.0
+grow_horizontal = 0
+text = "Export Save"
+
+[node name="ImportSaveButton" type="Button" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -102.0
+offset_bottom = 31.0
+grow_horizontal = 0
+text = "Import Save"
+
 [node name="PrestigeMenu" type="ColorRect" parent="CanvasLayer"]
+process_mode = 2
 visible = false
 anchors_preset = 15
 anchor_right = 1.0
@@ -46,33 +77,3 @@ offset_top = 323.0
 grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
-
-[node name="Control" type="Control" parent="CanvasLayer"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-
-[node name="ExportSaveButton" type="Button" parent="CanvasLayer/Control"]
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -227.0
-offset_right = -128.0
-offset_bottom = 31.0
-grow_horizontal = 0
-text = "Export Save"
-
-[node name="ImportSaveButton" type="Button" parent="CanvasLayer/Control"]
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -102.0
-offset_bottom = 31.0
-grow_horizontal = 0
-text = "Import Save"

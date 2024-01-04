@@ -15,6 +15,7 @@ func _ready():
     current_run = current_run_scene.instantiate()
     add_child(current_run)
     EventBus.new_press_selected.connect(reset_with_press)
+    EventBus.terminal_crush.connect(func(): get_tree().paused = true)
     
 func reset_with_press(press_res):
     EventBus.press_selected.emit(press_res)
@@ -23,6 +24,7 @@ func reset_with_press(press_res):
     current_run = current_run_scene.instantiate()
     add_child(current_run)
     current_run.load_from_persistent_save_file(persistent_game_data)
+    get_tree().paused = false
 
 func _on_export_save_button_pressed():
     var file = current_run.create_save_file()

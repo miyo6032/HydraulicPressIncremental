@@ -141,7 +141,7 @@ offset_right = 129.0
 offset_bottom = 37.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "$1000000"
+text = "$0"
 
 [node name="IndicatorLabelHandler" type="Control" parent="CanvasLayer/Control"]
 layout_mode = 1

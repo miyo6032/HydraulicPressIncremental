@@ -33,6 +33,8 @@ func get_value():
 func set_crushed(modifiers):
     is_crushed = true
     crush_modifiers = modifiers
+    if crushable_shape == Constants.reset_trigger_shape:
+        EventBus.terminal_crush.emit()
     
 func _process(delta):
     if crush_modifiers and crush_modifiers.is_quality:
@@ -47,5 +49,4 @@ func init(shape, pattern):
     sprite.texture = shape.texture
     var material: ShaderMaterial = sprite.material
     material.set_shader_parameter("MainTex", pattern.texture)
-    #sprite.modulate = color.color
     crush_modifiers = null

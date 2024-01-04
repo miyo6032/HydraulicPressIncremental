@@ -6,6 +6,7 @@ extends ColorRect
 
 func _ready():
     Console.add_command("press", func(): visible = true)
+    EventBus.terminal_crush.connect(func(): visible = true)
     EventBus.press_selected.connect(func(press_res): visible = false)
     for press in presses:
         var ui = ui_scene.instantiate()

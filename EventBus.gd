@@ -7,3 +7,4 @@ signal skip_crushable
 signal current_force_changed(force)
 signal press_selected(press_res)
 signal new_press_selected(press_res)
+signal terminal_crush()
