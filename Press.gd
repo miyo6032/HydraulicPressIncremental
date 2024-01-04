@@ -4,16 +4,16 @@ class_name Press
 
 signal crush_finished
 
-const base_crushing_time = 2
-const base_crushing_power = 1
-const base_quality_press_chance = 0.0
-const base_quality_value_multiplier = 5
+const base_crushing_time: float = 2
+const base_max_press_force: float = 1
+const base_quality_press_chance: float = 0.0
+const base_quality_value_multiplier: float = 5
 
-var crushing_power = base_crushing_power
-var crushing_time = base_crushing_time
-var power_hydraulic_multiplier = 1
-var speed_hydraulic_multiplier = 1
-var quality_value_multiplier = base_quality_value_multiplier
+var max_press_force: float = base_max_press_force
+var crushing_time: float = base_crushing_time
+var power_hydraulic_multiplier: float = 1
+var speed_hydraulic_multiplier: float = 1
+var quality_value_multiplier: float = base_quality_value_multiplier
 
 @export var current_press: PressRes
 @onready var visual = $Visual
@@ -36,8 +36,8 @@ func press_selected(press_res: PressRes):
 func upgrade_level_changed(instance):
     if instance.upgrade.upgrade_type == Enums.UpgradeType.Force:
         var upgrade_value = pow(instance.upgrade.upgrade_value, instance.current_upgrade_level)
-        crushing_power = base_crushing_power * upgrade_value * current_press.force_upgrade
-        instance.set_upgrade_label("%s %s" % [Utils.format_num(crushing_power), "ton" if crushing_power == 1 else "tons"])
+        max_press_force = base_max_press_force * upgrade_value * current_press.force_upgrade
+        instance.set_upgrade_label("%s %s" % [Utils.format_num(max_press_force), "ton" if is_equal_approx(max_press_force, 1) else "tons"])
     elif instance.upgrade.upgrade_type == Enums.UpgradeType.PressSpeed:
         var upgrade_value = instance.upgrade.upgrade_value * instance.current_upgrade_level * current_press.speed_upgrade
         crushing_time = base_crushing_time / (1 + upgrade_value)
@@ -97,10 +97,10 @@ func _process(delta):
     if crush_progress > 0:
         var resistance = current_crushable.get_current_resistance(crush_progress)
         if resistance > current_force:
-            if current_force >= crushing_power:
+            if Utils.geq(current_force, max_press_force):
                 stop_crush_prematurely(0.5)
             else:
-                current_force = clampf(current_force + speed * force_ramp_multiplier * crushing_power, 0, crushing_power)
+                current_force = clampf(current_force + speed * force_ramp_multiplier * max_press_force, 0, max_press_force)
                 particle_buildup+=1
         else:
             move_press_down(speed)

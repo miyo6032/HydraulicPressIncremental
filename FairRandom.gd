@@ -10,7 +10,7 @@ var chance: float:
         fails = 0
         
 func get_success() -> bool:
-    if fails * _chance >= 1:
+    if Utils.geq(fails * _chance, 1):
         fails = 0
         return true
     else:
