@@ -2,13 +2,14 @@ extends ColorRect
 
 signal upgrade_bought(value)
 
-@onready var upgrade_button: Button = $MarginContainer/VBoxContainer/UpgradeCost
-@onready var downstep_button = $MarginContainer/VBoxContainer/HBoxContainer/DownButton
-@onready var upstep_button = $MarginContainer/VBoxContainer/HBoxContainer/UpButton
-@onready var upgrade_label = $MarginContainer/VBoxContainer/HBoxContainer/UpgradeLabel
+@onready var upgrade_button: Button = %UpgradeCost
+@onready var downstep_button = %DownButton
+@onready var upstep_button = %UpButton
+@onready var upgrade_label = %UpgradeLabel
+@onready var fade_ui = $UpgradeFadeUI
 
-var current_upgrade_level = 0
-var max_upgrade_level = 0
+var current_upgrade_level: int = 0
+var max_upgrade_level: int = 0
 var upgrade: UpgradeRes
 
 func _ready():
@@ -20,7 +21,7 @@ func _ready():
 
 func init(upgrade: UpgradeRes):
     self.upgrade = upgrade
-    var title = $MarginContainer/VBoxContainer/TitleLabel
+    var title = %TitleLabel
     title.tooltip_text = upgrade.tooltip
     title.text = upgrade.name
     upgrade_button.disabled = true
@@ -29,8 +30,11 @@ func init(upgrade: UpgradeRes):
 func currency_updated(value):
     if upgrade.costs.size() == max_upgrade_level:
         return
-        
-    upgrade_button.disabled = upgrade.costs[max_upgrade_level] > value
+    
+    var can_afford_upgrade = upgrade.costs[max_upgrade_level] <= value
+    upgrade_button.disabled = not can_afford_upgrade
+    if can_afford_upgrade and max_upgrade_level == 0:
+        fade_ui.fade_in_if_not_active()
 
 func upgrade_button_pressed():
     upgrade_bought.emit(upgrade.costs[max_upgrade_level])
@@ -68,7 +72,10 @@ func set_upgrade_label(text):
 func save_data(data: Dictionary):
     data["max_upgrade_level"] = max_upgrade_level
     data["current_upgrade_level"] = current_upgrade_level
+    data["shown"] = fade_ui.faded_in
 
 func load_data(data: Dictionary):
     current_upgrade_level = data["current_upgrade_level"]    
     set_max_upgrade_level(data["max_upgrade_level"])
+    if data["shown"]:
+        fade_ui.show_instantly()
