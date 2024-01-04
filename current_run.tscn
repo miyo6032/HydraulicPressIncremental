@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://clpks2rjkvskm"]
+[gd_scene load_steps=17 format=3 uid="uid://clpks2rjkvskm"]
 
 [ext_resource type="Script" path="res://CurrentRun.gd" id="1_rnq25"]
 [ext_resource type="Resource" uid="uid://ype7ae050vxg" path="res://data/upgrades/force_upgrade.tres" id="2_218ra"]
@@ -14,6 +14,8 @@
 [ext_resource type="PackedScene" uid="uid://bn1wj400srr3t" path="res://order.tscn" id="12_2ynvf"]
 [ext_resource type="Script" path="res://SkipButton.gd" id="13_rkvay"]
 [ext_resource type="Script" path="res://IndicatorLabelHandler.gd" id="14_bf6xs"]
+[ext_resource type="PackedScene" uid="uid://d2wqud77qew7f" path="res://change_press_ui.tscn" id="15_48w5f"]
+[ext_resource type="Script" path="res://ChangePressMenu.gd" id="15_cveyd"]
 
 [node name="CurrentRun" type="Node"]
 script = ExtResource("1_rnq25")
@@ -36,8 +38,8 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = 228.0
-offset_right = 339.0
+offset_left = -351.0
+offset_right = -240.0
 offset_bottom = 23.0
 grow_horizontal = 2
 text = "Current Force:"
@@ -155,3 +157,54 @@ offset_bottom = -54.0
 grow_horizontal = 0
 grow_vertical = 2
 script = ExtResource("14_bf6xs")
+
+[node name="ChangePressButton" type="Button" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -512.0
+offset_right = -400.0
+offset_bottom = 31.0
+grow_horizontal = 2
+text = "Change Press
+"
+
+[node name="ChangePressMenu" type="ColorRect" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.588235)
+script = ExtResource("15_cveyd")
+
+[node name="Label" type="Label" parent="CanvasLayer/Control/ChangePressMenu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -29.0
+offset_top = -163.0
+offset_right = 30.0
+offset_bottom = -140.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Presses"
+
+[node name="ChangePressContainer" type="HBoxContainer" parent="CanvasLayer/Control/ChangePressMenu"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 418.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="MarginContainer2" parent="CanvasLayer/Control/ChangePressMenu/ChangePressContainer" instance=ExtResource("15_48w5f")]
+layout_mode = 2

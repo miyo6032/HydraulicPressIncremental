@@ -41,7 +41,7 @@ grow_horizontal = 0
 text = "Import Save"
 
 [node name="PrestigeMenu" type="ColorRect" parent="CanvasLayer"]
-process_mode = 2
+process_mode = 3
 visible = false
 anchors_preset = 15
 anchor_right = 1.0
