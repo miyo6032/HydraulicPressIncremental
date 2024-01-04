@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://clpks2rjkvskm"]
+[gd_scene load_steps=20 format=3 uid="uid://clpks2rjkvskm"]
 
 [ext_resource type="Script" path="res://CurrentRun.gd" id="1_rnq25"]
 [ext_resource type="Resource" uid="uid://ype7ae050vxg" path="res://data/upgrades/force_upgrade.tres" id="2_218ra"]
@@ -12,10 +12,13 @@
 [ext_resource type="Script" path="res://OrderManager.gd" id="10_jittl"]
 [ext_resource type="Resource" uid="uid://5q2kvb77tv84" path="res://data/order_list.tres" id="11_btxwp"]
 [ext_resource type="PackedScene" uid="uid://bn1wj400srr3t" path="res://order.tscn" id="12_2ynvf"]
+[ext_resource type="Script" path="res://FadeUI.gd" id="12_jtco1"]
 [ext_resource type="Script" path="res://SkipButton.gd" id="13_rkvay"]
 [ext_resource type="Script" path="res://IndicatorLabelHandler.gd" id="14_bf6xs"]
 [ext_resource type="PackedScene" uid="uid://d2wqud77qew7f" path="res://change_press_ui.tscn" id="15_48w5f"]
 [ext_resource type="Script" path="res://ChangePressMenu.gd" id="15_cveyd"]
+[ext_resource type="Script" path="res://PrestigeMenu.gd" id="17_gn1qt"]
+[ext_resource type="Resource" uid="uid://ci0lc557p7smy" path="res://data/presses/nuclear_press.tres" id="18_00t1j"]
 
 [node name="CurrentRun" type="Node"]
 script = ExtResource("1_rnq25")
@@ -82,9 +85,18 @@ size_flags_vertical = 3
 color = Color(0.490196, 0.490196, 0.490196, 1)
 script = ExtResource("10_jittl")
 order_list = ExtResource("11_btxwp")
-order_uis = [NodePath("MarginContainer/VBoxContainer/Order"), NodePath("MarginContainer/VBoxContainer/Order2"), NodePath("MarginContainer/VBoxContainer/Order3")]
+order_uis = [NodePath("FadeUI/MarginContainer/VBoxContainer/Order"), NodePath("FadeUI/MarginContainer/VBoxContainer/Order2"), NodePath("FadeUI/MarginContainer/VBoxContainer/Order3")]
 
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control/MainUI/MarginContainer/Upgrades/OrderManager"]
+[node name="FadeUI" type="Control" parent="CanvasLayer/Control/MainUI/MarginContainer/Upgrades/OrderManager"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("12_jtco1")
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control/MainUI/MarginContainer/Upgrades/OrderManager/FadeUI"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -96,21 +108,21 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/MainUI/MarginContainer/Upgrades/OrderManager/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/MainUI/MarginContainer/Upgrades/OrderManager/FadeUI/MarginContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="CanvasLayer/Control/MainUI/MarginContainer/Upgrades/OrderManager/MarginContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="CanvasLayer/Control/MainUI/MarginContainer/Upgrades/OrderManager/FadeUI/MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "Orders"
 horizontal_alignment = 1
 
-[node name="Order" parent="CanvasLayer/Control/MainUI/MarginContainer/Upgrades/OrderManager/MarginContainer/VBoxContainer" instance=ExtResource("12_2ynvf")]
+[node name="Order" parent="CanvasLayer/Control/MainUI/MarginContainer/Upgrades/OrderManager/FadeUI/MarginContainer/VBoxContainer" instance=ExtResource("12_2ynvf")]
 layout_mode = 2
 
-[node name="Order2" parent="CanvasLayer/Control/MainUI/MarginContainer/Upgrades/OrderManager/MarginContainer/VBoxContainer" instance=ExtResource("12_2ynvf")]
+[node name="Order2" parent="CanvasLayer/Control/MainUI/MarginContainer/Upgrades/OrderManager/FadeUI/MarginContainer/VBoxContainer" instance=ExtResource("12_2ynvf")]
 layout_mode = 2
 
-[node name="Order3" parent="CanvasLayer/Control/MainUI/MarginContainer/Upgrades/OrderManager/MarginContainer/VBoxContainer" instance=ExtResource("12_2ynvf")]
+[node name="Order3" parent="CanvasLayer/Control/MainUI/MarginContainer/Upgrades/OrderManager/FadeUI/MarginContainer/VBoxContainer" instance=ExtResource("12_2ynvf")]
 layout_mode = 2
 
 [node name="SkipButton" type="Button" parent="CanvasLayer/Control"]
@@ -208,3 +220,80 @@ alignment = 1
 
 [node name="MarginContainer2" parent="CanvasLayer/Control/ChangePressMenu/ChangePressContainer" instance=ExtResource("15_48w5f")]
 layout_mode = 2
+
+[node name="PrestigeMenu" type="ColorRect" parent="CanvasLayer/Control/ChangePressMenu"]
+process_mode = 2
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.266667, 0.266667, 0.266667, 1)
+script = ExtResource("17_gn1qt")
+presses = Array[Resource("res://PressRes.gd")]([ExtResource("18_00t1j")])
+
+[node name="Label" type="Label" parent="CanvasLayer/Control/ChangePressMenu/PrestigeMenu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -289.0
+offset_top = -298.0
+offset_right = 290.0
+offset_bottom = -275.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "You have proven yourself to the hydralic press gods. Now, choose a reward"
+
+[node name="PressChoiceContainer" type="HBoxContainer" parent="CanvasLayer/Control/ChangePressMenu/PrestigeMenu"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 323.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="PrestigeMenu" type="ColorRect" parent="CanvasLayer/Control/ChangePressMenu/PrestigeMenu"]
+process_mode = 2
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.266667, 0.266667, 0.266667, 1)
+script = ExtResource("17_gn1qt")
+presses = Array[Resource("res://PressRes.gd")]([ExtResource("18_00t1j")])
+
+[node name="Label" type="Label" parent="CanvasLayer/Control/ChangePressMenu/PrestigeMenu/PrestigeMenu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -289.0
+offset_top = -298.0
+offset_right = 290.0
+offset_bottom = -275.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "You have proven yourself to the hydralic press gods. Now, choose a reward"
+
+[node name="PressChoiceContainer" type="HBoxContainer" parent="CanvasLayer/Control/ChangePressMenu/PrestigeMenu/PrestigeMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 323.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1

@@ -1,6 +1,7 @@
 extends ColorRect
 
 signal claimed
+signal unlocked
 
 @onready var order_desc = $MarginContainer/HBoxContainer/VBoxContainer/OrderLabel
 @onready var claim_button = $MarginContainer/HBoxContainer/ClaimButton
@@ -33,6 +34,7 @@ func update_count(new_count):
     if count >= current_order.amount:
         claim_button.disabled = false
         claim_button.text = "Claim: $" + Utils.format_num(current_order.amount)
+        unlocked.emit()
 
 func claim_button_pressed():
     claimed.emit()
@@ -42,5 +44,5 @@ func save_data(data):
     data["current_order"] = current_order.id
 
 func load_data(data):
-    current_order = Registries.order_types[data["current_order"]]
+    set_order(Registries.order_types[data["current_order"]])
     update_count(data["count"])
