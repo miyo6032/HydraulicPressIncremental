@@ -32,7 +32,7 @@ func currency_updated(value):
     if upgrade.costs.size() == max_upgrade_level:
         return
     
-    var can_afford_upgrade = Utils.geq(upgrade.costs[max_upgrade_level], value)
+    var can_afford_upgrade = Utils.geq(value, upgrade.costs[max_upgrade_level])
     upgrade_button.disabled = not can_afford_upgrade
     if can_afford_upgrade and max_upgrade_level == 0:
         fade_ui.fade_in_if_not_active()
