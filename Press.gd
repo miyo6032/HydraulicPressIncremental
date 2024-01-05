@@ -82,7 +82,7 @@ var current_force: float:
         return _current_force
     set(value):
         _current_force = value
-        EventBus.current_force_changed.emit(value)
+        EventBus.current_force_changed.emit(value, max_press_force)
 const force_ramp_multiplier = 0.01
 const speed_multiplier = 500
 var is_crushing

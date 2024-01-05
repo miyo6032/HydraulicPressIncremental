@@ -4,16 +4,14 @@ extends Control
 
 func _ready():
     EventBus.crushable_removed.connect(crushable_removed)
-    Console.add_command("l", spawn_label)
-    
-func spawn_label(text):
-    var label = label_scene.instantiate()
-    label.text = text
-    add_child(label)
-    
+
 func crushable_removed(crushable):
-    var label = ""    
+    var label = label_scene.instantiate()    
+    var label_text = ""    
     if crushable.is_crushed:
-        label += "Crush!"
-    label += " $%s" % Utils.format_num(crushable.get_value())
-    spawn_label(label)
+        label_text += "Press!"
+    else:
+        label.add_theme_color_override("font_color", Color.RED)
+    label_text += " $%s" % Utils.format_num(crushable.get_value())
+    label.text = label_text
+    add_child(label)    
