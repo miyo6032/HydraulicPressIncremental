@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="CrushableShape" load_steps=7 format=3 uid="uid://cywrxwyxsahxs"]
+
+[ext_resource type="Resource" uid="uid://dvhr8tuvqttov" path="res://data/patterns/bevel.tres" id="1_6xmxq"]
+[ext_resource type="Resource" uid="uid://do6f1sncgx8dv" path="res://data/patterns/checker.tres" id="2_8t5ba"]
+[ext_resource type="Resource" uid="uid://dfs7lgi64btb6" path="res://data/patterns/line.tres" id="3_6en6n"]
+[ext_resource type="Resource" uid="uid://bciuviytloa8h" path="res://data/patterns/cell.tres" id="4_l1sbn"]
+[ext_resource type="Script" path="res://CrushableShape.gd" id="5_s1kiw"]
+[ext_resource type="Texture2D" uid="uid://rdg72dcgmukh" path="res://art/Circle.png" id="6_ra3y6"]
+
+[resource]
+script = ExtResource("5_s1kiw")
+value_multiplier = 1728.0
+texture = ExtResource("6_ra3y6")
+possible_patterns = Array[Resource("res://CrushablePattern.gd")]([ExtResource("1_6xmxq"), ExtResource("2_8t5ba"), ExtResource("3_6en6n"), ExtResource("4_l1sbn")])
