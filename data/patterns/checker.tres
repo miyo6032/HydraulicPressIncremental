@@ -4,11 +4,11 @@
 [ext_resource type="Texture2D" uid="uid://dyrrngxcnttou" path="res://art/Checker.png" id="2_wa58e"]
 
 [sub_resource type="Curve" id="Curve_ld2hm"]
-_data = [Vector2(0, 0.504573), 0.0, 0.0, 0, 0, Vector2(1, 1), 1.07012, 0.0, 0, 0]
+_data = [Vector2(0, 0.504573), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0859064, 0.0, 0, 0]
 point_count = 2
 
 [resource]
 script = ExtResource("1_cxs4w")
-value_multiplier = 0.5
+value_multiplier = 1.0
 texture = ExtResource("2_wa58e")
 curve = SubResource("Curve_ld2hm")

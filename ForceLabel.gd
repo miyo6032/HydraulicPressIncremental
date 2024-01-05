@@ -1,6 +1,5 @@
 extends Label
 
-
 func _ready():
     EventBus.current_force_changed.connect(current_force_changed)
     

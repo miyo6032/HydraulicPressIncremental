@@ -4,11 +4,11 @@
 [ext_resource type="Texture2D" uid="uid://cvi3ehyrxwnn8" path="res://art/Bevel.png" id="2_nvtn5"]
 
 [sub_resource type="Curve" id="Curve_1l3lx"]
-_data = [Vector2(0, 0.787895), 0.0, 0.0, 0, 0, Vector2(1, 0.979474), 0.559532, 0.0, 0, 0]
+_data = [Vector2(0.00167504, 0.75523), 0.0, 0.0, 0, 0, Vector2(1, 0.996115), 0.0, 0.0, 0, 0]
 point_count = 2
 
 [resource]
 script = ExtResource("1_qyh4g")
-value_multiplier = 2.0
+value_multiplier = 2.5
 texture = ExtResource("2_nvtn5")
 curve = SubResource("Curve_1l3lx")

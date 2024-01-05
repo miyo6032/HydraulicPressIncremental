@@ -8,4 +8,4 @@ name = "Hydraulics"
 upgrade_value = 4.0
 upgrade_type = 2
 tooltip = "Trade speed for significant force"
-costs = Array[float]([50.0, 500.0])
+costs = Array[float]([350.0, 10000.0, 500000.0])

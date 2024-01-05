@@ -8,4 +8,4 @@ name = "Press Speed"
 upgrade_value = 0.3
 upgrade_type = 1
 tooltip = "How fast the press move"
-costs = Array[float]([3.0, 6.0, 12.0, 24.0, 48.0, 96.0])
+costs = Array[float]([25.0, 50.0, 100.0, 200.0, 500.0, 1000.0, 2000.0, 4000.0, 10000.0, 20000.0])
