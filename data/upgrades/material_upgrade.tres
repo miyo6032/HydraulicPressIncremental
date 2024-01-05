@@ -8,4 +8,4 @@ name = "Material Strength"
 upgrade_value = 1.0
 upgrade_type = 5
 tooltip = "Stronger and more valuable materials may appear"
-costs = Array[float]([3.0, 6.0])
+costs = Array[float]([10.0, 20.0])

@@ -6,7 +6,7 @@ extends Node
 @export var upgrades: Array[UpgradeRes]
 @onready var upgrade_container = %Upgrades
 @onready var order_manager = %OrderManager
-@onready var change_press_button = $CanvasLayer/Control/ChangePressButton
+@onready var change_press_button = %ChangePressButton
 @onready var change_press_menu = $CanvasLayer/Control/ChangePressMenu
 
 var currency = 0

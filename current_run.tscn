@@ -38,18 +38,6 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("9_tmscb")
 
-[node name="ForceLabel" type="Label" parent="CanvasLayer/Control"]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -351.0
-offset_right = -240.0
-offset_bottom = 23.0
-grow_horizontal = 2
-text = "Current Force:"
-script = ExtResource("9_f4pp4")
-
 [node name="MainUI" type="ColorRect" parent="CanvasLayer/Control"]
 layout_mode = 1
 anchors_preset = 15
@@ -60,12 +48,78 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.162066, 0.162066, 0.162066, 1)
 
+[node name="AdditionalButtons" type="HBoxContainer" parent="CanvasLayer/Control/MainUI"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -252.0
+offset_bottom = -163.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="ChangePressButton" type="Button" parent="CanvasLayer/Control/MainUI/AdditionalButtons"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+text = "Change Press
+"
+
+[node name="Panel" type="Panel" parent="CanvasLayer/Control/MainUI/AdditionalButtons"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+tooltip_text = "Current Press Force"
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control/MainUI/AdditionalButtons/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+
+[node name="ForceLabel" type="Label" parent="CanvasLayer/Control/MainUI/AdditionalButtons/Panel/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "Current Force:"
+vertical_alignment = 1
+script = ExtResource("9_f4pp4")
+
+[node name="Panel2" type="Panel" parent="CanvasLayer/Control/MainUI/AdditionalButtons"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+tooltip_text = "Your Funds"
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control/MainUI/AdditionalButtons/Panel2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+
+[node name="CurrencyLabel" type="Label" parent="CanvasLayer/Control/MainUI/AdditionalButtons/Panel2/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "$0"
+
+[node name="SkipButton" type="Button" parent="CanvasLayer/Control/MainUI/AdditionalButtons"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+text = "Skip"
+script = ExtResource("13_rkvay")
+
 [node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control/MainUI"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = 61.0
+offset_top = 109.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_left = 10
@@ -127,38 +181,6 @@ layout_mode = 2
 [node name="Order3" parent="CanvasLayer/Control/MainUI/MarginContainer/Upgrades/OrderManager/FadeUI/MarginContainer/VBoxContainer" instance=ExtResource("12_2ynvf")]
 layout_mode = 2
 
-[node name="SkipButton" type="Button" parent="CanvasLayer/Control"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = 10.0
-offset_right = 21.0
-offset_bottom = 41.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "Skip"
-script = ExtResource("13_rkvay")
-
-[node name="CurrencyLabel" type="Label" parent="CanvasLayer/Control"]
-unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 55.0
-offset_top = 14.0
-offset_right = 129.0
-offset_bottom = 37.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "$0"
-
 [node name="IndicatorLabelHandler" type="Control" parent="CanvasLayer/Control"]
 layout_mode = 1
 anchors_preset = 6
@@ -171,18 +193,6 @@ offset_bottom = -54.0
 grow_horizontal = 0
 grow_vertical = 2
 script = ExtResource("14_bf6xs")
-
-[node name="ChangePressButton" type="Button" parent="CanvasLayer/Control"]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -512.0
-offset_right = -400.0
-offset_bottom = 31.0
-grow_horizontal = 2
-text = "Change Press
-"
 
 [node name="ChangePressMenu" type="ColorRect" parent="CanvasLayer/Control"]
 visible = false
