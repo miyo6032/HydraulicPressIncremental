@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="ShapeList" load_steps=9 format=3 uid="uid://dvb1s8nmcpr04"]
+
+[ext_resource type="Script" path="res://ShapeList.gd" id="1_ipoq5"]
+[ext_resource type="Resource" uid="uid://bryys36pjbq4u" path="res://data/shapes/triangle.tres" id="2_lh67b"]
+[ext_resource type="Resource" uid="uid://dyrrds8du6nu7" path="res://data/shapes/square.tres" id="3_qcgph"]
+[ext_resource type="Resource" uid="uid://y788y1jpd1ax" path="res://data/shapes/pentagon.tres" id="4_6iyet"]
+[ext_resource type="Resource" uid="uid://dg4wpefjalcow" path="res://data/shapes/hexagon.tres" id="5_yisym"]
+[ext_resource type="Resource" uid="uid://cofjrhb7srpu0" path="res://data/shapes/septagon.tres" id="6_knqmt"]
+[ext_resource type="Resource" uid="uid://d32ted6hpbw5b" path="res://data/shapes/octogon.tres" id="7_30v7q"]
+[ext_resource type="Resource" uid="uid://cywrxwyxsahxs" path="res://data/shapes/circle.tres" id="8_pgvlf"]
+
+[resource]
+script = ExtResource("1_ipoq5")
+shapes = Array[Resource("res://CrushableShape.gd")]([ExtResource("2_lh67b"), ExtResource("3_qcgph"), ExtResource("4_6iyet"), ExtResource("5_yisym"), ExtResource("6_knqmt"), ExtResource("7_30v7q"), ExtResource("8_pgvlf")])

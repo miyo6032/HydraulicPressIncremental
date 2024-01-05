@@ -25,6 +25,11 @@ func reset_with_press(press_res):
     current_run = current_run_scene.instantiate()
     add_child(current_run)
     current_run.load_from_persistent_save_file(persistent_game_data)
+    var game_data = current_run.create_save_file()
+    current_run.queue_free()
+    current_run = current_run_scene.instantiate()
+    add_child(current_run)
+    current_run.load_game(game_data)
     get_tree().paused = false
 
 func _on_export_save_button_pressed():

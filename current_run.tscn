@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://clpks2rjkvskm"]
+[gd_scene load_steps=19 format=3 uid="uid://clpks2rjkvskm"]
 
 [ext_resource type="Script" path="res://CurrentRun.gd" id="1_rnq25"]
 [ext_resource type="Resource" uid="uid://ype7ae050vxg" path="res://data/upgrades/force_upgrade.tres" id="2_218ra"]
@@ -11,7 +11,6 @@
 [ext_resource type="Script" path="res://ForceLabel.gd" id="9_f4pp4"]
 [ext_resource type="Theme" uid="uid://q74smvt4fc0e" path="res://data/theme.tres" id="9_tmscb"]
 [ext_resource type="Script" path="res://OrderManager.gd" id="10_jittl"]
-[ext_resource type="Resource" uid="uid://5q2kvb77tv84" path="res://data/order_list.tres" id="11_btxwp"]
 [ext_resource type="PackedScene" uid="uid://bn1wj400srr3t" path="res://order.tscn" id="12_2ynvf"]
 [ext_resource type="Script" path="res://FadeUI.gd" id="12_jtco1"]
 [ext_resource type="Script" path="res://SkipButton.gd" id="13_rkvay"]
@@ -145,7 +144,6 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource("10_jittl")
-order_list = ExtResource("11_btxwp")
 order_uis = [NodePath("FadeUI/MarginContainer/VBoxContainer/Order"), NodePath("FadeUI/MarginContainer/VBoxContainer/Order2"), NodePath("FadeUI/MarginContainer/VBoxContainer/Order3")]
 
 [node name="FadeUI" type="Control" parent="CanvasLayer/Control/MainUI/MarginContainer/Upgrades/OrderManager"]

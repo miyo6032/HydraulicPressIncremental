@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://l747lfc2hlxl" path="res://art/Ridge.png" id="2_65sh1"]
 
 [sub_resource type="Curve" id="Curve_1l3lx"]
-_data = [Vector2(0.00167504, 0.75523), 0.0, 0.0, 0, 0, Vector2(1, 0.996115), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 0.502052), 0.0, 0.0, 0, 0, Vector2(1, 0.996115), 0.0, 0.0, 0, 0]
 point_count = 2
 
 [resource]

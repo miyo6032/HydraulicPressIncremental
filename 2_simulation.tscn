@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://7t1sx0r2g2tc"]
+[gd_scene load_steps=14 format=3 uid="uid://7t1sx0r2g2tc"]
 
 [ext_resource type="Script" path="res://Conveyor.gd" id="1_fnrox"]
 [ext_resource type="Script" path="res://Simulation.gd" id="1_k081r"]
@@ -7,14 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://cg6nqgaj5qy2" path="res://art/press.png" id="3_6vusr"]
 [ext_resource type="Resource" uid="uid://cf3j1yfek3ufb" path="res://data/presses/press.tres" id="3_u7lxl"]
 [ext_resource type="Resource" uid="uid://do6f1sncgx8dv" path="res://data/patterns/checker.tres" id="5_ys7td"]
-[ext_resource type="Resource" uid="uid://bryys36pjbq4u" path="res://data/shapes/triangle.tres" id="7_0fg40"]
 [ext_resource type="Resource" uid="uid://dfs7lgi64btb6" path="res://data/patterns/line.tres" id="7_p7nga"]
-[ext_resource type="Resource" uid="uid://dyrrds8du6nu7" path="res://data/shapes/square.tres" id="8_u5e4o"]
-[ext_resource type="Resource" uid="uid://y788y1jpd1ax" path="res://data/shapes/pentagon.tres" id="9_6jdli"]
-[ext_resource type="Resource" uid="uid://dg4wpefjalcow" path="res://data/shapes/hexagon.tres" id="10_vbp1t"]
-[ext_resource type="Resource" uid="uid://cofjrhb7srpu0" path="res://data/shapes/septagon.tres" id="11_0mw2y"]
-[ext_resource type="Resource" uid="uid://d32ted6hpbw5b" path="res://data/shapes/octogon.tres" id="12_3trgp"]
-[ext_resource type="Resource" uid="uid://cywrxwyxsahxs" path="res://data/shapes/circle.tres" id="13_mku4k"]
 [ext_resource type="Resource" uid="uid://dvhr8tuvqttov" path="res://data/patterns/ridge.tres" id="16_rdr5l"]
 
 [sub_resource type="Gradient" id="Gradient_phlyw"]
@@ -56,7 +49,6 @@ script = ExtResource("1_fnrox")
 crushable_scene = ExtResource("2_eh6tc")
 crushable_spawn = NodePath("CrushableSpawn")
 move_offset = Vector2(562, 0)
-shapes = Array[Resource("res://CrushableShape.gd")]([ExtResource("7_0fg40"), ExtResource("8_u5e4o"), ExtResource("9_6jdli"), ExtResource("10_vbp1t"), ExtResource("11_0mw2y"), ExtResource("12_3trgp"), ExtResource("13_mku4k")])
 force_initial_patterns = Array[Resource("res://CrushablePattern.gd")]([ExtResource("5_ys7td"), ExtResource("5_ys7td"), ExtResource("5_ys7td"), ExtResource("5_ys7td"), ExtResource("5_ys7td"), ExtResource("7_p7nga"), ExtResource("7_p7nga"), ExtResource("7_p7nga"), ExtResource("5_ys7td"), ExtResource("7_p7nga"), ExtResource("16_rdr5l")])
 
 [node name="Sprite2D" type="Sprite2D" parent="Conveyor"]

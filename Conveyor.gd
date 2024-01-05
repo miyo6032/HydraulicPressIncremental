@@ -5,8 +5,12 @@ signal move_finished
 @export var crushable_scene: PackedScene
 @export var crushable_spawn: Node2D
 @export var move_offset: Vector2
-@export var shapes: Array[CrushableShape]
+@onready var shape_list: ShapeList = load("res://data/shape_list.tres")
 @export var force_initial_patterns: Array[CrushablePattern]
+
+var shapes: Array[CrushableShape]:
+    get:
+        return shape_list.shapes
 
 var crushables = []
 

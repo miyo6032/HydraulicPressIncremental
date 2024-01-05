@@ -2,23 +2,50 @@ extends Control
 
 signal order_finished(order)
 
-@export var order_list: OrderList
 @export var order_uis: Array[Control]
 @onready var fade_ui = $FadeUI
+@onready var shape_list: ShapeList = load("res://data/shape_list.tres")
+@onready var order_list: OrderList = load('res://data/order_list.tres')
 
+var current_material_level
+var max_material_level
 var next_order = 0
 
 func _ready():
+    EventBus.upgrade_level_changed.connect(upgrade_level_changed)
     for ui in order_uis:
-        ui.set_order(order_list.orders[next_order])
+        get_next_order(ui)
         ui.claimed.connect(claimed.bind(ui))
         ui.unlocked.connect(func(): fade_ui.fade_in_if_not_active())
+    
+func get_next_order(ui):
+    if next_order < order_list.orders.size():
+        ui.set_order(order_list.orders[next_order])
         next_order += 1
+    else:
+        ui.set_order(generate_order())
 
+func upgrade_level_changed(instance):
+    if instance.upgrade.upgrade_type == Enums.UpgradeType.Materials:
+        current_material_level = instance.current_upgrade_level
+        max_material_level = instance.max_upgrade_level
+        
 func claimed(ui):
     order_finished.emit(ui.current_order)
-    ui.set_order(order_list.orders[next_order])
-    next_order += 1
+    get_next_order(ui)
+    
+func generate_order():
+    var material_index = current_material_level
+    var max_material_index = max_material_level
+    var order = OrderRes.new()
+    order.amount = randi_range(5, 15)
+    if material_index == max_material_index - 1:
+        order.shape_constraint = shape_list.shapes[max_material_index] if randi_range(0, 1) == 0 else shape_list.shapes[material_index]
+    else:
+        order.shape_constraint = shape_list.shapes[max_material_index]
+    order.pattern_constraint = order.shape_constraint.possible_patterns[randi_range(0, order.shape_constraint.possible_patterns.size() - 1)]
+    order.currency = order.shape_constraint.value_multiplier * order.pattern_constraint.value_multiplier * order.amount * 3
+    return order
 
 func save_data(data: Dictionary):
     data["next_order"] = next_order
@@ -31,7 +58,7 @@ func save_data(data: Dictionary):
     
 func load_data(data: Dictionary):
     next_order = data["next_order"]
-    if next_order > 0:
+    if next_order > 3:
         fade_ui.show_instantly()
     var i = 0
     for order_data in data["current_orders"]:

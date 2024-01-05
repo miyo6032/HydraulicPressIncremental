@@ -81,3 +81,10 @@ func load_data(data: Dictionary):
     set_max_upgrade_level(data["max_upgrade_level"])
     if data["shown"]:
         fade_ui.show_instantly()
+
+func save_persistent_data(data: Dictionary):
+    data["shown"] = fade_ui.faded_in
+    
+func load_persistent_data(data: Dictionary):
+    if data["shown"]:
+        fade_ui.show_instantly()

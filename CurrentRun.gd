@@ -11,16 +11,16 @@ extends Node
 
 var currency = 0
 var upgrade_instances = []
-var hmmge: Array[PressRes]
+var _unlocked_presses: Array[PressRes]
 var unlocked_presses: Array[PressRes]:
     get:
-        return hmmge
+        return _unlocked_presses
     set(value):
-        hmmge = value
-        change_press_button.visible = hmmge.size() > 1
+        _unlocked_presses = value
         
 func _ready():
     unlocked_presses = [load("res://data/presses/press.tres")]
+    change_press_button.visible = false    
     Console.add_command("v", func(v): update_currency(currency + float(v)), 1)
     EventBus.crushable_removed.connect(crushable_removed)
     EventBus.new_press_selected.connect(func(press): unlocked_presses.append(press))
@@ -59,11 +59,12 @@ func create_save_file():
         game_data.upgrade_data.append(data)
     order_manager.save_data(game_data.orders_data)
     simulation.save_data(game_data.simulation_data)
-    game_data.unlocked_presses = unlocked_presses      
+    for press in unlocked_presses:
+        game_data.unlocked_presses.append(press.id)   
     return game_data
 
 func load_game(game_data):
-    unlocked_presses = game_data.unlocked_presses    
+    load_unlocked_presses(game_data)
     simulation.load_data(game_data.simulation_data)
     order_manager.load_data(game_data.orders_data)    
     var i = 0
@@ -74,13 +75,24 @@ func load_game(game_data):
     
 func create_persistent_save_file():
     var game_data = GameData.new()
+    for instance in upgrade_instances:
+        var data = {}
+        instance.save_persistent_data(data)
+        game_data.upgrade_data.append(data)
     simulation.save_data(game_data.simulation_data)
     for press in unlocked_presses:
         game_data.unlocked_presses.append(press.id)
     return game_data
     
 func load_from_persistent_save_file(game_data):
-    unlocked_presses = []
+    load_unlocked_presses(game_data)
+    simulation.load_data(game_data.simulation_data)
+    var i = 0    
+    for data in game_data.upgrade_data:
+        upgrade_instances[i].load_persistent_data(data)
+        i+=1
+    
+func load_unlocked_presses(game_data):
     for press_id in game_data.unlocked_presses:
         unlocked_presses.append(Registries.press_types[press_id])
-    simulation.load_data(game_data.simulation_data)
+    change_press_button.visible = _unlocked_presses.size() > 1

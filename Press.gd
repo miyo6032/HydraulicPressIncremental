@@ -14,6 +14,9 @@ var crushing_time: float = base_crushing_time
 var power_hydraulic_multiplier: float = 1
 var speed_hydraulic_multiplier: float = 1
 var quality_value_multiplier: float = base_quality_value_multiplier
+var final_max_press_force: float:
+    get:
+        return max_press_force * power_hydraulic_multiplier
 
 @export var current_press: PressRes
 @onready var visual = $Visual
@@ -102,14 +105,14 @@ func _process(delta):
         var tween = create_tween()
         tween.tween_callback(func(): current_force = 0).set_delay(time * 0.5)
         tween.tween_property(visual, "global_position", start_crushing_pos.global_position, time)
-        tween.tween_callback(func(): crush_finished.emit())        
+        tween.tween_callback(func(): crush_finished.emit())
     if crush_progress > 0:
         var resistance = current_crushable.get_current_resistance(crush_progress)
         if resistance > current_force:
-            if Utils.geq(current_force, max_press_force):
+            if Utils.geq(current_force, final_max_press_force):
                 stop_crush_prematurely(0.5)
             else:
-                current_force = clampf(current_force + speed * force_ramp_multiplier * max_press_force, 0, max_press_force)
+                current_force = clampf(current_force + speed * force_ramp_multiplier * final_max_press_force, 0, final_max_press_force)
                 particle_buildup+=1
         else:
             move_press_down(speed)

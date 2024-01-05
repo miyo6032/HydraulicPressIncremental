@@ -1,16 +1,12 @@
-[gd_resource type="Resource" script_class="OrderList" load_steps=27 format=3 uid="uid://5q2kvb77tv84"]
+[gd_resource type="Resource" script_class="OrderList" load_steps=14 format=3 uid="uid://5q2kvb77tv84"]
 
 [ext_resource type="Script" path="res://OrderRes.gd" id="1_5bq03"]
 [ext_resource type="Resource" uid="uid://do6f1sncgx8dv" path="res://data/patterns/checker.tres" id="2_1nay5"]
 [ext_resource type="Resource" uid="uid://dyrrds8du6nu7" path="res://data/shapes/square.tres" id="2_drb5h"]
 [ext_resource type="Script" path="res://OrderList.gd" id="2_hx5qw"]
 [ext_resource type="Resource" uid="uid://dvhr8tuvqttov" path="res://data/patterns/ridge.tres" id="2_qkvfx"]
-[ext_resource type="Resource" uid="uid://bciuviytloa8h" path="res://data/patterns/bevel.tres" id="3_177lc"]
 [ext_resource type="Resource" uid="uid://bryys36pjbq4u" path="res://data/shapes/triangle.tres" id="3_o1fo8"]
-[ext_resource type="Resource" uid="uid://y788y1jpd1ax" path="res://data/shapes/pentagon.tres" id="4_3cmtn"]
 [ext_resource type="Resource" uid="uid://dfs7lgi64btb6" path="res://data/patterns/line.tres" id="5_q2yu3"]
-[ext_resource type="Resource" uid="uid://dg4wpefjalcow" path="res://data/shapes/hexagon.tres" id="6_7336u"]
-[ext_resource type="Resource" uid="uid://cofjrhb7srpu0" path="res://data/shapes/septagon.tres" id="10_c0a24"]
 
 [sub_resource type="Resource" id="Resource_5tspp"]
 script = ExtResource("1_5bq03")
@@ -50,65 +46,6 @@ pattern_constraint = ExtResource("2_qkvfx")
 amount = 5
 currency = 75.0
 
-[sub_resource type="Resource" id="Resource_orys3"]
-script = ExtResource("1_5bq03")
-shape_constraint = ExtResource("4_3cmtn")
-pattern_constraint = ExtResource("2_1nay5")
-amount = 10
-currency = 150.0
-
-[sub_resource type="Resource" id="Resource_bcj3k"]
-script = ExtResource("1_5bq03")
-shape_constraint = ExtResource("4_3cmtn")
-pattern_constraint = ExtResource("5_q2yu3")
-amount = 20
-currency = 200.0
-
-[sub_resource type="Resource" id="Resource_owyhj"]
-script = ExtResource("1_5bq03")
-shape_constraint = ExtResource("4_3cmtn")
-pattern_constraint = ExtResource("2_qkvfx")
-amount = 10
-currency = 200.0
-
-[sub_resource type="Resource" id="Resource_egv2c"]
-script = ExtResource("1_5bq03")
-amount = 200
-currency = 500.0
-
-[sub_resource type="Resource" id="Resource_ci0ml"]
-script = ExtResource("1_5bq03")
-shape_constraint = ExtResource("6_7336u")
-pattern_constraint = ExtResource("2_1nay5")
-amount = 10
-currency = 500.0
-
-[sub_resource type="Resource" id="Resource_0fkdw"]
-script = ExtResource("1_5bq03")
-shape_constraint = ExtResource("6_7336u")
-pattern_constraint = ExtResource("2_qkvfx")
-amount = 10
-currency = 600.0
-
-[sub_resource type="Resource" id="Resource_24y8b"]
-script = ExtResource("1_5bq03")
-shape_constraint = ExtResource("6_7336u")
-pattern_constraint = ExtResource("3_177lc")
-amount = 5
-currency = 750.0
-
-[sub_resource type="Resource" id="Resource_3mj1u"]
-script = ExtResource("1_5bq03")
-amount = 300
-currency = 1000.0
-
-[sub_resource type="Resource" id="Resource_76lit"]
-script = ExtResource("1_5bq03")
-shape_constraint = ExtResource("10_c0a24")
-pattern_constraint = ExtResource("2_1nay5")
-amount = 5
-currency = 1500.0
-
 [resource]
 script = ExtResource("2_hx5qw")
-orders = Array[ExtResource("1_5bq03")]([SubResource("Resource_5tspp"), SubResource("Resource_q4tkk"), SubResource("Resource_4vibe"), SubResource("Resource_5aer4"), SubResource("Resource_qgggx"), SubResource("Resource_5haa0"), SubResource("Resource_orys3"), SubResource("Resource_bcj3k"), SubResource("Resource_owyhj"), SubResource("Resource_egv2c"), SubResource("Resource_ci0ml"), SubResource("Resource_0fkdw"), SubResource("Resource_24y8b"), SubResource("Resource_3mj1u"), SubResource("Resource_76lit")])
+orders = Array[ExtResource("1_5bq03")]([SubResource("Resource_5tspp"), SubResource("Resource_q4tkk"), SubResource("Resource_4vibe"), SubResource("Resource_5aer4"), SubResource("Resource_qgggx"), SubResource("Resource_5haa0")])
