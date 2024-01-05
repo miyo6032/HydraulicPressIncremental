@@ -7,7 +7,7 @@ extends Control
 
 func _ready():
     Console.add_command("press", what)
-    EventBus.terminal_crush.connect(func(): fade_ui.fade_in_if_not_active())
+    EventBus.terminal_crush.connect(func(): fade_ui.show_instantly())
     EventBus.new_press_selected.connect(func(press_res): fade_ui.hide_instantly())
     for press in presses:
         var ui = ui_scene.instantiate()

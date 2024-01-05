@@ -42,8 +42,8 @@ func claim_button_pressed():
 
 func save_data(data):
     data["count"] = count
-    data["current_order"] = current_order.id
+    data["current_order"] = current_order
 
 func load_data(data):
-    set_order(Registries.order_types[data["current_order"]])
+    set_order(data["current_order"])
     update_count(data["count"])

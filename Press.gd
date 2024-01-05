@@ -4,8 +4,8 @@ class_name Press
 
 signal crush_finished
 
-const base_crushing_time: float = 2
-const base_max_press_force: float = 1
+const base_crushing_time: float = 2.5
+const base_max_press_force: float = 2
 const base_quality_press_chance: float = 0.0
 const base_quality_value_multiplier: float = 5
 
@@ -131,7 +131,7 @@ func stop_crush_prematurely(stop_delay):
     tween.tween_callback(func(): crush_finished.emit())     
 
 func move_press_down(movement):
-    visual.global_position.y += movement
+    visual.global_position.y = clamp(visual.global_position.y + movement, start_crushing_pos.global_position.y, final_crushing_pos.global_position.y)
     update_crush(current_crushable)
 
 func skip_crushable():

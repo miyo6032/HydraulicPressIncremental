@@ -9,6 +9,7 @@ var current_run
 func _ready():
     Console.add_command("save", func(path): save_data("user://" + path + ".res"), 1)
     Console.add_command("load", func(path): load_data("user://" + path + ".res"), 1)
+    Console.add_command("time", func(time): Engine.time_scale = float(time), 1)
     if OS.get_name() == "Web":
         var window = JavaScriptBridge.get_interface("window")
         window.getFile(file_load_callback)

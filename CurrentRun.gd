@@ -44,7 +44,7 @@ func upgrade_bought(value):
     
 func update_currency(value):
     currency = value
-    currency_label.text = "$%s" % Utils.format_num(currency)
+    currency_label.text = "$%s" % Utils.format_currency(currency)
     EventBus.currency_updated.emit(currency)
     
 func order_manager_order_finished(order):

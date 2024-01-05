@@ -38,8 +38,8 @@ func currency_updated(value):
         fade_ui.fade_in_if_not_active()
 
 func upgrade_button_pressed():
-    upgrade_bought.emit(upgrade.costs[max_upgrade_level])
-    set_max_upgrade_level(max_upgrade_level + 1)
+    set_max_upgrade_level(max_upgrade_level + 1)    
+    upgrade_bought.emit(upgrade.costs[max_upgrade_level - 1])
     
 func upstep_button_pressed():
     current_upgrade_level = clamp(current_upgrade_level + 1, 0, max_upgrade_level)    

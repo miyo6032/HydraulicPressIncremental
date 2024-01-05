@@ -12,6 +12,6 @@ func crushable_removed(crushable):
         label_text += "Press!"
     else:
         label.add_theme_color_override("font_color", Color.RED)
-    label_text += " $%s" % Utils.format_num(crushable.get_value())
+    label_text += " $%s" % Utils.format_currency(crushable.get_value())
     label.text = label_text
     add_child(label)    

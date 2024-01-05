@@ -28,7 +28,7 @@ corner_radius_bottom_left = 8
 
 [node name="CurrentRun" type="Node"]
 script = ExtResource("1_rnq25")
-upgrades = Array[Resource("res://UpgradeRes.gd")]([ExtResource("2_218ra"), ExtResource("3_4ai13"), ExtResource("4_sndtv"), ExtResource("5_05pn7"), ExtResource("6_nrotd"), ExtResource("7_iytaf")])
+upgrades = Array[Resource("res://UpgradeRes.gd")]([ExtResource("3_4ai13"), ExtResource("2_218ra"), ExtResource("4_sndtv"), ExtResource("6_nrotd"), ExtResource("7_iytaf"), ExtResource("5_05pn7")])
 
 [node name="Simulation" parent="." instance=ExtResource("8_8kjlv")]
 
