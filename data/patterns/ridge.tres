@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="CrushablePattern" load_steps=4 format=3 uid="uid://dvhr8tuvqttov"]
+
+[ext_resource type="Script" path="res://CrushablePattern.gd" id="1_4felu"]
+[ext_resource type="Texture2D" uid="uid://l747lfc2hlxl" path="res://art/Ridge.png" id="2_65sh1"]
+
+[sub_resource type="Curve" id="Curve_1l3lx"]
+_data = [Vector2(0.00167504, 0.75523), 0.0, 0.0, 0, 0, Vector2(1, 0.996115), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[resource]
+script = ExtResource("1_4felu")
+value_multiplier = 3.0
+texture = ExtResource("2_65sh1")
+curve = SubResource("Curve_1l3lx")

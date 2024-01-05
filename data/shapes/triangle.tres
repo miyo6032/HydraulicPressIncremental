@@ -3,7 +3,7 @@
 [ext_resource type="Resource" uid="uid://dfs7lgi64btb6" path="res://data/patterns/line.tres" id="1_lhk3r"]
 [ext_resource type="Resource" uid="uid://do6f1sncgx8dv" path="res://data/patterns/checker.tres" id="2_3h733"]
 [ext_resource type="Script" path="res://CrushableShape.gd" id="3_cxuqx"]
-[ext_resource type="Resource" uid="uid://dvhr8tuvqttov" path="res://data/patterns/bevel.tres" id="3_mf5px"]
+[ext_resource type="Resource" uid="uid://dvhr8tuvqttov" path="res://data/patterns/ridge.tres" id="3_mf5px"]
 [ext_resource type="Texture2D" uid="uid://umar7bjgnmoo" path="res://art/Triangle.png" id="4_vybo1"]
 
 [resource]

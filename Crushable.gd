@@ -33,7 +33,7 @@ func get_value():
 func set_crushed(modifiers):
     is_crushed = true
     crush_modifiers = modifiers
-    if crushable_shape == Constants.reset_trigger_shape:
+    if crushable_shape == Constants.reset_trigger_shape and crushable_pattern == Constants.reset_trigger_pattern:
         EventBus.terminal_crush.emit()
     
 func _process(delta):

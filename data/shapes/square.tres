@@ -4,7 +4,7 @@
 [ext_resource type="Resource" uid="uid://dfs7lgi64btb6" path="res://data/patterns/line.tres" id="1_a2fge"]
 [ext_resource type="Resource" uid="uid://do6f1sncgx8dv" path="res://data/patterns/checker.tres" id="2_rwq44"]
 [ext_resource type="Texture2D" uid="uid://bua5a4yenkjlb" path="res://art/Square.png" id="2_umbi0"]
-[ext_resource type="Resource" uid="uid://dvhr8tuvqttov" path="res://data/patterns/bevel.tres" id="3_5q5ua"]
+[ext_resource type="Resource" uid="uid://dvhr8tuvqttov" path="res://data/patterns/ridge.tres" id="3_5q5ua"]
 
 [resource]
 script = ExtResource("1_157vd")

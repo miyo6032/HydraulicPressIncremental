@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="CrushableShape" load_steps=6 format=3 uid="uid://y788y1jpd1ax"]
 
 [ext_resource type="Script" path="res://CrushableShape.gd" id="1_01pfo"]
-[ext_resource type="Resource" uid="uid://dvhr8tuvqttov" path="res://data/patterns/bevel.tres" id="1_hw7iy"]
+[ext_resource type="Resource" uid="uid://dvhr8tuvqttov" path="res://data/patterns/ridge.tres" id="1_hw7iy"]
 [ext_resource type="Texture2D" uid="uid://dcrvpyhf5e5ij" path="res://art/Pentagon.png" id="2_4fqm4"]
 [ext_resource type="Resource" uid="uid://do6f1sncgx8dv" path="res://data/patterns/checker.tres" id="2_pxb8r"]
 [ext_resource type="Resource" uid="uid://dfs7lgi64btb6" path="res://data/patterns/line.tres" id="3_7gpje"]

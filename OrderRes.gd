@@ -16,6 +16,8 @@ func get_description():
     return desc
 
 func counts_towards_order(crushable):
+    if not crushable.is_crushed:
+        return false
     if shape_constraint:
         if pattern_constraint:
             return crushable.crushable_pattern == pattern_constraint and crushable.crushable_shape == shape_constraint
