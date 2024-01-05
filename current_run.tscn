@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://clpks2rjkvskm"]
+[gd_scene load_steps=21 format=3 uid="uid://clpks2rjkvskm"]
 
 [ext_resource type="Script" path="res://CurrentRun.gd" id="1_rnq25"]
 [ext_resource type="Resource" uid="uid://ype7ae050vxg" path="res://data/upgrades/force_upgrade.tres" id="2_218ra"]
@@ -9,6 +9,7 @@
 [ext_resource type="Resource" uid="uid://b0fd8y0r07u2u" path="res://data/upgrades/quality_upgrade.tres" id="7_iytaf"]
 [ext_resource type="PackedScene" uid="uid://7t1sx0r2g2tc" path="res://2_simulation.tscn" id="8_8kjlv"]
 [ext_resource type="Script" path="res://ForceLabel.gd" id="9_f4pp4"]
+[ext_resource type="Theme" uid="uid://q74smvt4fc0e" path="res://data/theme.tres" id="9_tmscb"]
 [ext_resource type="Script" path="res://OrderManager.gd" id="10_jittl"]
 [ext_resource type="Resource" uid="uid://5q2kvb77tv84" path="res://data/order_list.tres" id="11_btxwp"]
 [ext_resource type="PackedScene" uid="uid://bn1wj400srr3t" path="res://order.tscn" id="12_2ynvf"]
@@ -35,6 +36,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("9_tmscb")
 
 [node name="ForceLabel" type="Label" parent="CanvasLayer/Control"]
 layout_mode = 1
@@ -56,7 +58,7 @@ anchor_bottom = 1.0
 offset_top = 544.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.266667, 0.266667, 0.266667, 1)
+color = Color(0.162066, 0.162066, 0.162066, 1)
 
 [node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control/MainUI"]
 layout_mode = 1
@@ -76,13 +78,12 @@ unique_name_in_owner = true
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="OrderManager" type="ColorRect" parent="CanvasLayer/Control/MainUI/MarginContainer/Upgrades" node_paths=PackedStringArray("order_uis")]
+[node name="OrderManager" type="Panel" parent="CanvasLayer/Control/MainUI/MarginContainer/Upgrades" node_paths=PackedStringArray("order_uis")]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(500, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-color = Color(0.490196, 0.490196, 0.490196, 1)
 script = ExtResource("10_jittl")
 order_list = ExtResource("11_btxwp")
 order_uis = [NodePath("FadeUI/MarginContainer/VBoxContainer/Order"), NodePath("FadeUI/MarginContainer/VBoxContainer/Order2"), NodePath("FadeUI/MarginContainer/VBoxContainer/Order3")]
@@ -110,6 +111,7 @@ theme_override_constants/margin_bottom = 10
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/MainUI/MarginContainer/Upgrades/OrderManager/FadeUI/MarginContainer"]
 layout_mode = 2
+theme_override_constants/separation = 0
 
 [node name="Label" type="Label" parent="CanvasLayer/Control/MainUI/MarginContainer/Upgrades/OrderManager/FadeUI/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -183,6 +185,7 @@ text = "Change Press
 "
 
 [node name="ChangePressMenu" type="ColorRect" parent="CanvasLayer/Control"]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

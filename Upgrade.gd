@@ -1,11 +1,12 @@
-extends ColorRect
+extends Control
 
 signal upgrade_bought(value)
 
 @onready var upgrade_button: Button = %UpgradeCost
 @onready var downstep_button = %DownButton
 @onready var upstep_button = %UpButton
-@onready var upgrade_label = %UpgradeLabel
+@onready var number_label = %NumberLabel
+@onready var number_desc_label = %NumberDescLabel
 @onready var fade_ui = $UpgradeFadeUI
 
 var current_upgrade_level: int = 0
@@ -66,8 +67,9 @@ func current_level_changed():
     update_step_button_enablements()
     EventBus.upgrade_level_changed.emit(self)
 
-func set_upgrade_label(text):
-    upgrade_label.text = text
+func set_upgrade_label(number, number_desc):
+    number_label.text = number
+    number_desc_label.text = number_desc
 
 func save_data(data: Dictionary):
     data["max_upgrade_level"] = max_upgrade_level

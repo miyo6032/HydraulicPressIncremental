@@ -1,0 +1,70 @@
+[gd_resource type="Theme" load_steps=8 format=3 uid="uid://q74smvt4fc0e"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xhnbf"]
+bg_color = Color(0.490196, 0.490196, 0.490196, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+expand_margin_left = 4.0
+expand_margin_right = 4.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b7aha"]
+bg_color = Color(0.537255, 0.47451, 0, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+expand_margin_left = 4.0
+expand_margin_right = 4.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_my2vg"]
+bg_color = Color(0.690196, 0.611765, 0, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+expand_margin_left = 4.0
+expand_margin_right = 4.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_df800"]
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_py438"]
+bg_color = Color(0.31802, 0.31802, 0.31802, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_inkka"]
+bg_color = Color(0.0705882, 0.0705882, 0.0705882, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c1oou"]
+bg_color = Color(0.537255, 0.47451, 0, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[resource]
+Button/colors/font_color = Color(0, 0, 0, 1)
+Button/colors/font_disabled_color = Color(0, 0, 0, 0.501961)
+Button/colors/font_focus_color = Color(0.95, 0.95, 0.95, 1)
+Button/colors/font_hover_color = Color(0, 0, 0, 1)
+Button/font_sizes/font_size = 24
+Button/styles/disabled = SubResource("StyleBoxFlat_xhnbf")
+Button/styles/hover = SubResource("StyleBoxFlat_b7aha")
+Button/styles/normal = SubResource("StyleBoxFlat_my2vg")
+Button/styles/pressed = SubResource("StyleBoxFlat_df800")
+Label/font_sizes/font_size = 24
+Panel/styles/panel = SubResource("StyleBoxFlat_py438")
+ProgressBar/styles/background = SubResource("StyleBoxFlat_inkka")
+ProgressBar/styles/fill = SubResource("StyleBoxFlat_c1oou")

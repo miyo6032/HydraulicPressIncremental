@@ -25,7 +25,9 @@ func _ready():
 func upgrade_level_changed(instance):
     if instance.upgrade.upgrade_type == Enums.UpgradeType.Materials:
         material_level = base_material_level + instance.current_upgrade_level
-        instance.set_upgrade_label("Max level: %s" % Utils.format_num(material_level))
+        var number_text = Utils.format_num(material_level)
+        var number_label_text = "max level"
+        instance.set_upgrade_label(number_text, number_label_text)   
 
 func move_conveyor():
     var crushable = crushable_scene.instantiate()

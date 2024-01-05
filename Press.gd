@@ -37,11 +37,15 @@ func upgrade_level_changed(instance):
     if instance.upgrade.upgrade_type == Enums.UpgradeType.Force:
         var upgrade_value = pow(instance.upgrade.upgrade_value, instance.current_upgrade_level)
         max_press_force = base_max_press_force * upgrade_value * current_press.force_upgrade
-        instance.set_upgrade_label("%s %s" % [Utils.format_num(max_press_force), "ton" if is_equal_approx(max_press_force, 1) else "tons"])
+        var number_text = Utils.format_num(max_press_force)
+        var number_label_text = "ton" if is_equal_approx(max_press_force, 1) else "tons"
+        instance.set_upgrade_label(number_text, number_label_text)
     elif instance.upgrade.upgrade_type == Enums.UpgradeType.PressSpeed:
         var upgrade_value = instance.upgrade.upgrade_value * instance.current_upgrade_level * current_press.speed_upgrade
         crushing_time = base_crushing_time / (1 + upgrade_value)
-        instance.set_upgrade_label("%.2f%s Increase" % [(upgrade_value) * 100, "%"])
+        var number_text = Utils.format_num(upgrade_value * 100) + "%"
+        var number_label_text = "increase"
+        instance.set_upgrade_label(number_text, number_label_text)        
     elif instance.upgrade.upgrade_type == Enums.UpgradeType.Hydraulics:
         if instance.current_upgrade_level > 0:
             power_hydraulic_multiplier = instance.upgrade.upgrade_value * instance.current_upgrade_level * current_press.hydraulic_force_upgrade
@@ -49,16 +53,21 @@ func upgrade_level_changed(instance):
         else:
             power_hydraulic_multiplier = current_press.hydraulic_force_upgrade
             speed_hydraulic_multiplier = current_press.hydraulic_speed_downgrade
-        instance.set_upgrade_label("%.fx Force, %.2fx Speed" % [power_hydraulic_multiplier, speed_hydraulic_multiplier])
+        var number_text = "%sx > %.sx" % [Utils.format_num(speed_hydraulic_multiplier), Utils.format_num(power_hydraulic_multiplier)]
+        var number_label_text = "speed for force"
+        instance.set_upgrade_label(number_text, number_label_text)    
     elif instance.upgrade.upgrade_type == Enums.UpgradeType.Precision:
         var upgrade_value = instance.upgrade.upgrade_value * instance.current_upgrade_level * current_press.precision_upgrade
         quality_random.chance = upgrade_value
-        instance.set_upgrade_label("%.0f%s chance" % [(upgrade_value) * 100, "%"])
+        var number_text = Utils.format_num(upgrade_value * 100) + "%"
+        var number_label_text = "chance"
+        instance.set_upgrade_label(number_text, number_label_text)    
     elif instance.upgrade.upgrade_type == Enums.UpgradeType.Quality:
         var upgrade_value = base_quality_value_multiplier + instance.upgrade.upgrade_value * instance.current_upgrade_level * current_press.quality_upgrade
         quality_value_multiplier = upgrade_value
-        instance.set_upgrade_label("%.0fx value" % [upgrade_value])
-
+        var number_text = "%.0fx" % upgrade_value
+        var number_label_text = "bonus $"
+        instance.set_upgrade_label(number_text, number_label_text)    
 
 func crush(crushable):
     is_crushing = true

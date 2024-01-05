@@ -1,4 +1,4 @@
-extends ColorRect
+extends Control
 
 signal order_finished(order)
 

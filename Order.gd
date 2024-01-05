@@ -1,4 +1,5 @@
-extends ColorRect
+extends Control
+
 
 signal claimed
 signal unlocked
