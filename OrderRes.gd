@@ -6,12 +6,20 @@ class_name OrderRes
 @export var pattern_constraint: CrushablePattern
 @export var amount: int
 @export var currency: float
-@export var id: int
+var id: 
+    get:
+        return resource_path
 
 func get_description():
     var desc = "Press %.0f" % amount
     desc += " items"
     return desc
-    
+
 func counts_towards_order(crushable):
-    return true
+    if shape_constraint:
+        if pattern_constraint:
+            return crushable.crushable_pattern == pattern_constraint and crushable.crushable_shape == shape_constraint
+        else:
+            return crushable.crushable_shape == shape_constraint
+    else:
+        return true

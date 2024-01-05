@@ -153,7 +153,7 @@ func calc_crushing_time():
     return crushing_time / speed_hydraulic_multiplier
 
 func save_data(data):
-    data["current_press"] = current_press
+    data["current_press"] = current_press.id
     
 func load_data(data):
-    press_selected(data["current_press"])
+    press_selected(Registries.press_types[data["current_press"]])

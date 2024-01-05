@@ -5,10 +5,10 @@
 [ext_resource type="Resource" uid="uid://dfs7lgi64btb6" path="res://data/patterns/line.tres" id="3_ugee2"]
 [ext_resource type="Script" path="res://CrushableShape.gd" id="4_iehfx"]
 [ext_resource type="Resource" uid="uid://bciuviytloa8h" path="res://data/patterns/cell.tres" id="4_ju73v"]
-[ext_resource type="Texture2D" uid="uid://dcrvpyhf5e5ij" path="res://art/Pentagon.png" id="5_qt1qn"]
+[ext_resource type="Texture2D" uid="uid://cw5vjk44g52mt" path="res://art/Hexagon.png" id="6_e2b7g"]
 
 [resource]
 script = ExtResource("4_iehfx")
 value_multiplier = 27.0
-texture = ExtResource("5_qt1qn")
+texture = ExtResource("6_e2b7g")
 possible_patterns = Array[Resource("res://CrushablePattern.gd")]([ExtResource("1_qc3sm"), ExtResource("2_ga0x7"), ExtResource("3_ugee2"), ExtResource("4_ju73v")])

@@ -6,4 +6,4 @@ class_name GameData
 @export var upgrade_data: Array # of dictionaries
 @export var orders_data: Dictionary = {}
 @export var simulation_data: Dictionary = {}
-@export var unlocked_presses: Array[PressRes]
+@export var unlocked_presses: Array[PressRes] = []

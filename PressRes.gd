@@ -2,7 +2,6 @@ extends Resource
 
 class_name PressRes
 
-@export var id: int
 @export var name: String
 @export var description: String
 @export var texture: Texture2D
@@ -12,3 +11,6 @@ class_name PressRes
 @export var quality_upgrade: float = 1
 @export var hydraulic_force_upgrade: float = 1
 @export var hydraulic_speed_downgrade: float = 1
+var id: 
+    get:
+        return resource_path

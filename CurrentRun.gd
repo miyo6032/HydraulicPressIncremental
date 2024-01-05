@@ -75,9 +75,12 @@ func load_game(game_data):
 func create_persistent_save_file():
     var game_data = GameData.new()
     simulation.save_data(game_data.simulation_data)
-    game_data.unlocked_presses = unlocked_presses  
+    for press in unlocked_presses:
+        game_data.unlocked_presses.append(press.id)
     return game_data
     
 func load_from_persistent_save_file(game_data):
-    unlocked_presses = game_data.unlocked_presses    
+    unlocked_presses = []
+    for press_id in game_data.unlocked_presses:
+        unlocked_presses.append(Registries.press_types[press_id])
     simulation.load_data(game_data.simulation_data)
