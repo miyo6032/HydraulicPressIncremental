@@ -9,11 +9,13 @@ var faded_in = false
 
 func _ready():
     hide_instantly()
+    mouse_filter = Control.MOUSE_FILTER_IGNORE
 
 func hide_instantly():
     cancel_current_fade()
     
     modulate.a = 0
+    visible = false
     mouse_filter = Control.MOUSE_FILTER_IGNORE
     faded_in = false
 
@@ -21,6 +23,7 @@ func show_instantly():
     cancel_current_fade()
     
     modulate.a = 1
+    visible = true    
     mouse_filter = Control.MOUSE_FILTER_STOP
     faded_in = true
 
@@ -41,6 +44,7 @@ func fade_in():
     mouse_filter = Control.MOUSE_FILTER_STOP
     faded_in = true
     current_tween = create_tween()
+    visible = true    
     current_tween.tween_method(_set_alpha, modulate.a, 1, duration)
 
 func fade_out():
@@ -49,6 +53,7 @@ func fade_out():
     faded_in = false
     current_tween = create_tween()
     current_tween.tween_method(_set_alpha, modulate.a, 0, duration)
+    current_tween.tween_callback(func(): visible = false)
 
 func _set_alpha(value):
     modulate.a = value
