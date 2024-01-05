@@ -9,6 +9,6 @@ point_count = 7
 
 [resource]
 script = ExtResource("1_lumes")
-value_multiplier = 3.5
+value_multiplier = 4.0
 texture = ExtResource("2_mhddd")
 curve = SubResource("Curve_wuqqo")

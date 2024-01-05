@@ -31,26 +31,26 @@ pattern_constraint = ExtResource("2_1nay5")
 amount = 10
 currency = 50.0
 
+[sub_resource type="Resource" id="Resource_qgggx"]
+script = ExtResource("1_5bq03")
+shape_constraint = ExtResource("2_drb5h")
+pattern_constraint = ExtResource("5_q2yu3")
+amount = 10
+currency = 100.0
+
 [sub_resource type="Resource" id="Resource_5haa0"]
 script = ExtResource("1_5bq03")
 shape_constraint = ExtResource("2_drb5h")
 pattern_constraint = ExtResource("3_177lc")
 amount = 5
-currency = 50.0
+currency = 100.0
 
 [sub_resource type="Resource" id="Resource_orys3"]
 script = ExtResource("1_5bq03")
 shape_constraint = ExtResource("4_3cmtn")
 pattern_constraint = ExtResource("2_1nay5")
-amount = 20
+amount = 10
 currency = 200.0
-
-[sub_resource type="Resource" id="Resource_qgggx"]
-script = ExtResource("1_5bq03")
-shape_constraint = ExtResource("2_drb5h")
-pattern_constraint = ExtResource("5_q2yu3")
-amount = 30
-currency = 300.0
 
 [sub_resource type="Resource" id="Resource_bcj3k"]
 script = ExtResource("1_5bq03")
@@ -73,4 +73,4 @@ currency = 1000.0
 
 [resource]
 script = ExtResource("2_hx5qw")
-orders = Array[ExtResource("1_5bq03")]([SubResource("Resource_5tspp"), SubResource("Resource_q4tkk"), SubResource("Resource_4vibe"), SubResource("Resource_5aer4"), SubResource("Resource_5haa0"), SubResource("Resource_orys3"), SubResource("Resource_qgggx"), SubResource("Resource_bcj3k"), SubResource("Resource_owyhj"), SubResource("Resource_egv2c")])
+orders = Array[ExtResource("1_5bq03")]([SubResource("Resource_5tspp"), SubResource("Resource_q4tkk"), SubResource("Resource_4vibe"), SubResource("Resource_5aer4"), SubResource("Resource_qgggx"), SubResource("Resource_5haa0"), SubResource("Resource_orys3"), SubResource("Resource_bcj3k"), SubResource("Resource_owyhj"), SubResource("Resource_egv2c")])
