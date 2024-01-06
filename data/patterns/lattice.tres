@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="CrushablePattern" load_steps=4 format=3 uid="uid://dgerebsom3jpo"]
+
+[ext_resource type="Script" path="res://CrushablePattern.gd" id="1_w8vk2"]
+[ext_resource type="Texture2D" uid="uid://crlq1ee0vcolo" path="res://art/lattice.png" id="2_mg1rg"]
+
+[sub_resource type="Curve" id="Curve_wuqqo"]
+_data = [Vector2(0, 0), 0.0, 1.4, 0, 0, Vector2(0.126496, 0.252967), 0.0, 0.0, 0, 0, Vector2(0.251282, 0.257027), 0.0, 0.0, 0, 0, Vector2(0.377778, 0.496565), 0.0, 0.0, 0, 0, Vector2(0.499145, 0.496565), 0.0, 0.0, 0, 0, Vector2(0.632479, 0.727983), 0.0, 0.0, 0, 0, Vector2(0.740171, 0.732042), 0.0, 0.0, 0, 0, Vector2(0.875214, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 9
+
+[resource]
+script = ExtResource("1_w8vk2")
+value_multiplier = 5.5
+texture = ExtResource("2_mg1rg")
+curve = SubResource("Curve_wuqqo")
