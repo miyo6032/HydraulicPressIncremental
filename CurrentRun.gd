@@ -5,7 +5,6 @@ extends Node
 @onready var currency_label = %CurrencyLabel
 @export var upgrades: Array[UpgradeRes]
 @onready var upgrade_container = %Upgrades
-@onready var order_manager = %OrderManager
 @onready var change_press_button = %ChangePressButton
 @onready var change_press_menu = $CanvasLayer/Control/ChangePressMenu
 
@@ -24,7 +23,6 @@ func _ready():
     Console.add_command("v", func(v): update_currency(currency + float(v)), 1)
     EventBus.crushable_removed.connect(crushable_removed)
     EventBus.new_press_selected.connect(func(press): unlocked_presses.append(press))
-    order_manager.order_finished.connect(order_manager_order_finished)
     change_press_button.pressed.connect(change_press_button_pressed)
     for upgrade in upgrades:
         var upgrade_instance = upgrade_scene.instantiate()
@@ -57,7 +55,6 @@ func create_save_file():
         var data = {}
         instance.save_data(data)
         game_data.upgrade_data.append(data)
-    order_manager.save_data(game_data.orders_data)
     simulation.save_data(game_data.simulation_data)
     for press in unlocked_presses:
         game_data.unlocked_presses.append(press.id)   
@@ -66,7 +63,6 @@ func create_save_file():
 func load_game(game_data):
     load_unlocked_presses(game_data)
     simulation.load_data(game_data.simulation_data)
-    order_manager.load_data(game_data.orders_data)    
     var i = 0
     for data in game_data.upgrade_data:
         upgrade_instances[i].load_data(data)

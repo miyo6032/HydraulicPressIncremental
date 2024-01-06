@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://clpks2rjkvskm"]
+[gd_scene load_steps=16 format=3 uid="uid://clpks2rjkvskm"]
 
 [ext_resource type="Script" path="res://CurrentRun.gd" id="1_rnq25"]
 [ext_resource type="Resource" uid="uid://ype7ae050vxg" path="res://data/upgrades/force_upgrade.tres" id="2_218ra"]
@@ -10,9 +10,6 @@
 [ext_resource type="PackedScene" uid="uid://7t1sx0r2g2tc" path="res://2_simulation.tscn" id="8_8kjlv"]
 [ext_resource type="Script" path="res://ForceLabel.gd" id="9_f4pp4"]
 [ext_resource type="Theme" uid="uid://q74smvt4fc0e" path="res://data/theme.tres" id="9_tmscb"]
-[ext_resource type="Script" path="res://OrderManager.gd" id="10_jittl"]
-[ext_resource type="PackedScene" uid="uid://bn1wj400srr3t" path="res://order.tscn" id="12_2ynvf"]
-[ext_resource type="Script" path="res://FadeUI.gd" id="12_jtco1"]
 [ext_resource type="Script" path="res://SkipButton.gd" id="13_rkvay"]
 [ext_resource type="Script" path="res://IndicatorLabelHandler.gd" id="14_bf6xs"]
 [ext_resource type="PackedScene" uid="uid://d2wqud77qew7f" path="res://change_press_ui.tscn" id="15_48w5f"]
@@ -136,54 +133,6 @@ theme_override_constants/margin_bottom = 10
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_constants/separation = 10
-
-[node name="OrderManager" type="Panel" parent="CanvasLayer/Control/MainUI/MarginContainer/Upgrades" node_paths=PackedStringArray("order_uis")]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(500, 0)
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-script = ExtResource("10_jittl")
-order_uis = [NodePath("FadeUI/MarginContainer/VBoxContainer/Order"), NodePath("FadeUI/MarginContainer/VBoxContainer/Order2"), NodePath("FadeUI/MarginContainer/VBoxContainer/Order3")]
-
-[node name="FadeUI" type="Control" parent="CanvasLayer/Control/MainUI/MarginContainer/Upgrades/OrderManager"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("12_jtco1")
-
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control/MainUI/MarginContainer/Upgrades/OrderManager/FadeUI"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
-
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/MainUI/MarginContainer/Upgrades/OrderManager/FadeUI/MarginContainer"]
-layout_mode = 2
-theme_override_constants/separation = 0
-
-[node name="Label" type="Label" parent="CanvasLayer/Control/MainUI/MarginContainer/Upgrades/OrderManager/FadeUI/MarginContainer/VBoxContainer"]
-layout_mode = 2
-text = "Orders"
-horizontal_alignment = 1
-
-[node name="Order" parent="CanvasLayer/Control/MainUI/MarginContainer/Upgrades/OrderManager/FadeUI/MarginContainer/VBoxContainer" instance=ExtResource("12_2ynvf")]
-layout_mode = 2
-
-[node name="Order2" parent="CanvasLayer/Control/MainUI/MarginContainer/Upgrades/OrderManager/FadeUI/MarginContainer/VBoxContainer" instance=ExtResource("12_2ynvf")]
-layout_mode = 2
-
-[node name="Order3" parent="CanvasLayer/Control/MainUI/MarginContainer/Upgrades/OrderManager/FadeUI/MarginContainer/VBoxContainer" instance=ExtResource("12_2ynvf")]
-layout_mode = 2
 
 [node name="IndicatorLabelHandler" type="Control" parent="CanvasLayer/Control"]
 layout_mode = 1
