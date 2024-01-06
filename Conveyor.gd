@@ -6,45 +6,46 @@ signal move_finished
 @export var crushable_spawn: Node2D
 @export var move_offset: Vector2
 @onready var shape_list: ShapeList = load("res://data/shape_list.tres")
-@export var force_initial_patterns: Array[CrushablePattern]
+@onready var pattern_list: PatternList = load("res://data/pattern_list.tres")
 
 var shapes: Array[CrushableShape]:
     get:
         return shape_list.shapes
+var patterns: Array[CrushablePattern]:
+    get:
+        return pattern_list.patterns
 
 var crushables = []
 
 const base_material_level = 3
 const crushables_till_press = 2
+const base_pattern_level = 1
 
 var material_level = base_material_level
-var initial_patterns_completed = false
-var remaining_patterns
+var pattern_level = base_pattern_level
 
 func _ready():
     Console.add_command("mv", move_conveyor)
     EventBus.upgrade_level_changed.connect(upgrade_level_changed)
-    remaining_patterns = force_initial_patterns.duplicate()
     
 func upgrade_level_changed(instance):
     if instance.upgrade.upgrade_type == Enums.UpgradeType.Materials:
         material_level = base_material_level + instance.current_upgrade_level
         var number_text = Utils.format_num(material_level)
-        var number_label_text = "max level"
-        instance.set_upgrade_label(number_text, number_label_text)   
+        var number_label_text = "level"
+        instance.set_upgrade_label(number_text, number_label_text)
+    if instance.upgrade.upgrade_type == Enums.UpgradeType.MaterialType:
+        pattern_level = base_pattern_level + instance.current_upgrade_level
+        var number_text = Utils.format_num(pattern_level + base_pattern_level + 1)
+        var number_label_text = "types"
+        instance.set_upgrade_label(number_text, number_label_text)  
 
 func move_conveyor():
     var crushable = crushable_scene.instantiate()
     add_child(crushable)
-    if initial_patterns_completed:
-        var shape = shapes[material_level - 3]
-        crushable.init(shape, shape.possible_patterns[randi_range(0, shape.possible_patterns.size() - 1)])
-    else:
-        var initial_pattern = remaining_patterns[0]
-        crushable.init(shapes[material_level - 3], initial_pattern)
-        remaining_patterns.remove_at(0)
-        if remaining_patterns.size() == 0:
-            initial_patterns_completed = true
+    var shape = shapes[material_level - 3]
+    var pattern = patterns[randi_range(0, pattern_level)]
+    crushable.init(shape, pattern)
     crushable.global_position = crushable_spawn.global_position
     crushables.append(crushable)
     
@@ -72,8 +73,7 @@ func has_current_crushable():
     return crushables.size() >= crushables_till_press
     
 func save_data(data: Dictionary):
-    data["initial_patterns_completed"] = initial_patterns_completed
+    pass
     
 func load_data(data: Dictionary):
-    initial_patterns_completed = data["initial_patterns_completed"]
-    remaining_patterns = force_initial_patterns.duplicate()
+    pass

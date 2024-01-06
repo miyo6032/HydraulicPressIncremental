@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="PatternList" load_steps=6 format=3 uid="uid://crjx2i8mnpfcx"]
+
+[ext_resource type="Resource" uid="uid://do6f1sncgx8dv" path="res://data/patterns/checker.tres" id="1_47pwy"]
+[ext_resource type="Script" path="res://data/PatternList.gd" id="1_wjx5p"]
+[ext_resource type="Resource" uid="uid://dfs7lgi64btb6" path="res://data/patterns/line.tres" id="2_vo7ys"]
+[ext_resource type="Resource" uid="uid://dvhr8tuvqttov" path="res://data/patterns/ridge.tres" id="3_jp5tc"]
+[ext_resource type="Resource" uid="uid://bciuviytloa8h" path="res://data/patterns/bevel.tres" id="4_pfnjf"]
+
+[resource]
+script = ExtResource("1_wjx5p")
+patterns = Array[Resource("res://CrushablePattern.gd")]([ExtResource("1_47pwy"), ExtResource("2_vo7ys"), ExtResource("3_jp5tc"), ExtResource("4_pfnjf")])

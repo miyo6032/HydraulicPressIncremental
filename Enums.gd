@@ -8,5 +8,6 @@ enum UpgradeType {
     Hydraulics,
     Precision,
     Quality,
-    Materials
+    Materials,
+    MaterialType
 }

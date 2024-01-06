@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://clpks2rjkvskm"]
+[gd_scene load_steps=17 format=3 uid="uid://clpks2rjkvskm"]
 
 [ext_resource type="Script" path="res://CurrentRun.gd" id="1_rnq25"]
 [ext_resource type="Resource" uid="uid://ype7ae050vxg" path="res://data/upgrades/force_upgrade.tres" id="2_218ra"]
@@ -8,6 +8,7 @@
 [ext_resource type="Resource" uid="uid://dow67n5q3k8fd" path="res://data/upgrades/precision_upgrade.tres" id="6_nrotd"]
 [ext_resource type="Resource" uid="uid://b0fd8y0r07u2u" path="res://data/upgrades/quality_upgrade.tres" id="7_iytaf"]
 [ext_resource type="PackedScene" uid="uid://7t1sx0r2g2tc" path="res://2_simulation.tscn" id="8_8kjlv"]
+[ext_resource type="Resource" uid="uid://beuwo1lipejri" path="res://data/upgrades/material_type_upgrade.tres" id="8_y7a70"]
 [ext_resource type="Script" path="res://ForceLabel.gd" id="9_f4pp4"]
 [ext_resource type="Theme" uid="uid://q74smvt4fc0e" path="res://data/theme.tres" id="9_tmscb"]
 [ext_resource type="Script" path="res://SkipButton.gd" id="13_rkvay"]
@@ -24,7 +25,7 @@ corner_radius_bottom_left = 8
 
 [node name="CurrentRun" type="Node"]
 script = ExtResource("1_rnq25")
-upgrades = Array[Resource("res://UpgradeRes.gd")]([ExtResource("3_4ai13"), ExtResource("2_218ra"), ExtResource("4_sndtv"), ExtResource("6_nrotd"), ExtResource("7_iytaf"), ExtResource("5_05pn7")])
+upgrades = Array[Resource("res://UpgradeRes.gd")]([ExtResource("3_4ai13"), ExtResource("8_y7a70"), ExtResource("2_218ra"), ExtResource("4_sndtv"), ExtResource("6_nrotd"), ExtResource("7_iytaf"), ExtResource("5_05pn7")])
 
 [node name="Simulation" parent="." instance=ExtResource("8_8kjlv")]
 
