@@ -22,12 +22,14 @@ func calc_crush_progress(press_y):
     var progress = clampf(1 - resize, 0.0, 1.0)    
     return progress
 
+const slowdown_currency = 0.9
+
 func get_value():
     if is_crushed:
         if crush_modifiers.is_quality:
-            return value * crush_modifiers.value_multiplier
+            return pow(value, slowdown_currency) * crush_modifiers.value_multiplier
         else:
-            return value
+            return pow(value, slowdown_currency)
     return 0
 
 func set_crushed(modifiers):

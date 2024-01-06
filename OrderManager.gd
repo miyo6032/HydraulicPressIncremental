@@ -35,16 +35,11 @@ func claimed(ui):
     get_next_order(ui)
     
 func generate_order():
-    var material_index = current_material_level
-    var max_material_index = max_material_level
     var order = OrderRes.new()
     order.amount = randi_range(5, 15)
-    if material_index == max_material_index - 1:
-        order.shape_constraint = shape_list.shapes[max_material_index] if randi_range(0, 1) == 0 else shape_list.shapes[material_index]
-    else:
-        order.shape_constraint = shape_list.shapes[max_material_index]
+    order.shape_constraint = shape_list.shapes[max_material_level]
     order.pattern_constraint = order.shape_constraint.possible_patterns[randi_range(0, order.shape_constraint.possible_patterns.size() - 1)]
-    order.currency = order.shape_constraint.value_multiplier * order.pattern_constraint.value_multiplier * order.amount * 3
+    order.currency = order.shape_constraint.value_multiplier * order.pattern_constraint.value_multiplier * order.amount * 4
     return order
 
 func save_data(data: Dictionary):
