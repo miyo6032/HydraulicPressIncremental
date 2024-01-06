@@ -8,4 +8,4 @@ name = "Quality"
 upgrade_value = 1.0
 upgrade_type = 4
 tooltip = "Bonus value from quality presses"
-costs = Array[float]([500.0, 1500.0, 3000.0, 6000.0, 10000.0, 20000.0])
+costs = Array[float]([500.0, 1500.0, 3000.0, 7000.0, 13000.0, 26000.0])
