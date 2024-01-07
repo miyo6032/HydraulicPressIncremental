@@ -1,5 +1,6 @@
-[gd_resource type="Resource" script_class="PressRes" load_steps=3 format=3 uid="uid://cf3j1yfek3ufb"]
+[gd_resource type="Resource" script_class="PressRes" load_steps=4 format=3 uid="uid://cf3j1yfek3ufb"]
 
+[ext_resource type="PackedScene" uid="uid://bfhufvx36oydv" path="res://crush_particles.tscn" id="1_1kote"]
 [ext_resource type="Script" path="res://PressRes.gd" id="1_drclq"]
 [ext_resource type="Texture2D" uid="uid://cg6nqgaj5qy2" path="res://art/press.png" id="2_0ccns"]
 
@@ -8,6 +9,7 @@ script = ExtResource("1_drclq")
 name = "Press"
 description = "The default press"
 texture = ExtResource("2_0ccns")
+press_particles = ExtResource("1_1kote")
 force_upgrade = 1.0
 precision_upgrade = 1.0
 speed_upgrade = 1.0

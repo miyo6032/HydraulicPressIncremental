@@ -1,14 +1,15 @@
-[gd_resource type="Resource" script_class="PressRes" load_steps=3 format=3 uid="uid://ci0lc557p7smy"]
+[gd_resource type="Resource" script_class="PressRes" load_steps=4 format=3 uid="uid://ci0lc557p7smy"]
 
+[ext_resource type="PackedScene" uid="uid://evt6rweld7ra" path="res://nuclear_particles.tscn" id="1_a7vn8"]
 [ext_resource type="Script" path="res://PressRes.gd" id="1_t5ygd"]
 [ext_resource type="Texture2D" uid="uid://dk6r3fjjgos1r" path="res://art/nuclear press.png" id="2_ehclj"]
 
 [resource]
 script = ExtResource("1_t5ygd")
-id = 1
 name = "Nuclear Press"
 description = "10x Force"
 texture = ExtResource("2_ehclj")
+press_particles = ExtResource("1_a7vn8")
 force_upgrade = 10.0
 precision_upgrade = 1.0
 speed_upgrade = 1.0

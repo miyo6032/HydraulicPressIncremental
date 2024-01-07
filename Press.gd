@@ -22,7 +22,7 @@ var final_max_press_force: float:
 @onready var visual = $Visual
 @onready var start_crushing_pos = %PressStart
 @onready var final_crushing_pos = %PressEnd
-@onready var particles_scene = load("res://crush_particles.tscn")
+@onready var particles_scene
 @onready var press_sprite = $Visual/PressSprite
 
 func _ready():
@@ -35,6 +35,7 @@ func _ready():
 func press_selected(press_res: PressRes):
     press_sprite.texture = press_res.texture
     current_press = press_res
+    particles_scene = current_press.press_particles
     
 func upgrade_level_changed(instance):
     if instance.upgrade.upgrade_type == Enums.UpgradeType.Force:
