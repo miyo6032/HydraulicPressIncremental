@@ -59,7 +59,7 @@ func set_max_upgrade_level(level):
         upgrade_button.text = "Maxed"
         upgrade_button.disabled = true
     else:
-        upgrade_button.text = "$%s" % Utils.format_num(upgrade.costs[max_upgrade_level])
+        upgrade_button.text = "$%s" % Utils.format_whole(upgrade.costs[max_upgrade_level])
     current_upgrade_level = max_upgrade_level
     current_level_changed()
     

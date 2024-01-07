@@ -46,7 +46,7 @@ func upgrade_level_changed(instance):
     elif instance.upgrade.upgrade_type == Enums.UpgradeType.PressSpeed:
         var upgrade_value = instance.upgrade.upgrade_value * instance.current_upgrade_level * current_press.speed_upgrade
         crushing_time = base_crushing_time / (1 + upgrade_value)
-        var number_text = Utils.format_num(upgrade_value * 100) + "%"
+        var number_text = Utils.format_whole(upgrade_value * 100) + "%"
         var number_label_text = "increase"
         instance.set_upgrade_label(number_text, number_label_text)        
     elif instance.upgrade.upgrade_type == Enums.UpgradeType.Hydraulics:
@@ -56,13 +56,13 @@ func upgrade_level_changed(instance):
         else:
             power_hydraulic_multiplier = current_press.hydraulic_force_upgrade
             speed_hydraulic_multiplier = current_press.hydraulic_speed_downgrade
-        var number_text = "%sx > %.sx" % [Utils.format_num(speed_hydraulic_multiplier), Utils.format_num(power_hydraulic_multiplier)]
+        var number_text = "%sx > %.sx" % [Utils.format_num(speed_hydraulic_multiplier), Utils.format_whole(power_hydraulic_multiplier)]
         var number_label_text = "speed for force"
         instance.set_upgrade_label(number_text, number_label_text)    
     elif instance.upgrade.upgrade_type == Enums.UpgradeType.Precision:
         var upgrade_value = instance.upgrade.upgrade_value * instance.current_upgrade_level * current_press.precision_upgrade
         quality_random.chance = upgrade_value
-        var number_text = Utils.format_num(upgrade_value * 100) + "%"
+        var number_text = Utils.format_whole(upgrade_value * 100) + "%"
         var number_label_text = "chance"
         instance.set_upgrade_label(number_text, number_label_text)    
     elif instance.upgrade.upgrade_type == Enums.UpgradeType.Quality:
