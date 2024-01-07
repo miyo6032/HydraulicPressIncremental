@@ -1,9 +1,10 @@
-[gd_resource type="Resource" script_class="PressRegistry" load_steps=4 format=3 uid="uid://bl8qx8x1dng6m"]
+[gd_resource type="Resource" script_class="PressRegistry" load_steps=5 format=3 uid="uid://bl8qx8x1dng6m"]
 
 [ext_resource type="Resource" uid="uid://cf3j1yfek3ufb" path="res://data/presses/press.tres" id="1_ohlgl"]
 [ext_resource type="Script" path="res://PressRegistry.gd" id="1_t6dio"]
 [ext_resource type="Resource" uid="uid://ci0lc557p7smy" path="res://data/presses/nuclear_press.tres" id="2_u7u44"]
+[ext_resource type="Resource" uid="uid://dsn4yxcggs3u0" path="res://data/presses/smith.tres" id="3_0imif"]
 
 [resource]
 script = ExtResource("1_t6dio")
-presses = Array[Resource("res://PressRes.gd")]([ExtResource("1_ohlgl"), ExtResource("2_u7u44")])
+presses = Array[Resource("res://PressRes.gd")]([ExtResource("1_ohlgl"), ExtResource("2_u7u44"), ExtResource("3_0imif")])

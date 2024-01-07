@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="PressRes" load_steps=4 format=3 uid="uid://dsn4yxcggs3u0"]
+
+[ext_resource type="PackedScene" uid="uid://g782gpcdy1kh" path="res://smith_particles.tscn" id="1_tu2l7"]
+[ext_resource type="Texture2D" uid="uid://bx7dpgnicdcuq" path="res://art/smith.png" id="2_7k5qh"]
+[ext_resource type="Script" path="res://PressRes.gd" id="2_yaafu"]
+
+[resource]
+script = ExtResource("2_yaafu")
+name = "The Smith"
+description = "+200% Speed"
+texture = ExtResource("2_7k5qh")
+press_particles = ExtResource("1_tu2l7")
+force_upgrade = 1.0
+precision_upgrade = 1.0
+speed_upgrade = 2.0
+quality_upgrade = 1.0
+hydraulic_force_upgrade = 1.0
+hydraulic_speed_downgrade = 1.0

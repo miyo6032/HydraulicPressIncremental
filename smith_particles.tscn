@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://g782gpcdy1kh"]
+
+[ext_resource type="Script" path="res://CrushParticles.gd" id="1_blhac"]
+
+[sub_resource type="Gradient" id="Gradient_snp36"]
+colors = PackedColorArray(1, 0, 0, 1, 1, 1, 0, 1)
+
+[node name="CrushParticles" type="CPUParticles2D"]
+z_index = 2
+emitting = false
+lifetime = 0.5
+one_shot = true
+explosiveness = 0.7
+lifetime_randomness = 0.5
+emission_shape = 3
+emission_rect_extents = Vector2(30, 1)
+spread = 180.0
+gravity = Vector2(0, -1470)
+initial_velocity_min = 200.0
+initial_velocity_max = 250.0
+scale_amount_min = 10.0
+scale_amount_max = 16.0
+color_initial_ramp = SubResource("Gradient_snp36")
+script = ExtResource("1_blhac")

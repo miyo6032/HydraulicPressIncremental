@@ -45,7 +45,7 @@ func upgrade_level_changed(instance):
         var number_label_text = "ton" if is_equal_approx(max_press_force, 1) else "tons"
         instance.set_upgrade_label(number_text, number_label_text)
     elif instance.upgrade.upgrade_type == Enums.UpgradeType.PressSpeed:
-        var upgrade_value = instance.upgrade.upgrade_value * instance.current_upgrade_level * current_press.speed_upgrade
+        var upgrade_value = instance.upgrade.upgrade_value * instance.current_upgrade_level + current_press.speed_upgrade
         crushing_time = base_crushing_time / (1 + upgrade_value)
         var number_text = Utils.format_whole(upgrade_value * 100) + "%"
         var number_label_text = "increase"
