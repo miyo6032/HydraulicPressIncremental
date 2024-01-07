@@ -21,7 +21,7 @@ func _ready():
     unlocked_presses = [load("res://data/presses/press.tres")]
     change_press_button.visible = false    
     Console.add_command("v", func(v): update_currency(currency + float(v)), 1)
-    EventBus.crushable_removed.connect(crushable_removed)
+    EventBus.crushable_crushed.connect(crushable_crushed)
     EventBus.new_press_selected.connect(func(press): unlocked_presses.append(press))
     change_press_button.pressed.connect(change_press_button_pressed)
     for upgrade in upgrades:
@@ -34,7 +34,7 @@ func _ready():
 func change_press_button_pressed():
     change_press_menu.load(unlocked_presses)
 
-func crushable_removed(crushable):
+func crushable_crushed(crushable):
     update_currency(currency + crushable.get_value())
     
 func upgrade_bought(value):

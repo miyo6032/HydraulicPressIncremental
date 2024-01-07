@@ -131,7 +131,8 @@ func stop_crush_prematurely(stop_delay):
     var tween = create_tween()
     tween.tween_callback(func(): current_force = 0).set_delay(calc_crushing_time() * stop_delay)                
     tween.tween_property(visual, "global_position", start_crushing_pos.global_position, calc_crushing_time() * partial_time)
-    tween.tween_callback(func(): crush_finished.emit())     
+    tween.tween_callback(func(): crush_finished.emit())
+    EventBus.crushable_crushed.emit(current_crushable)
 
 func move_press_down(movement):
     visual.global_position.y = clamp(visual.global_position.y + movement, start_crushing_pos.global_position.y, final_crushing_pos.global_position.y)

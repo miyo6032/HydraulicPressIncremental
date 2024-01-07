@@ -3,6 +3,9 @@ extends Node2D
 @onready var sprite: Sprite2D = $Sprite2D
 
 var is_crushed = false
+var is_quality:
+    get:
+        return crush_modifiers.is_quality
 var crush_modifiers
 var value = 1
 var crushable_pattern
@@ -38,6 +41,8 @@ func set_crushed(modifiers):
     crush_modifiers = modifiers
     if crushable_shape == Constants.reset_trigger_shape and crushable_pattern == Constants.reset_trigger_pattern:
         EventBus.terminal_crush.emit()
+    else:
+        EventBus.crushable_crushed.emit(self)
     
 func _process(delta):
     if crush_modifiers and crush_modifiers.is_quality:

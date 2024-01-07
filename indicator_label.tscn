@@ -4,8 +4,8 @@
 [ext_resource type="Script" path="res://IndicatorLabel.gd" id="1_80fxt"]
 
 [node name="IndicatorLabel" type="Label"]
-offset_right = 50.0
-offset_bottom = 23.0
+offset_right = 74.0
+offset_bottom = 34.0
 theme = ExtResource("1_3ktk3")
 text = "Crush!"
 script = ExtResource("1_80fxt")

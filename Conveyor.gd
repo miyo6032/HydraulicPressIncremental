@@ -63,7 +63,6 @@ func finish_move():
     if crushables.size() > 3:
         var crushable = crushables[0]
         crushables.remove_at(0)
-        EventBus.crushable_removed.emit(crushable)
         crushable.queue_free()
         
 func get_current_crushable():
