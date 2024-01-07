@@ -8,4 +8,4 @@ name = "Material Type"
 upgrade_value = 1.0
 upgrade_type = 6
 tooltip = "Different material types may appear"
-costs = Array[float]([10.0, 100.0, 1000.0, 10000.0])
+costs = Array[float]([10.0, 120.0, 1500.0, 18000.0])

@@ -23,13 +23,14 @@ func calc_crush_progress(press_y):
     return progress
 
 const slowdown_currency = 0.9
+var flat_currency_speedup = 1.2
 
 func get_value():
     if is_crushed:
         if crush_modifiers.is_quality:
-            return pow(value, slowdown_currency) * crush_modifiers.value_multiplier
+            return pow(value, slowdown_currency) * crush_modifiers.value_multiplier * flat_currency_speedup
         else:
-            return pow(value, slowdown_currency)
+            return pow(value, slowdown_currency) * flat_currency_speedup
     return 0
 
 func set_crushed(modifiers):

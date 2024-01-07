@@ -36,7 +36,7 @@ func upgrade_level_changed(instance):
         instance.set_upgrade_label(number_text, number_label_text)
     if instance.upgrade.upgrade_type == Enums.UpgradeType.MaterialType:
         pattern_level = base_pattern_level + instance.current_upgrade_level
-        var number_text = Utils.format_num(pattern_level + base_pattern_level + 1)
+        var number_text = Utils.format_num(pattern_level + base_pattern_level)
         var number_label_text = "types"
         instance.set_upgrade_label(number_text, number_label_text)  
 

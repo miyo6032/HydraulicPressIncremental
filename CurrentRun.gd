@@ -89,6 +89,7 @@ func load_from_persistent_save_file(game_data):
         i+=1
     
 func load_unlocked_presses(game_data):
+    unlocked_presses.clear()
     for press_id in game_data.unlocked_presses:
         unlocked_presses.append(Registries.press_types[press_id])
     change_press_button.visible = _unlocked_presses.size() > 1
