@@ -56,7 +56,7 @@ func upgrade_level_changed(instance):
         else:
             power_hydraulic_multiplier = current_press.hydraulic_force_upgrade
             speed_hydraulic_multiplier = current_press.hydraulic_speed_downgrade
-        var number_text = "%sx > %.sx" % [Utils.format_num(speed_hydraulic_multiplier), Utils.format_whole(power_hydraulic_multiplier)]
+        var number_text = "%sx > %sx" % [speed_hydraulic_multiplier, Utils.format_whole(power_hydraulic_multiplier)]
         var number_label_text = "speed for force"
         instance.set_upgrade_label(number_text, number_label_text)    
     elif instance.upgrade.upgrade_type == Enums.UpgradeType.Precision:

@@ -83,12 +83,13 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 20
+theme_override_constants/margin_right = 20
 
 [node name="ForceLabel" type="Label" parent="CanvasLayer/Control/MainUI/AdditionalButtons/Panel/MarginContainer"]
 layout_mode = 2
 size_flags_vertical = 1
 text = "Current Force:"
+horizontal_alignment = 2
 vertical_alignment = 1
 script = ExtResource("9_f4pp4")
 
