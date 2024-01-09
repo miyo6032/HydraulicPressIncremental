@@ -10,7 +10,7 @@ class_name PressRes
 @export var force_upgrade: float = 1
 @export var precision_upgrade: float = 0
 @export var speed_upgrade: float = 0
-@export var quality_upgrade: float = 1
+@export var quality_upgrade: float = 0
 @export var hydraulic_force_upgrade: float = 1
 @export var hydraulic_speed_downgrade: float = 1
 var id: 

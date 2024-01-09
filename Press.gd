@@ -67,7 +67,7 @@ func upgrade_level_changed(instance):
         var number_label_text = "chance"
         instance.set_upgrade_label(number_text, number_label_text)    
     elif instance.upgrade.upgrade_type == Enums.UpgradeType.Quality:
-        var upgrade_value = base_quality_value_multiplier + instance.upgrade.upgrade_value * instance.current_upgrade_level * current_press.quality_upgrade
+        var upgrade_value = base_quality_value_multiplier + instance.upgrade.upgrade_value * instance.current_upgrade_level + current_press.quality_upgrade
         quality_value_multiplier = upgrade_value
         var number_text = "%.0fx" % upgrade_value
         var number_label_text = "bonus $"
