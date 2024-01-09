@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="PressRes" load_steps=4 format=3 uid="uid://cautnnq5hv80t"]
+
+[ext_resource type="PackedScene" uid="uid://d0yvjph85de28" path="res://digital_particles.tscn" id="1_on8u5"]
+[ext_resource type="Script" path="res://PressRes.gd" id="2_h5rp4"]
+[ext_resource type="Texture2D" uid="uid://bfm4au5degvy7" path="res://art/digital.png" id="3_it7vu"]
+
+[resource]
+script = ExtResource("2_h5rp4")
+name = "Digital Press"
+description = "+40% Precision"
+texture = ExtResource("3_it7vu")
+press_particles = ExtResource("1_on8u5")
+force_upgrade = 1.0
+precision_upgrade = 0.4
+speed_upgrade = 0.0
+quality_upgrade = 1.0
+hydraulic_force_upgrade = 1.0
+hydraulic_speed_downgrade = 1.0
