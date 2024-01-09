@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="PressRes" load_steps=4 format=3 uid="uid://2dw01pw0rai8"]
 
-[ext_resource type="PackedScene" uid="uid://ceos162inmry3" path="res://cosmic_particles.tscn" id="1_rmk2w"]
+[ext_resource type="PackedScene" uid="uid://dc80bfmb8v3a5" path="res://jackpot_particles.tscn" id="1_b63kq"]
 [ext_resource type="Script" path="res://PressRes.gd" id="2_ivn5s"]
 [ext_resource type="Texture2D" uid="uid://hu0lkdw6unyn" path="res://art/jackpot.png" id="3_fdrsv"]
 
@@ -9,7 +9,7 @@ script = ExtResource("2_ivn5s")
 name = "Jackpot"
 description = "+10x Quality"
 texture = ExtResource("3_fdrsv")
-press_particles = ExtResource("1_rmk2w")
+press_particles = ExtResource("1_b63kq")
 minimum_presses_unlocked = 2
 force_upgrade = 1.0
 precision_upgrade = 0.0
