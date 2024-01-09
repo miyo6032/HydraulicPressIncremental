@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://cnrln6t4dxt74"]
+[gd_scene load_steps=9 format=3 uid="uid://cnrln6t4dxt74"]
 
 [ext_resource type="Script" path="res://Main.gd" id="1_kxjkt"]
 [ext_resource type="Theme" uid="uid://q74smvt4fc0e" path="res://data/theme.tres" id="2_uy60d"]
 [ext_resource type="Script" path="res://FadeUI.gd" id="4_8wcme"]
 [ext_resource type="Resource" uid="uid://dsn4yxcggs3u0" path="res://data/presses/smith.tres" id="5_86gi7"]
 [ext_resource type="Resource" uid="uid://cautnnq5hv80t" path="res://data/presses/digital.tres" id="6_y1mf0"]
+[ext_resource type="Resource" uid="uid://dllhthixxxa8q" path="res://data/presses/cosmic.tres" id="7_fs1ea"]
 [ext_resource type="Script" path="res://PrestigeMenu.gd" id="15_nldfh"]
 [ext_resource type="Resource" uid="uid://ci0lc557p7smy" path="res://data/presses/nuclear_press.tres" id="17_1rm5i"]
 
@@ -54,7 +55,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("15_nldfh")
-presses = Array[Resource("res://PressRes.gd")]([ExtResource("17_1rm5i"), ExtResource("5_86gi7"), ExtResource("6_y1mf0")])
+presses = Array[Resource("res://PressRes.gd")]([ExtResource("17_1rm5i"), ExtResource("5_86gi7"), ExtResource("6_y1mf0"), ExtResource("7_fs1ea")])
 
 [node name="FadePressMenu" type="Control" parent="CanvasLayer/Control/PrestigeMenu"]
 modulate = Color(1, 1, 1, 0)
