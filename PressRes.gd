@@ -7,7 +7,7 @@ class_name PressRes
 @export var texture: Texture2D
 @export var press_particles: PackedScene
 @export var force_upgrade: float = 1
-@export var precision_upgrade: float = 1
+@export var precision_upgrade: float = 0
 @export var speed_upgrade: float = 0
 @export var quality_upgrade: float = 1
 @export var hydraulic_force_upgrade: float = 1

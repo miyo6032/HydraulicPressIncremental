@@ -61,7 +61,7 @@ func upgrade_level_changed(instance):
         var number_label_text = "speed for force"
         instance.set_upgrade_label(number_text, number_label_text)    
     elif instance.upgrade.upgrade_type == Enums.UpgradeType.Precision:
-        var upgrade_value = instance.upgrade.upgrade_value * instance.current_upgrade_level * current_press.precision_upgrade
+        var upgrade_value = instance.upgrade.upgrade_value * instance.current_upgrade_level + current_press.precision_upgrade
         quality_random.chance = upgrade_value
         var number_text = Utils.format_whole(upgrade_value * 100) + "%"
         var number_label_text = "chance"
