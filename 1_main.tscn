@@ -90,7 +90,7 @@ offset_right = 290.0
 offset_bottom = -275.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "You have proven yourself to the hydralic press gods. Now, choose a reward"
+text = "You have proven yourself to the press gods. Now, choose a reward..."
 
 [node name="PressChoiceContainer" type="HBoxContainer" parent="CanvasLayer/Control/PrestigeMenu/FadePressMenu/PrestigeMenu"]
 unique_name_in_owner = true

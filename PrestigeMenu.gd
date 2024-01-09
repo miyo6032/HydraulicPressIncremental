@@ -20,9 +20,14 @@ func _ready():
 func show_menu(current_run):
     fade_ui.fade_in()
     get_tree().paused = true
+    var num_unlocked_presses = current_run.unlocked_presses.size()
     for ui in uis:
         if current_run.unlocked_presses.has(ui.press):
             ui.visible = false
+        elif ui.press.minimum_presses_unlocked <= num_unlocked_presses:
+            ui.set_available()
+        else:
+            ui.set_unknown()
 
 func what():
     fade_ui.show_instantly()

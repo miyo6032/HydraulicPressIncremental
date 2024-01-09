@@ -10,6 +10,7 @@ name = "Cosmic Crusher"
 description = "0.5x speed 50x force"
 texture = ExtResource("3_0c75t")
 press_particles = ExtResource("1_e4ik7")
+minimum_presses_unlocked = 2
 force_upgrade = 1.0
 precision_upgrade = 0.0
 speed_upgrade = 0.0
