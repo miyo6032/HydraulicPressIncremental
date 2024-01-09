@@ -4,19 +4,24 @@ const temp_save_file = "user://temp.tres"
 
 var file_load_callback = JavaScriptBridge.create_callback(load_file)
 @onready var current_run_scene = load("res://current_run.tscn")
+@onready var prestige_menu = $CanvasLayer/Control/PrestigeMenu
 var current_run
 
 func _ready():
     Console.add_command("save", func(path): save_data("user://" + path + ".res"), 1)
     Console.add_command("load", func(path): load_data("user://" + path + ".res"), 1)
     Console.add_command("time", func(time): Engine.time_scale = float(time), 1)
+    Console.add_command("end", end_run)
     if OS.get_name() == "Web":
         var window = JavaScriptBridge.get_interface("window")
         window.getFile(file_load_callback)
     current_run = current_run_scene.instantiate()
     add_child(current_run)
     EventBus.new_press_selected.connect(reset_with_press)
-    EventBus.terminal_crush.connect(func(): get_tree().paused = true)
+    EventBus.terminal_crush.connect(end_run)
+    
+func end_run():
+    prestige_menu.show_menu(current_run)
     
 func reset_with_press(press_res):
     EventBus.press_selected.emit(press_res)

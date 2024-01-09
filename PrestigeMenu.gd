@@ -5,15 +5,24 @@ extends Control
 @onready var press_choice_container = %PressChoiceContainer
 @onready var fade_ui = $FadePressMenu
 
+var uis = []
+
 func _ready():
     Console.add_command("press", what)
-    EventBus.terminal_crush.connect(func(): fade_ui.show_instantly())
     EventBus.new_press_selected.connect(func(press_res): fade_ui.hide_instantly())
     for press in presses:
         var ui = ui_scene.instantiate()
         ui.init(press)
         press_choice_container.add_child(ui)
+        uis.append(ui)
     fade_ui.hide_instantly()
+
+func show_menu(current_run):
+    fade_ui.fade_in()
+    get_tree().paused = true
+    for ui in uis:
+        if current_run.unlocked_presses.has(ui.press):
+            ui.visible = false
 
 func what():
     fade_ui.show_instantly()
