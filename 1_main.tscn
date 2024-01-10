@@ -48,6 +48,18 @@ offset_bottom = 31.0
 grow_horizontal = 0
 text = "Import Save"
 
+[node name="Save" type="Button" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -440.0
+offset_top = -1.0
+offset_right = -305.0
+offset_bottom = 33.0
+grow_horizontal = 0
+text = "Save"
+
 [node name="PrestigeMenu" type="Control" parent="CanvasLayer/Control"]
 layout_mode = 1
 anchors_preset = 15
@@ -116,6 +128,7 @@ mouse_filter = 2
 script = ExtResource("10_x0je5")
 
 [node name="EndMenuFadeUI" type="Control" parent="CanvasLayer/Control/EndMenu"]
+modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -150,3 +163,4 @@ text = "You have reached the end... for now :)"
 
 [connection signal="pressed" from="CanvasLayer/Control/ExportSaveButton" to="." method="_on_export_save_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Control/ImportSaveButton" to="." method="_on_import_save_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/Save" to="." method="save_game"]

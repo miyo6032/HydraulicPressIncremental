@@ -11,15 +11,31 @@ var current_run
 func _ready():
     Console.add_command("save", func(path): save_data("user://" + path + ".res"), 1)
     Console.add_command("load", func(path): load_data("user://" + path + ".res"), 1)
+    Console.add_command("new", new_game, 1)
     Console.add_command("time", func(time): Engine.time_scale = float(time), 1)
     Console.add_command("end", end_run)
     if OS.get_name() == "Web":
         var window = JavaScriptBridge.get_interface("window")
         window.getFile(file_load_callback)
+    EventBus.new_press_selected.connect(reset_with_press)
+    EventBus.terminal_crush.connect(save_data)
+    var timer = Timer.new()
+    timer.autostart = true
+    timer.wait_time = 10
+    timer.timeout.connect(save_game)
+    add_child(timer)
+    try_load()
+    
+func try_load():
+    if not load_data("user://game.res"):
+        new_game()
+        
+func new_game():
     current_run = current_run_scene.instantiate()
     add_child(current_run)
-    EventBus.new_press_selected.connect(reset_with_press)
-    EventBus.terminal_crush.connect(end_run)
+    
+func save_game():
+    save_data("user://game.res")
     
 func end_run():
     prestige_menu.show_menu(current_run)
@@ -52,18 +68,18 @@ func save_data(file_name):
     else:
         print("Error saving graph_data: " + str(error))
         
-func load_data(file_name):
+func load_data(file_name) -> bool:
     if ResourceLoader.exists(file_name):
         var game_data = ResourceLoader.load(file_name)
         if game_data is GameData:
+            if current_run:
+                current_run.queue_free()
+            current_run = current_run_scene.instantiate()
+            add_child(current_run)
             current_run.load_game(game_data)
-        else:
-            # Error loading data
-            pass
-    else:
-        # File not found
-        pass
-
+            return true
+    return false
+    
 func load_file(args):
     var array = args[0].to_utf8_buffer()
     if FileAccess.file_exists(temp_save_file):

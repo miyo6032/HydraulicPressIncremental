@@ -77,8 +77,9 @@ func save_data(data: Dictionary):
     data["shown"] = fade_ui.faded_in
 
 func load_data(data: Dictionary):
-    current_upgrade_level = data["current_upgrade_level"]    
     set_max_upgrade_level(data["max_upgrade_level"])
+    current_upgrade_level = data["current_upgrade_level"]
+    current_level_changed()    
     if data["shown"]:
         fade_ui.show_instantly()
 
