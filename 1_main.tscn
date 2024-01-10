@@ -18,6 +18,7 @@ script = ExtResource("1_kxjkt")
 layer = 2
 
 [node name="Control" type="Control" parent="CanvasLayer"]
+process_mode = 3
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -28,7 +29,6 @@ mouse_filter = 2
 theme = ExtResource("2_uy60d")
 
 [node name="PrestigeMenu" type="Control" parent="CanvasLayer/Control"]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -40,6 +40,7 @@ script = ExtResource("15_nldfh")
 presses = Array[Resource("res://PressRes.gd")]([ExtResource("17_1rm5i"), ExtResource("5_86gi7"), ExtResource("6_y1mf0"), ExtResource("7_fs1ea"), ExtResource("8_qgjnk")])
 
 [node name="FadePressMenu" type="Control" parent="CanvasLayer/Control/PrestigeMenu"]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -86,7 +87,6 @@ grow_vertical = 2
 alignment = 1
 
 [node name="EndMenu" type="Control" parent="CanvasLayer/Control"]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -97,6 +97,7 @@ mouse_filter = 2
 script = ExtResource("10_x0je5")
 
 [node name="EndMenuFadeUI" type="Control" parent="CanvasLayer/Control/EndMenu"]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

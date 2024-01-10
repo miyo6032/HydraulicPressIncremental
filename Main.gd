@@ -18,7 +18,7 @@ func _ready():
         var window = JavaScriptBridge.get_interface("window")
         window.getFile(file_load_callback)
     EventBus.new_press_selected.connect(reset_with_press)
-    EventBus.terminal_crush.connect(save_data)
+    EventBus.terminal_crush.connect(end_run)
     var timer = Timer.new()
     timer.autostart = true
     timer.wait_time = 10
