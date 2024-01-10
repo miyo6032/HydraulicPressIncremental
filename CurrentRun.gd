@@ -10,19 +10,13 @@ extends Node
 
 var currency = 0
 var upgrade_instances = []
-var _unlocked_presses: Array[PressRes]
-var unlocked_presses: Array[PressRes]:
-    get:
-        return _unlocked_presses
-    set(value):
-        _unlocked_presses = value
-        
+var unlocked_presses: Array[PressRes]
+
 func _ready():
     unlocked_presses = [load("res://data/presses/press.tres")]
     change_press_button.visible = false    
     Console.add_command("v", func(v): update_currency(currency + float(v)), 1)
     EventBus.crushable_crushed.connect(crushable_crushed)
-    EventBus.new_press_selected.connect(func(press): unlocked_presses.append(press))
     change_press_button.pressed.connect(change_press_button_pressed)
     for upgrade in upgrades:
         var upgrade_instance = upgrade_scene.instantiate()
@@ -30,6 +24,9 @@ func _ready():
         upgrade_instance.init(upgrade)
         upgrade_instance.upgrade_bought.connect(upgrade_bought)
         upgrade_instances.append(upgrade_instance)
+        
+func add_press(press):
+    unlocked_presses.append(press)
 
 func change_press_button_pressed():
     change_press_menu.load(unlocked_presses)
@@ -92,4 +89,4 @@ func load_unlocked_presses(game_data):
     unlocked_presses.clear()
     for press_id in game_data.unlocked_presses:
         unlocked_presses.append(Registries.press_types[press_id])
-    change_press_button.visible = _unlocked_presses.size() > 1
+    change_press_button.visible = unlocked_presses.size() > 1

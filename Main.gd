@@ -5,6 +5,7 @@ const temp_save_file = "user://temp.tres"
 var file_load_callback = JavaScriptBridge.create_callback(load_file)
 @onready var current_run_scene = load("res://current_run.tscn")
 @onready var prestige_menu = $CanvasLayer/Control/PrestigeMenu
+@onready var end_menu = $CanvasLayer/Control/EndMenu
 var current_run
 
 func _ready():
@@ -24,6 +25,7 @@ func end_run():
     prestige_menu.show_menu(current_run)
     
 func reset_with_press(press_res):
+    current_run.add_press(press_res)
     EventBus.press_selected.emit(press_res)
     var persistent_game_data = current_run.create_persistent_save_file()
     current_run.queue_free()

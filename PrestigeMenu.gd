@@ -4,6 +4,7 @@ extends Control
 @onready var ui_scene = load("res://press_choice_ui.tscn")
 @onready var press_choice_container = %PressChoiceContainer
 @onready var fade_ui = $FadePressMenu
+@onready var end_menu = $"../EndMenu"
 
 var uis = []
 
@@ -18,16 +19,19 @@ func _ready():
     fade_ui.hide_instantly()
 
 func show_menu(current_run):
-    fade_ui.fade_in()
-    get_tree().paused = true
     var num_unlocked_presses = current_run.unlocked_presses.size()
-    for ui in uis:
-        if current_run.unlocked_presses.has(ui.press):
-            ui.visible = false
-        elif ui.press.minimum_presses_unlocked <= num_unlocked_presses:
-            ui.set_available()
-        else:
-            ui.set_unknown()
+    if num_unlocked_presses == presses.size() + 1:
+        end_menu.show_end()
+    else:
+        fade_ui.fade_in()
+        get_tree().paused = true
+        for ui in uis:
+            if current_run.unlocked_presses.has(ui.press):
+                ui.visible = false
+            elif ui.press.minimum_presses_unlocked <= num_unlocked_presses:
+                ui.set_available()
+            else:
+                ui.set_unknown()
 
 func what():
     fade_ui.show_instantly()

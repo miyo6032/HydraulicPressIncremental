@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cnrln6t4dxt74"]
+[gd_scene load_steps=11 format=3 uid="uid://cnrln6t4dxt74"]
 
 [ext_resource type="Script" path="res://Main.gd" id="1_kxjkt"]
 [ext_resource type="Theme" uid="uid://q74smvt4fc0e" path="res://data/theme.tres" id="2_uy60d"]
@@ -7,6 +7,7 @@
 [ext_resource type="Resource" uid="uid://cautnnq5hv80t" path="res://data/presses/digital.tres" id="6_y1mf0"]
 [ext_resource type="Resource" uid="uid://dllhthixxxa8q" path="res://data/presses/cosmic.tres" id="7_fs1ea"]
 [ext_resource type="Resource" uid="uid://2dw01pw0rai8" path="res://data/presses/jackpot.tres" id="8_qgjnk"]
+[ext_resource type="Script" path="res://EndMenu.gd" id="10_x0je5"]
 [ext_resource type="Script" path="res://PrestigeMenu.gd" id="15_nldfh"]
 [ext_resource type="Resource" uid="uid://ci0lc557p7smy" path="res://data/presses/nuclear_press.tres" id="17_1rm5i"]
 
@@ -103,6 +104,49 @@ offset_top = 323.0
 grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
+
+[node name="EndMenu" type="Control" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("10_x0je5")
+
+[node name="EndMenuFadeUI" type="Control" parent="CanvasLayer/Control/EndMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("4_8wcme")
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/Control/EndMenu/EndMenuFadeUI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.31802, 0.31802, 0.31802, 1)
+
+[node name="Label" type="Label" parent="CanvasLayer/Control/EndMenu/EndMenuFadeUI/ColorRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -17.0
+offset_right = 20.0
+offset_bottom = 17.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "You have reached the end... for now :)"
 
 [connection signal="pressed" from="CanvasLayer/Control/ExportSaveButton" to="." method="_on_export_save_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Control/ImportSaveButton" to="." method="_on_import_save_button_pressed"]
