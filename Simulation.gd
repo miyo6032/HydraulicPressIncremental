@@ -10,6 +10,7 @@ func _ready():
     start()
 
 func start():
+    await get_tree().create_timer(0.1).timeout
     conveyor.move_conveyor()
     
 func move_finished():
