@@ -27,40 +27,8 @@ grow_vertical = 2
 mouse_filter = 2
 theme = ExtResource("2_uy60d")
 
-[node name="ExportSaveButton" type="Button" parent="CanvasLayer/Control"]
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -288.0
-offset_right = -153.0
-offset_bottom = 34.0
-grow_horizontal = 0
-text = "Export Save"
-
-[node name="ImportSaveButton" type="Button" parent="CanvasLayer/Control"]
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -102.0
-offset_bottom = 31.0
-grow_horizontal = 0
-text = "Import Save"
-
-[node name="Save" type="Button" parent="CanvasLayer/Control"]
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -440.0
-offset_top = -1.0
-offset_right = -305.0
-offset_bottom = 33.0
-grow_horizontal = 0
-text = "Save"
-
 [node name="PrestigeMenu" type="Control" parent="CanvasLayer/Control"]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -72,7 +40,6 @@ script = ExtResource("15_nldfh")
 presses = Array[Resource("res://PressRes.gd")]([ExtResource("17_1rm5i"), ExtResource("5_86gi7"), ExtResource("6_y1mf0"), ExtResource("7_fs1ea"), ExtResource("8_qgjnk")])
 
 [node name="FadePressMenu" type="Control" parent="CanvasLayer/Control/PrestigeMenu"]
-modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -104,6 +71,7 @@ offset_right = 290.0
 offset_bottom = -275.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_font_sizes/font_size = 36
 text = "You have proven yourself to the press gods. Now, choose a reward..."
 
 [node name="PressChoiceContainer" type="HBoxContainer" parent="CanvasLayer/Control/PrestigeMenu/FadePressMenu/PrestigeMenu"]
@@ -118,6 +86,7 @@ grow_vertical = 2
 alignment = 1
 
 [node name="EndMenu" type="Control" parent="CanvasLayer/Control"]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -128,7 +97,6 @@ mouse_filter = 2
 script = ExtResource("10_x0je5")
 
 [node name="EndMenuFadeUI" type="Control" parent="CanvasLayer/Control/EndMenu"]
-modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -159,8 +127,54 @@ offset_right = 20.0
 offset_bottom = 17.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_font_sizes/font_size = 36
 text = "You have reached the end... for now :)"
 
-[connection signal="pressed" from="CanvasLayer/Control/ExportSaveButton" to="." method="_on_export_save_button_pressed"]
-[connection signal="pressed" from="CanvasLayer/Control/ImportSaveButton" to="." method="_on_import_save_button_pressed"]
-[connection signal="pressed" from="CanvasLayer/Control/Save" to="." method="save_game"]
+[node name="Save Buttons" type="Control" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -13.0
+offset_top = 12.0
+offset_right = -13.0
+offset_bottom = 12.0
+grow_horizontal = 0
+mouse_filter = 2
+
+[node name="ExportSaveButton" type="Button" parent="CanvasLayer/Control/Save Buttons"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -288.0
+offset_right = -153.0
+offset_bottom = 34.0
+grow_horizontal = 0
+text = "Export Save"
+
+[node name="ImportSaveButton" type="Button" parent="CanvasLayer/Control/Save Buttons"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -139.0
+offset_bottom = 34.0
+grow_horizontal = 0
+text = "Import Save"
+
+[node name="Save" type="Button" parent="CanvasLayer/Control/Save Buttons"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -440.0
+offset_top = -1.0
+offset_right = -305.0
+offset_bottom = 33.0
+grow_horizontal = 0
+text = "Save"
+
+[connection signal="pressed" from="CanvasLayer/Control/Save Buttons/ExportSaveButton" to="." method="_on_export_save_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/Save Buttons/ImportSaveButton" to="." method="_on_import_save_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/Save Buttons/Save" to="." method="save_game"]
