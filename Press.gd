@@ -104,7 +104,7 @@ const speed_multiplier = 500
 var is_crushing
 var particle_buildup
         
-func _process(delta):
+func _physics_process(delta):
     if not is_crushing:
         return
         
@@ -116,10 +116,10 @@ func _process(delta):
         is_crushing = false
         complete_crush(current_crushable)
         var tween = create_tween()
-        tween.tween_callback(func(): current_force = 0).set_delay(time * 0.5)
+        tween.tween_callback(func(): current_force = 0).set_delay(clamp(time * 0.5, 0, 1))
         tween.tween_property(visual, "global_position", start_crushing_pos.global_position, time)
         tween.tween_callback(func(): crush_finished.emit())
-    if crush_progress > 0:
+    elif crush_progress > 0:
         var resistance = current_crushable.get_current_resistance(crush_progress)
         if resistance > current_force:
             if Utils.geq(current_force, final_max_press_force):
