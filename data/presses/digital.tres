@@ -7,12 +7,12 @@
 [resource]
 script = ExtResource("2_h5rp4")
 name = "Digital Press"
-description = "+40% Precision"
+description = "+30% Precision"
 texture = ExtResource("3_it7vu")
 press_particles = ExtResource("1_on8u5")
 minimum_presses_unlocked = 1
 force_upgrade = 1.0
-precision_upgrade = 0.4
+precision_upgrade = 0.3
 speed_upgrade = 0.0
 quality_upgrade = 0.0
 hydraulic_force_upgrade = 1.0
