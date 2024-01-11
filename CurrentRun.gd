@@ -1,12 +1,12 @@
 extends Node
 
 @onready var upgrade_scene: PackedScene = load("res://upgrade.tscn")
-@onready var simulation = $Simulation
+@onready var simulation = %Simulation
 @onready var currency_label = %CurrencyLabel
 @export var upgrades: Array[UpgradeRes]
 @onready var upgrade_container = %Upgrades
 @onready var change_press_button = %ChangePressButton
-@onready var change_press_menu = $CanvasLayer/Control/ChangePressMenu
+@onready var change_press_menu = %ChangePressMenu
 
 var currency = 0
 var upgrade_instances = []

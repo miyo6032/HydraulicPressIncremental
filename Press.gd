@@ -19,6 +19,7 @@ var final_max_press_force: float:
         return max_press_force * power_hydraulic_multiplier
 
 @export var current_press: PressRes
+@export var crushed_particles: PackedScene
 @onready var visual = $Visual
 @onready var start_crushing_pos = %PressStart
 @onready var final_crushing_pos = %PressEnd
@@ -161,6 +162,10 @@ func complete_crush(crushable):
     crush_modifiers.is_quality = quality_random.get_success()
     crush_modifiers.value_multiplier = quality_value_multiplier
     crushable.set_crushed(crush_modifiers)
+    var particles = crushed_particles.instantiate()
+    add_child(particles)
+    particles.global_position = final_crushing_pos.global_position
+    particles.emitting = true
     
 func update_crush(crushable):
     crushable.update_crush(visual.global_position.y)
