@@ -6,13 +6,13 @@ Features:
 - Scripts are now shown as Tabs inside a TabContainer (No Script List)
 - The Outline is on the right side (can be changed to be on the left side again)
 - The Outline got an overhaul and shows more than just the methods of the script. It includes the following members with a unique icon:
-	- Classes (Red Square)
-	- Constants (Red Circle)
-	- Signals (Yellow)
-	- Export variables (Orange)
-	- (Static) Variables (Red)
-	- Engine callback functions (Blue)
-	- (Static) Functions (Green)
+    - Classes (Red Square)
+    - Constants (Red Circle)
+    - Signals (Yellow)
+    - Export variables (Orange)
+    - (Static) Variables (Red)
+    - Engine callback functions (Blue)
+    - (Static) Functions (Green)
 - All the different members of the script can be hidden or made visible again. This allows fine control what should be visible (e.g. only signals, functions, ...)
 - There is also the possibility to hide private members, this is all members starting with a '_'
 - The Outline can be opened as Popup with a defined shortcut (more below). This allows to quickly search for a specific member and scroll to it

@@ -132,7 +132,6 @@ func _enter_tree() -> void:
     split_container = find_or_null(script_editor.find_children("*", "HSplitContainer", true, false))
     if (split_container != null):
         outline_container = split_container.get_child(0)
-        outline_container.visible = false        
         
         if (is_outline_right):
             update_outline_position()
