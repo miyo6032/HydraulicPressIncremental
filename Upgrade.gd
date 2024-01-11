@@ -67,9 +67,10 @@ func current_level_changed():
     update_step_button_enablements()
     EventBus.upgrade_level_changed.emit(self)
 
-func set_upgrade_label(number, number_desc):
+func set_upgrade_label(number, number_desc, next_upgrade_label = ""):
     number_label.text = number
     number_desc_label.text = number_desc
+    upgrade_button.tooltip_text = next_upgrade_label
 
 func save_data(data: Dictionary):
     data["max_upgrade_level"] = max_upgrade_level

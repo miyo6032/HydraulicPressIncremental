@@ -39,11 +39,22 @@ func press_selected(press_res: PressRes):
     
 func upgrade_level_changed(instance):
     if instance.upgrade.upgrade_type == Enums.UpgradeType.Force:
-        var upgrade_value = pow(instance.upgrade.upgrade_value, instance.current_upgrade_level)
-        max_press_force = base_max_press_force * upgrade_value * current_press.force_upgrade
+        var calc_upgrade_value = func(upgrade_level): return pow(instance.upgrade.upgrade_value, upgrade_level)
+        var calc_press_force = func(value): return base_max_press_force * value * current_press.force_upgrade
+        var upgrade_value = calc_upgrade_value.call(instance.current_upgrade_level)
+
+        max_press_force = calc_press_force.call(upgrade_value)
         var number_text = Utils.format_num(max_press_force)
         var number_label_text = "ton" if is_equal_approx(max_press_force, 1) else "tons"
-        instance.set_upgrade_label(number_text, number_label_text)
+        
+        if instance.max_upgrade_level < instance.upgrade.max_level:
+            var next_upgrade_value = calc_upgrade_value.call(instance.current_upgrade_level + 1)
+            var next_max_press_force = calc_press_force.call(next_upgrade_value)     
+            var next_upgrade_label = "next level: %s %s" % [Utils.format_num(next_max_press_force), "ton" if is_equal_approx(next_max_press_force, 1) else "tons"]
+            instance.set_upgrade_label(number_text, number_label_text, next_upgrade_label)
+        else:
+            instance.set_upgrade_label(number_text, number_label_text)
+            
     elif instance.upgrade.upgrade_type == Enums.UpgradeType.PressSpeed:
         var upgrade_value = instance.upgrade.upgrade_value * instance.current_upgrade_level + current_press.speed_upgrade
         crushing_time = base_crushing_time / (1 + upgrade_value)

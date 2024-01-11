@@ -11,7 +11,7 @@ var current_run
 func _ready():
     Console.add_command("save", func(path): save_data("user://" + path + ".res"), 1)
     Console.add_command("load", func(path): load_data("user://" + path + ".res"), 1)
-    Console.add_command("new", new_game, 1)
+    Console.add_command("new", new_game)
     Console.add_command("time", func(time): Engine.time_scale = float(time), 1)
     Console.add_command("end", end_run)
     if OS.get_name() == "Web":
@@ -31,6 +31,7 @@ func try_load():
         new_game()
         
 func new_game():
+    current_run.queue_free()    
     current_run = current_run_scene.instantiate()
     add_child(current_run)
     
