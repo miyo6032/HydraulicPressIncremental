@@ -7,6 +7,7 @@ extends Node
 @onready var upgrade_container = %Upgrades
 @onready var change_press_button = %ChangePressButton
 @onready var change_press_menu = %ChangePressMenu
+@onready var material_values_window = $CanvasLayer/MaterialValuesWindow
 
 var currency = 0
 var upgrade_instances = []
@@ -90,3 +91,7 @@ func load_unlocked_presses(game_data):
     for press_id in game_data.unlocked_presses:
         unlocked_presses.append(Registries.press_types[press_id])
     change_press_button.visible = unlocked_presses.size() > 1
+
+
+func _on_button_pressed():
+    material_values_window.show()

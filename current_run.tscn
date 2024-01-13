@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://clpks2rjkvskm"]
+[gd_scene load_steps=18 format=3 uid="uid://clpks2rjkvskm"]
 
 [ext_resource type="Script" path="res://CurrentRun.gd" id="1_rnq25"]
 [ext_resource type="Resource" uid="uid://ype7ae050vxg" path="res://data/upgrades/force_upgrade.tres" id="2_218ra"]
@@ -12,6 +12,7 @@
 [ext_resource type="Script" path="res://ForceLabel.gd" id="9_f4pp4"]
 [ext_resource type="Theme" uid="uid://q74smvt4fc0e" path="res://data/theme.tres" id="9_tmscb"]
 [ext_resource type="Script" path="res://SkipButton.gd" id="13_rkvay"]
+[ext_resource type="Script" path="res://MaterialValuesWindow.gd" id="14_2rkjq"]
 [ext_resource type="Script" path="res://IndicatorLabelHandler.gd" id="14_bf6xs"]
 [ext_resource type="PackedScene" uid="uid://d2wqud77qew7f" path="res://change_press_ui.tscn" id="15_48w5f"]
 [ext_resource type="Script" path="res://ChangePressMenu.gd" id="15_cveyd"]
@@ -150,6 +151,28 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("14_bf6xs")
 
+[node name="Button" type="Button" parent="CanvasLayer/Control"]
+offset_left = 9.0
+offset_top = 11.0
+offset_right = 200.0
+offset_bottom = 45.0
+text = "Material Values"
+
+[node name="MaterialValuesWindow" type="Window" parent="CanvasLayer"]
+title = "Material Values"
+position = Vector2i(100, 36)
+size = Vector2i(600, 600)
+script = ExtResource("14_2rkjq")
+
+[node name="GridContainer" type="GridContainer" parent="CanvasLayer/MaterialValuesWindow"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("9_tmscb")
+columns = 3
+
 [node name="CanvasLayer2" type="CanvasLayer" parent="."]
 layer = 2
 
@@ -199,3 +222,6 @@ layout_mode = 2
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
+
+[connection signal="pressed" from="CanvasLayer/Control/Button" to="." method="_on_button_pressed"]
+[connection signal="close_requested" from="CanvasLayer/MaterialValuesWindow" to="CanvasLayer/MaterialValuesWindow" method="_on_close_requested"]

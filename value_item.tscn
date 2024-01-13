@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://bfjc6e7eq2mv"]
+
+[ext_resource type="Script" path="res://ValueItem.gd" id="1_ihftb"]
+[ext_resource type="Texture2D" uid="uid://bua5a4yenkjlb" path="res://art/Square.png" id="1_j8uj8"]
+[ext_resource type="Shader" uid="uid://be7cfxqnbou30" path="res://crushable.tres" id="2_lhj72"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ddn3r"]
+resource_local_to_scene = true
+shader = ExtResource("2_lhj72")
+
+[node name="ValueItem" type="HBoxContainer"]
+size_flags_horizontal = 3
+script = ExtResource("1_ihftb")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_ddn3r")
+layout_mode = 2
+texture = ExtResource("1_j8uj8")
+expand_mode = 3
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+text = "$1230"

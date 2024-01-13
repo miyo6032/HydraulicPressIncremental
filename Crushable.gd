@@ -36,9 +36,12 @@ func get_value():
             return pow(value, slowdown_currency) * flat_currency_speedup
     return 0
 
-func set_crushed(modifiers):
+func set_crushed_no_events(modifiers):
     is_crushed = true
     crush_modifiers = modifiers
+
+func set_crushed(modifiers):
+    set_crushed_no_events(modifiers)
     if crushable_shape == Constants.reset_trigger_shape and crushable_pattern == Constants.reset_trigger_pattern:
         EventBus.terminal_crush.emit()
     else:
@@ -50,11 +53,14 @@ func _process(delta):
         var lerpValue = (time % 1000) * 0.001
         sprite.modulate = Color.from_hsv(lerpValue, 0.5, 1.0)
 
-func init(shape, pattern):
+func init_no_visuals(shape, pattern):
     crushable_pattern = pattern
     crushable_shape = shape
     value = shape.value_multiplier * pattern.value_multiplier
+    crush_modifiers = null
+
+func init(shape, pattern):
+    init_no_visuals(shape, pattern)
     sprite.texture = shape.texture
     var material: ShaderMaterial = sprite.material
     material.set_shader_parameter("MainTex", pattern.texture)
-    crush_modifiers = null
