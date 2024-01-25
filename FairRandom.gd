@@ -8,7 +8,7 @@ var chance: float:
     set(value):
         _chance = value
         fails = 0
-        
+
 func get_success() -> bool:
     if Utils.geq(fails * _chance, 1):
         fails = 0

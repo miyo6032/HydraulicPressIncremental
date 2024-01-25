@@ -13,6 +13,6 @@ class_name PressRes
 @export var quality_upgrade: float = 0
 @export var hydraulic_force_upgrade: float = 1
 @export var hydraulic_speed_downgrade: float = 1
-var id: 
+var id:
     get:
         return resource_path

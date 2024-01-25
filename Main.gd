@@ -25,22 +25,22 @@ func _ready():
     timer.timeout.connect(save_game)
     add_child(timer)
     try_load()
-    
+
 func try_load():
     if not load_data("user://game.res"):
         new_game()
-        
+
 func new_game():
-    current_run.queue_free()    
+    current_run.queue_free()
     current_run = current_run_scene.instantiate()
     add_child(current_run)
-    
+
 func save_game():
     save_data("user://game.res")
-    
+
 func end_run():
     prestige_menu.show_menu(current_run)
-    
+
 func reset_with_press(press_res):
     current_run.add_press(press_res)
     EventBus.press_selected.emit(press_res)
@@ -68,7 +68,7 @@ func save_data(file_name):
         print("saved to " + file_name)
     else:
         print("Error saving graph_data: " + str(error))
-        
+
 func load_data(file_name) -> bool:
     if ResourceLoader.exists(file_name):
         var game_data = ResourceLoader.load(file_name)
@@ -80,7 +80,7 @@ func load_data(file_name) -> bool:
             current_run.load_game(game_data)
             return true
     return false
-    
+
 func load_file(args):
     var array = args[0].to_utf8_buffer()
     if FileAccess.file_exists(temp_save_file):
@@ -90,7 +90,7 @@ func load_file(args):
     file.close()
     var resource = ResourceLoader.load(temp_save_file)
     current_run.load_game(resource)
-    
+
 func download_File(file):
     JavaScriptBridge.download_buffer(file, "save.txt")
 

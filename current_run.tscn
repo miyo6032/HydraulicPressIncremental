@@ -152,6 +152,7 @@ grow_vertical = 2
 script = ExtResource("14_bf6xs")
 
 [node name="Button" type="Button" parent="CanvasLayer/Control"]
+layout_mode = 0
 offset_left = 9.0
 offset_top = 11.0
 offset_right = 200.0

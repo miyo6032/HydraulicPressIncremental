@@ -16,13 +16,13 @@ func update_crush(press_y):
     if (resize < 1):
         pass
     scale.y = clamp(resize, 0.0, 1)
-    
+
 func get_current_resistance(progress):
     return crushable_pattern.get_resistance(progress) * crushable_shape.value_multiplier
-    
+
 func calc_crush_progress(press_y):
     var resize = (global_position.y - press_y) / sprite.texture.get_height()
-    var progress = clampf(1 - resize, 0.0, 1.0)    
+    var progress = clampf(1 - resize, 0.0, 1.0)
     return progress
 
 const slowdown_currency = 0.9
@@ -46,7 +46,7 @@ func set_crushed(modifiers):
         EventBus.terminal_crush.emit()
     else:
         EventBus.crushable_crushed.emit(self)
-    
+
 func _process(delta):
     if crush_modifiers and crush_modifiers.is_quality:
         var time = Time.get_ticks_msec()

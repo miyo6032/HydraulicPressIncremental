@@ -14,7 +14,7 @@ func _ready():
             crushable.init_no_visuals(shape, pattern)
             crushable.set_crushed_no_events(CrushModifiers.new())
             var value_item = value_item_scene.instantiate()
-            list.add_child(value_item)            
+            list.add_child(value_item)
             value_item.init("$%s" % Utils.format_currency(crushable.get_value()), crushable.crushable_shape, crushable.crushable_pattern)
 
 func _on_close_requested():

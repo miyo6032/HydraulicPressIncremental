@@ -16,7 +16,7 @@ func load(presses):
         press_ui.init(press)
         container.add_child(press_ui)
         press_ui.chosen.connect(press_ui_chosen)
-        
+
 func press_ui_chosen(press_res):
     visible = false
     EventBus.press_selected.emit(press_res)

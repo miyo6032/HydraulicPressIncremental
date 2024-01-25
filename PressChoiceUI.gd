@@ -8,7 +8,7 @@ var press
 
 func _ready():
     $MarginContainer/VBoxContainer/Button.pressed.connect(func(): EventBus.new_press_selected.emit(press))
-    
+
 func init(press_res: PressRes):
     press = press_res
 
@@ -17,7 +17,7 @@ func set_unknown():
     button.text = "???"
     texture_rect.texture = unknown_texture
     label.text = "\nunknown..."
-    
+
 func set_available():
     button.disabled = false
     button.text = "Choose"

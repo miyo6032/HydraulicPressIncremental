@@ -12,20 +12,20 @@ func _ready():
 func start():
     await get_tree().create_timer(0.1).timeout
     conveyor.move_conveyor()
-    
+
 func move_finished():
     if conveyor.has_current_crushable():
         press.crush(conveyor.get_current_crushable())
     else:
-        conveyor.move_conveyor()        
+        conveyor.move_conveyor()
 
 func crush_finished():
-    conveyor.move_conveyor()    
-    
+    conveyor.move_conveyor()
+
 func save_data(data):
     conveyor.save_data(data)
     press.save_data(data)
-    
+
 func load_data(data):
     conveyor.load_data(data)
-    press.load_data(data)    
+    press.load_data(data)

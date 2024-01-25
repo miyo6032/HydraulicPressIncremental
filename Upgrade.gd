@@ -31,28 +31,28 @@ func init(upgrade: UpgradeRes):
 func currency_updated(value):
     if upgrade.costs.size() == max_upgrade_level:
         return
-    
+
     var can_afford_upgrade = Utils.geq(value, upgrade.costs[max_upgrade_level])
     upgrade_button.disabled = not can_afford_upgrade
     if can_afford_upgrade and max_upgrade_level == 0:
         fade_ui.fade_in_if_not_active()
 
 func upgrade_button_pressed():
-    set_max_upgrade_level(max_upgrade_level + 1)    
+    set_max_upgrade_level(max_upgrade_level + 1)
     upgrade_bought.emit(upgrade.costs[max_upgrade_level - 1])
-    
+
 func upstep_button_pressed():
-    current_upgrade_level = clamp(current_upgrade_level + 1, 0, max_upgrade_level)    
+    current_upgrade_level = clamp(current_upgrade_level + 1, 0, max_upgrade_level)
     current_level_changed()
 
 func downstep_button_pressed():
     current_upgrade_level = clamp(current_upgrade_level - 1, 0, max_upgrade_level)
     current_level_changed()
-    
+
 func update_step_button_enablements():
     upstep_button.disabled = current_upgrade_level == max_upgrade_level
     downstep_button.disabled = current_upgrade_level == 0
-    
+
 func set_max_upgrade_level(level):
     max_upgrade_level = level
     if upgrade.costs.size() == level:
@@ -62,7 +62,7 @@ func set_max_upgrade_level(level):
         upgrade_button.text = "$%s" % Utils.format_whole(upgrade.costs[max_upgrade_level])
     current_upgrade_level = max_upgrade_level
     current_level_changed()
-    
+
 func current_level_changed():
     update_step_button_enablements()
     EventBus.upgrade_level_changed.emit(self)
@@ -80,13 +80,13 @@ func save_data(data: Dictionary):
 func load_data(data: Dictionary):
     set_max_upgrade_level(data["max_upgrade_level"])
     current_upgrade_level = data["current_upgrade_level"]
-    current_level_changed()    
+    current_level_changed()
     if data["shown"]:
         fade_ui.show_instantly()
 
 func save_persistent_data(data: Dictionary):
     data["shown"] = fade_ui.faded_in
-    
+
 func load_persistent_data(data: Dictionary):
     if data["shown"]:
         fade_ui.show_instantly()

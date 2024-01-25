@@ -27,7 +27,7 @@ var pattern_level = base_pattern_level
 func _ready():
     Console.add_command("mv", move_conveyor)
     EventBus.upgrade_level_changed.connect(upgrade_level_changed)
-    
+
 func upgrade_level_changed(instance):
     if instance.upgrade.upgrade_type == Enums.UpgradeType.Materials:
         material_level = base_material_level + instance.current_upgrade_level
@@ -38,7 +38,7 @@ func upgrade_level_changed(instance):
         pattern_level = base_pattern_level + instance.current_upgrade_level
         var number_text = Utils.format_whole(pattern_level + base_pattern_level)
         var number_label_text = "types"
-        instance.set_upgrade_label(number_text, number_label_text)  
+        instance.set_upgrade_label(number_text, number_label_text)
 
 func move_conveyor():
     var crushable = crushable_scene.instantiate()
@@ -48,14 +48,14 @@ func move_conveyor():
     crushable.init(shape, pattern)
     crushable.global_position = crushable_spawn.global_position
     crushables.append(crushable)
-    
+
     var animation_time = 0.3
-    
+
     for c in crushables:
         var tween = create_tween()
         tween.tween_property(c, "position", c.position + move_offset, animation_time).set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_SINE)
-        
-    var tween = create_tween()        
+
+    var tween = create_tween()
     tween.tween_callback(finish_move).set_delay(animation_time)
 
 func finish_move():
@@ -64,15 +64,15 @@ func finish_move():
         var crushable = crushables[0]
         crushables.remove_at(0)
         crushable.queue_free()
-        
+
 func get_current_crushable():
     return crushables[-crushables_till_press]
-    
+
 func has_current_crushable():
     return crushables.size() >= crushables_till_press
-    
+
 func save_data(data: Dictionary):
     pass
-    
+
 func load_data(data: Dictionary):
     pass

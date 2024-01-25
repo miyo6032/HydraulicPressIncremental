@@ -32,12 +32,12 @@ func _ready():
     EventBus.skip_crushable.connect(skip_crushable)
     EventBus.press_selected.connect(press_selected)
     press_selected(current_press)
-    
+
 func press_selected(press_res: PressRes):
     press_sprite.texture = press_res.texture
     current_press = press_res
     particles_scene = current_press.press_particles
-    
+
 func upgrade_level_changed(instance):
     if instance.upgrade.upgrade_type == Enums.UpgradeType.Force:
         var calc_upgrade_value = func(upgrade_level): return pow(instance.upgrade.upgrade_value, upgrade_level)
@@ -47,21 +47,21 @@ func upgrade_level_changed(instance):
         max_press_force = calc_press_force.call(upgrade_value)
         var number_text = Utils.format_num(max_press_force)
         var number_label_text = "ton" if is_equal_approx(max_press_force, 1) else "tons"
-        
+
         if instance.max_upgrade_level < instance.upgrade.max_level:
             var next_upgrade_value = calc_upgrade_value.call(instance.current_upgrade_level + 1)
-            var next_max_press_force = calc_press_force.call(next_upgrade_value)     
+            var next_max_press_force = calc_press_force.call(next_upgrade_value)
             var next_upgrade_label = "next level: %s %s" % [Utils.format_num(next_max_press_force), "ton" if is_equal_approx(next_max_press_force, 1) else "tons"]
             instance.set_upgrade_label(number_text, number_label_text, next_upgrade_label)
         else:
             instance.set_upgrade_label(number_text, number_label_text)
-            
+
     elif instance.upgrade.upgrade_type == Enums.UpgradeType.PressSpeed:
         var upgrade_value = instance.upgrade.upgrade_value * instance.current_upgrade_level + current_press.speed_upgrade
         crushing_time = base_crushing_time / (1 + upgrade_value)
         var number_text = Utils.format_whole(upgrade_value * 100) + "%"
         var number_label_text = "increase"
-        instance.set_upgrade_label(number_text, number_label_text)        
+        instance.set_upgrade_label(number_text, number_label_text)
     elif instance.upgrade.upgrade_type == Enums.UpgradeType.Hydraulics:
         if instance.current_upgrade_level > 0:
             power_hydraulic_multiplier = instance.upgrade.upgrade_value * instance.current_upgrade_level * current_press.hydraulic_force_upgrade
@@ -71,26 +71,26 @@ func upgrade_level_changed(instance):
             speed_hydraulic_multiplier = current_press.hydraulic_speed_downgrade
         var number_text = "%sx > %sx" % [Utils.round_to_dec(speed_hydraulic_multiplier, 3), Utils.format_whole(power_hydraulic_multiplier)]
         var number_label_text = "speed for force"
-        instance.set_upgrade_label(number_text, number_label_text)    
+        instance.set_upgrade_label(number_text, number_label_text)
     elif instance.upgrade.upgrade_type == Enums.UpgradeType.Precision:
         var upgrade_value = instance.upgrade.upgrade_value * instance.current_upgrade_level + current_press.precision_upgrade
         quality_random.chance = upgrade_value
         var number_text = Utils.format_whole(upgrade_value * 100) + "%"
         var number_label_text = "chance"
-        instance.set_upgrade_label(number_text, number_label_text)    
+        instance.set_upgrade_label(number_text, number_label_text)
     elif instance.upgrade.upgrade_type == Enums.UpgradeType.Quality:
         var upgrade_value = base_quality_value_multiplier + instance.upgrade.upgrade_value * instance.current_upgrade_level + current_press.quality_upgrade
         quality_value_multiplier = upgrade_value
         var number_text = "%.0fx" % upgrade_value
         var number_label_text = "bonus $"
-        instance.set_upgrade_label(number_text, number_label_text)    
+        instance.set_upgrade_label(number_text, number_label_text)
 
 func crush(crushable):
     is_crushing = true
     current_force = 0
     particle_buildup = 0
     current_crushable = crushable
-        
+
 var current_crushable
 var _current_force
 var current_force: float:
@@ -103,15 +103,15 @@ const force_ramp_multiplier = 0.01
 const speed_multiplier = 500
 var is_crushing
 var particle_buildup
-        
+
 func _physics_process(delta):
     if not is_crushing:
         return
-        
-    var time = calc_crushing_time()    
+
+    var time = calc_crushing_time()
     var speed = speed_multiplier * delta / time
     var crush_progress = current_crushable.calc_crush_progress(visual.global_position.y - speed)
-    
+
     if visual.global_position.y >= final_crushing_pos.global_position.y:
         is_crushing = false
         complete_crush(current_crushable)
@@ -137,12 +137,12 @@ func _physics_process(delta):
                 particle_buildup = 0
     else:
         move_press_down(speed)
-        
+
 func stop_crush_prematurely(stop_delay):
     is_crushing = false
     var partial_time = 1 - (final_crushing_pos.global_position.y - visual.global_position.y) / (final_crushing_pos.global_position.y - start_crushing_pos.global_position.y)
     var tween = create_tween()
-    tween.tween_callback(func(): current_force = 0).set_delay(calc_crushing_time() * stop_delay)                
+    tween.tween_callback(func(): current_force = 0).set_delay(calc_crushing_time() * stop_delay)
     tween.tween_property(visual, "global_position", start_crushing_pos.global_position, calc_crushing_time() * partial_time)
     tween.tween_callback(func(): crush_finished.emit())
     EventBus.crushable_crushed.emit(current_crushable)
@@ -166,15 +166,15 @@ func complete_crush(crushable):
     add_child(particles)
     particles.global_position = final_crushing_pos.global_position
     particles.emitting = true
-    
+
 func update_crush(crushable):
     crushable.update_crush(visual.global_position.y)
-    
+
 func calc_crushing_time():
     return crushing_time / speed_hydraulic_multiplier
 
 func save_data(data):
     data["current_press"] = current_press.id
-    
+
 func load_data(data):
     press_selected(Registries.press_types[data["current_press"]])
