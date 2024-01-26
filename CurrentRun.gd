@@ -94,4 +94,4 @@ func load_unlocked_presses(game_data):
 
 
 func _on_button_pressed():
-    material_values_window.show()
+    material_values_window.open()
