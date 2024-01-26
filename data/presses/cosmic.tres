@@ -7,7 +7,7 @@
 [resource]
 script = ExtResource("2_kwx4p")
 name = "Cosmic Crusher"
-description = "0.5x speed 50x force"
+description = "0.75x speed 30x force"
 texture = ExtResource("3_0c75t")
 press_particles = ExtResource("1_e4ik7")
 minimum_presses_unlocked = 3
@@ -15,5 +15,5 @@ force_upgrade = 1.0
 precision_upgrade = 0.0
 speed_upgrade = 0.0
 quality_upgrade = 0.0
-hydraulic_force_upgrade = 50.0
-hydraulic_speed_downgrade = 0.5
+hydraulic_force_upgrade = 30.0
+hydraulic_speed_downgrade = 0.75

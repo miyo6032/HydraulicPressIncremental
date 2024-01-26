@@ -65,7 +65,7 @@ func upgrade_level_changed(instance):
     elif instance.upgrade.upgrade_type == Enums.UpgradeType.Hydraulics:
         if instance.current_upgrade_level > 0:
             power_hydraulic_multiplier = instance.upgrade.upgrade_value * instance.current_upgrade_level * current_press.hydraulic_force_upgrade
-            speed_hydraulic_multiplier =  current_press.hydraulic_speed_downgrade / (instance.upgrade.upgrade_value * instance.current_upgrade_level * 0.5)
+            speed_hydraulic_multiplier =  pow(current_press.hydraulic_speed_downgrade, instance.current_upgrade_level) * pow(0.75, instance.current_upgrade_level)
         else:
             power_hydraulic_multiplier = current_press.hydraulic_force_upgrade
             speed_hydraulic_multiplier = current_press.hydraulic_speed_downgrade
