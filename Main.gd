@@ -31,7 +31,8 @@ func try_load():
         new_game()
 
 func new_game():
-    current_run.queue_free()
+    if current_run:
+        current_run.queue_free()
     current_run = current_run_scene.instantiate()
     add_child(current_run)
 
